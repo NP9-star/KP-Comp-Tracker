@@ -13,7 +13,6 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 DOCS_DATA = ROOT / "docs" / "data"
-UA = "Mozilla/5.0 (compatible; local-padel-market-tracker/1.0)"
 
 DAY_NAMES = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 

@@ -18,6 +18,7 @@ clubs:
   - key: padel-maidenhead
     name: Padel Maidenhead
     platform: playtomic
+    slug: padel-maidenhead            # the part after playtomic.com/clubs/
     tenant_id: 2083cefd-b6a3-4bf9-b2a7-28a6ac704e25
     exclude_courts: ["Indoor Singles"]   # singles court left out so figures compare with doubles courts
     hours: {all: "06:00-24:00"}
@@ -26,10 +27,10 @@ clubs:
   - key: padelhub-slough
     name: PADELHUB SL2 Slough
     platform: playtomic
-    tenant_id: null      # found automatically on first run by searching near SL2
-    search: {name: "PADELHUB", lat: 51.535, lon: -0.603, radius_m: 25000}
+    slug: the-padel-hub-sl2-slough
+    tenant_id: null      # read automatically from the club page
     exclude_courts: []
-    hours: null          # null = take opening hours from Playtomic (falls back to 07:00-22:00)
+    hours: null          # null = worked out from the earliest and latest slots seen
     realisation: 1.0
 
   - key: ukpadel-holmer-green
