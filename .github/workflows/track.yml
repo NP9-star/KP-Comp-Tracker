@@ -29,6 +29,13 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Cache headless browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+      - name: Install headless browser (only used if a site refuses normal requests)
+        run: python -m playwright install --with-deps chromium
 
       - name: Discover (connection check)
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'discover'
