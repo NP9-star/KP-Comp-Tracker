@@ -1,0 +1,57 @@
+# Local padel market tracker
+# Edit this file to change clubs, hours or prices. Times are UK local time.
+
+timezone: Europe/London
+horizon_days: 14          # how many days ahead to watch on each run
+block_minutes: 30         # occupancy is measured in 30-minute court blocks
+max_gap_minutes: 180      # if no check ran within this long before a block starts, the block is excluded
+
+# Peak windows (used to split occupancy into peak / off-peak)
+peak:
+  weekday: "17:00-22:00"
+  weekend: "08:00-20:00"
+
+# Your own occupancy plan is NOT stored here, because this repository is public.
+# Add it to the dashboard address instead, e.g.  .../#plan=40-55  (see README).
+
+clubs:
+  - key: padel-maidenhead
+    name: Padel Maidenhead
+    platform: playtomic
+    tenant_id: 2083cefd-b6a3-4bf9-b2a7-28a6ac704e25
+    exclude_courts: ["Indoor Singles"]   # singles court left out so figures compare with doubles courts
+    hours: {all: "06:00-24:00"}
+    realisation: 1.0     # share of listed price actually collected (lower it to allow for member discounts)
+
+  - key: padelhub-slough
+    name: PADELHUB SL2 Slough
+    platform: playtomic
+    tenant_id: null      # found automatically on first run by searching near SL2
+    search: {name: "PADELHUB", lat: 51.535, lon: -0.603, radius_m: 25000}
+    exclude_courts: []
+    hours: null          # null = take opening hours from Playtomic (falls back to 07:00-22:00)
+    realisation: 1.0
+
+  - key: ukpadel-holmer-green
+    name: UK Padel Holmer Green
+    platform: matchi
+    shortname: ukpadelholmergreen
+    hours: {mon-sat: "08:00-22:00", sun: "09:00-20:00"}
+    realisation: 1.0
+    # MATCHi does not show prices on its schedule, so revenue needs a price table.
+    # Fill in the non-member court price per hour. Example shown; replace with real prices.
+    prices:
+      - {days: mon-fri, from: "08:00", to: "17:00", per_hour: null}
+      - {days: mon-fri, from: "17:00", to: "22:00", per_hour: null}
+      - {days: sat-sun, from: "08:00", to: "22:00", per_hour: null}
+
+  - key: ukpadel-stoke-poges
+    name: UK Padel Stoke Poges
+    platform: matchi
+    shortname: ukpadelstokepoges
+    hours: {all: "08:00-22:00"}
+    realisation: 1.0
+    prices:
+      - {days: mon-fri, from: "08:00", to: "17:00", per_hour: null}
+      - {days: mon-fri, from: "17:00", to: "22:00", per_hour: null}
+      - {days: sat-sun, from: "08:00", to: "22:00", per_hour: null}
