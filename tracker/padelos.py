@@ -90,6 +90,9 @@ def resolve(club: dict, resolved: dict) -> dict:
     info = resolved.get(club["key"]) or {}
     if info.get("club_id") and info.get("club_ids"):
         info.setdefault("courts", {})
+        for n in list(info["courts"]):     # drop placeholders and anything now excluded
+            if n == "Court (unnamed)" or n in (info.get("excluded") or []) or _excluded(club, n, ""):
+                info["courts"].pop(n)
         return info
     clubs = company_clubs(club["company_id"])
     want = club["venue_match"].lower()
@@ -149,7 +152,32 @@ def _court_of(d: dict, inherited):
 
 
 def extract_slots(availability, d: date, zone):
-    """Yield (court or None, start_min, duration_min, price or None)."""
+    """[(court, start_min, duration_min, price)] from PadelOS availability.
+
+    Real layout (Sep 2026): [{"duration": "60", "slots": [{"startTime": "08:00", "endTime": "09:00",
+    "date": "YYYY-MM-DD", "courts": [{"id", "name", "price", "courtSize", ...}, ...]}]}, ...]
+    Returns court dicts' names; singles/excluded courts are filtered by the caller."""
+    out = []
+    if isinstance(availability, list) and availability and all(
+            isinstance(g, dict) and isinstance(g.get("slots"), list) for g in availability):
+        for g in availability:
+            for sl in g["slots"]:
+                if sl.get("date") and sl["date"] != d.isoformat():
+                    continue
+                start = _parse_time(sl.get("startTime"), d, zone)
+                end = _parse_time(sl.get("endTime"), d, zone)
+                if start is None:
+                    continue
+                length = (end - start) if end and end > start else int(g.get("duration") or 60)
+                for c in sl.get("courts") or []:
+                    out.append(({"name": c.get("name") or f"Court {c.get('id')}",
+                                 "size": (c.get("courtSize") or "").lower()},
+                                start, length, parse_price(c.get("price"))))
+        return out
+    return _generic_slots(availability, d, zone)
+
+
+def _generic_slots(availability, d: date, zone):
     out = []
 
     def walk(obj, court, parent_dur=None):
@@ -188,7 +216,13 @@ def extract_slots(availability, d: date, zone):
                 walk(v, c, dur)
 
     walk(availability, None)
-    return out
+    return [({"name": c, "size": ""} if c else None, st, ln, pr) for c, st, ln, pr in out]
+
+
+def _excluded(club, name, size):
+    if size == "single" and not club.get("include_singles"):
+        return True
+    return any(e.lower() in (name or "").lower() for e in club.get("exclude_courts") or [])
 
 
 def free_blocks(club, info, d: date, zone, block: int, mode=None):
@@ -204,7 +238,14 @@ def free_blocks(club, info, d: date, zone, block: int, mode=None):
     out: dict[str, dict[str, float | None]] = {}
     best: dict[tuple, int] = {}
     for court, start, length, price in slots:
-        name = court or "Court (unnamed)"
+        if court is None:
+            raise RuntimeError("PadelOS slots have no court information; sample: " + json.dumps(avail)[:500])
+        name, size = court["name"], court["size"]
+        if _excluded(club, name, size):
+            info.setdefault("excluded", [])
+            if name not in info["excluded"]:
+                info["excluded"].append(name)
+            continue
         info["courts"].setdefault(name, name)
         rate = price / (length / block) if price is not None and length else None
         for m in range(start, min(start + length, 24 * 60), block):

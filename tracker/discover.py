@@ -55,7 +55,7 @@ def main():
                               json.dumps(others[0]["availability"][0])[:900])
                     try:
                         free = padelos.free_blocks(club, info, dd, zone, block)
-                        print("     free blocks per court:", {c: len(v) for c, v in free.items()},
+                        print("     excluded:", info.get("excluded"), "| free blocks per court:", {c: len(v) for c, v in free.items()},
                               "| earliest/latest:", min((min(v) for v in free.values() if v), default=None),
                               max((max(v) for v in free.values() if v), default=None))
                     except Exception as ex:  # noqa: BLE001
