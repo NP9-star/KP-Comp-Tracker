@@ -23,7 +23,7 @@ def _save(name, text):
         d = DATA / "debug"
         d.mkdir(parents=True, exist_ok=True)
         DEBUG["n"] += 1
-        (d / f"{DEBUG['n']:02d}_{name}").write_text(text or "")
+        (d / f"{DEBUG['n']:02d}_{name}").write_text(text or "", encoding="utf-8")
 
 BASE = "https://www.matchi.se"
 TD_RE = re.compile(r"<td\b([^>]*)>", re.I)

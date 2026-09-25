@@ -60,7 +60,7 @@ def finalise(cfg, club, zone, today):
         out = DATA / "blocks" / key / f"{ds[:7]}.csv"
         out.parent.mkdir(parents=True, exist_ok=True)
         new = not out.exists()
-        with open(out, "a", newline="") as f:
+        with open(out, "a", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=FIELDS)
             if new:
                 w.writeheader()
@@ -80,7 +80,7 @@ def load_blocks(key, since: date):
     for f in sorted(folder.glob("*.csv")):
         if f.stem < since.isoformat()[:7]:
             continue
-        with open(f) as fh:
+        with open(f, encoding="utf-8", newline="") as fh:
             for r in csv.DictReader(fh):
                 if r["date"] >= since.isoformat():
                     rows.append(r)

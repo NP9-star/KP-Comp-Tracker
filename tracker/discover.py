@@ -5,7 +5,7 @@ import collections
 import json
 from datetime import timedelta
 
-from . import matchi, net, playtomic
+from . import matchi, net, padelos, playtomic
 from .collect import club_hours
 from .common import DATA, load_config, min_to_hm, now_utc, tz, write_json
 
@@ -37,6 +37,12 @@ def main():
                       starts[:3], starts[-3:])
                 print("sample:", json.dumps({"start_date": raw[0].get("start_date"),
                                              "slot": (raw[0].get("slots") or [None])[0]}) if raw else None)
+            elif club["platform"] == "padelos":
+                recs = padelos.capture(club)
+                data = [r for r in recs if "json" in r["content_type"]]
+                print(f"page loaded; data requests recorded: {len(recs)} ({len(data)} JSON)")
+                for r in data[:12]:
+                    print(f"   {r['status']} {r['method']} {r['url'][:140]}  [{len(r['body'])} chars]")
             else:
                 info = matchi.resolve(club, resolved)
                 print("facility id:", info["facility_id"], "| sport id:", info["sport"])

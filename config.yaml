@@ -2,7 +2,7 @@
 # Edit this file to change clubs, hours or prices. Times are UK local time.
 
 timezone: Europe/London
-horizon_days: 14          # how many days ahead to watch on each run
+horizon_days: 10          # how many days ahead to watch on each run
 block_minutes: 30         # occupancy is measured in 30-minute court blocks
 max_gap_minutes: 180      # if no check ran within this long before a block starts, the block is excluded
 
@@ -35,12 +35,12 @@ clubs:
 
   - key: ukpadel-holmer-green
     name: UK Padel Holmer Green
-    platform: matchi
-    shortname: ukpadelholmergreen
+    platform: padelos                 # UK Padel's own booking system (player.padelos.co)
+    company_id: 204
+    venue_match: "Holmer Green"       # how this club is named inside PadelOS
     hours: {mon-sat: "08:00-22:00", sun: "09:00-20:00"}
     realisation: 1.0
-    # MATCHi does not show prices on its schedule, so revenue needs a price table.
-    # Fill in the non-member court price per hour. Example shown; replace with real prices.
+    # Only used if PadelOS does not show prices. Non-member court price per hour.
     prices:
       - {days: mon-fri, from: "08:00", to: "17:00", per_hour: null}
       - {days: mon-fri, from: "17:00", to: "22:00", per_hour: null}
@@ -48,8 +48,9 @@ clubs:
 
   - key: ukpadel-stoke-poges
     name: UK Padel Stoke Poges
-    platform: matchi
-    shortname: ukpadelstokepoges
+    platform: padelos
+    company_id: 204
+    venue_match: "Stoke Poges"
     hours: {all: "08:00-22:00"}
     realisation: 1.0
     prices:

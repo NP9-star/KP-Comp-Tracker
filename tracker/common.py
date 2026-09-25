@@ -18,7 +18,7 @@ DAY_NAMES = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
 
 def load_config() -> dict:
-    with open(ROOT / "config.yaml") as f:
+    with open(ROOT / "config.yaml", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
@@ -32,7 +32,7 @@ def now_utc() -> datetime:
 
 def read_json(path: Path, default):
     try:
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return default
@@ -41,7 +41,7 @@ def read_json(path: Path, default):
 def write_json(path: Path, obj, compact=True):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    with open(tmp, "w") as f:
+    with open(tmp, "w", encoding="utf-8") as f:
         if compact:
             json.dump(obj, f, separators=(",", ":"), sort_keys=True)
         else:

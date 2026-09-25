@@ -12,11 +12,11 @@ import sys
 import traceback
 from datetime import timedelta
 
-from . import matchi, net, playtomic
+from . import matchi, net, padelos, playtomic
 from .common import (DATA, blocks_for_day, block_start, hours_by_weekday, load_config,
                      min_to_hm, now_utc, read_json, tz, write_json, hm_to_min)
 
-ADAPTERS = {"playtomic": playtomic, "matchi": matchi}
+ADAPTERS = {"playtomic": playtomic, "matchi": matchi, "padelos": padelos}
 DEFAULT_HOURS = {"all": "07:00-22:00"}
 
 
