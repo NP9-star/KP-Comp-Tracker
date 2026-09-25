@@ -1,8 +1,11 @@
 name: Track competitor availability
 
+# Runs on your own computer (a "self-hosted runner") because the booking sites
+# block GitHub's cloud servers. The computer must be on and the runner running.
+
 on:
   schedule:
-    - cron: "7,37 * * * *"      # every 30 minutes (GitHub may run a few minutes late)
+    - cron: "7,37 * * * *"      # every 30 minutes (GitHub may start it a few minutes late)
   workflow_dispatch:
     inputs:
       mode:
@@ -18,24 +21,23 @@ concurrency:
   group: tracker
   cancel-in-progress: false
 
+defaults:
+  run:
+    shell: cmd
+
+env:
+  PYTHONUTF8: "1"
+
 jobs:
   run:
-    runs-on: macos-latest
-    timeout-minutes: 15
+    runs-on: self-hosted
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-      - run: pip install -r requirements.txt
-      - name: Cache headless browser
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
-      - name: Install headless browser (only used if a site refuses normal requests)
-        run: python -m playwright install --with-deps chromium
+      - name: Install Python packages
+        run: python -m pip install --quiet --disable-pip-version-check -r requirements.txt
+      - name: Install headless browser (first run only, then instant)
+        run: python -m playwright install chromium
 
       - name: Discover (connection check)
         if: github.event_name == 'workflow_dispatch' && inputs.mode == 'discover'
@@ -55,10 +57,7 @@ jobs:
         run: python -m tracker.analyse
       - name: Save results
         if: github.event_name == 'schedule' || inputs.mode == 'track'
-        run: |
-          git config user.name "tracker-bot"
-          git config user.email "tracker-bot@users.noreply.github.com"
-          git add data docs/data
-          git diff --cached --quiet || git commit -m "Update availability $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase --quiet || true
-          git push
+        run: python -m tracker.save
+      - name: Tidy up
+        if: always()
+        run: python -c "import shutil; shutil.rmtree('data/debug', ignore_errors=True)"
