@@ -30,7 +30,7 @@ clubs:
     slug: the-padel-hub-sl2-slough
     tenant_id: null      # read automatically from the club page
     exclude_courts: []
-    hours: null          # null = worked out from the earliest and latest slots seen
+    hours: {mon-fri: "08:00-23:00", sat: "08:30-23:00", sun: "08:30-22:00"}
     realisation: 1.0
 
   - key: ukpadel-holmer-green
