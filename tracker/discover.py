@@ -38,11 +38,28 @@ def main():
                 print("sample:", json.dumps({"start_date": raw[0].get("start_date"),
                                              "slot": (raw[0].get("slots") or [None])[0]}) if raw else None)
             elif club["platform"] == "padelos":
-                recs = padelos.capture(club)
-                data = [r for r in recs if "json" in r["content_type"]]
-                print(f"page loaded; data requests recorded: {len(recs)} ({len(data)} JSON)")
-                for r in data[:12]:
-                    print(f"   {r['status']} {r['method']} {r['url'][:140]}  [{len(r['body'])} chars]")
+                info = padelos.resolve(club, resolved)
+                print("club:", info["club_id"], info.get("club_name"), "| company clubs:", info["club_ids"])
+                for i in range(3):
+                    dd = day + timedelta(days=i)
+                    resp = padelos.search(club["company_id"], dd, info["club_ids"])
+                    write_json(dbg / f"padelos_search_{dd}.json", padelos.strip_bulk(resp), compact=False)
+                    entry = padelos.club_entry(resp, info["club_id"]) or {}
+                    avail = entry.get("availability") or []
+                    print(f"  {dd}: {len(avail)} availability entries")
+                    if avail:
+                        print("     sample:", json.dumps(avail[0])[:900])
+                    others = [c for c in resp.get("data") or [] if c.get("availability")]
+                    if not avail and others and i == 0:
+                        print(f"     sample from {others[0].get('name')}:",
+                              json.dumps(others[0]["availability"][0])[:900])
+                    try:
+                        free = padelos.free_blocks(club, info, dd, zone, block)
+                        print("     free blocks per court:", {c: len(v) for c, v in free.items()},
+                              "| earliest/latest:", min((min(v) for v in free.values() if v), default=None),
+                              max((max(v) for v in free.values() if v), default=None))
+                    except Exception as ex:  # noqa: BLE001
+                        print("     reader:", ex)
             else:
                 info = matchi.resolve(club, resolved)
                 print("facility id:", info["facility_id"], "| sport id:", info["sport"])

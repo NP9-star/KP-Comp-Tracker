@@ -59,6 +59,9 @@ def _page_info(club):
 def resolve(club: dict, resolved: dict) -> dict:
     info = resolved.get(club["key"]) or {}
     if info.get("tenant_id") and info.get("refreshed", "") >= (date.today() - timedelta(days=7)).isoformat():
+        for rid in list(info.get("courts", {})):          # apply any new exclusions
+            if _excluded(club, rid, info["courts"][rid]):
+                info["courts"].pop(rid)
         return info
     tenant, names, page_err = _page_info(club)
     tenant = club.get("tenant_id") or tenant or info.get("tenant_id")
