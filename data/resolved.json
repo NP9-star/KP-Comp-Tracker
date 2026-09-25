@@ -1,0 +1,102 @@
+{
+  "_playtomic": {
+    "decided": "2026-09-25",
+    "evidence": "Padel Maidenhead: earliest slot vs opening (min) [-30, -30, -30]",
+    "times": "utc"
+  },
+  "padel-maidenhead": {
+    "all_courts": {
+      "1031b72c-3d99-4e4e-99fd-e4fe3b8896f2": "Court 1031",
+      "270c321c-4a37-409d-9eaf-75b57598a422": "Court 270c",
+      "4121a5c6-c9fd-4ff0-829a-6b5895f3c048": "Court 4121",
+      "51599c3d-7579-4836-8293-e027dce9b662": "Court 5159",
+      "6a587862-7d32-4c1a-b00e-6fdea720b36c": "Court 6a58",
+      "8545460b-7e09-4c34-9549-c05406cbc918": "Court 8545",
+      "beb605ab-6bbc-425d-9cf9-7f81df7b62f5": "Court beb6",
+      "e0270529-54a7-4587-9f1c-ed83492087d2": "Court e027"
+    },
+    "courts": {
+      "1031b72c-3d99-4e4e-99fd-e4fe3b8896f2": "Court 1031",
+      "270c321c-4a37-409d-9eaf-75b57598a422": "Court 270c",
+      "51599c3d-7579-4836-8293-e027dce9b662": "Court 5159",
+      "6a587862-7d32-4c1a-b00e-6fdea720b36c": "Court 6a58",
+      "8545460b-7e09-4c34-9549-c05406cbc918": "Court 8545",
+      "beb605ab-6bbc-425d-9cf9-7f81df7b62f5": "Court beb6",
+      "e0270529-54a7-4587-9f1c-ed83492087d2": "Court e027"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-25",
+    "seen_range": [
+      390,
+      1440
+    ],
+    "tenant_id": "2083cefd-b6a3-4bf9-b2a7-28a6ac704e25"
+  },
+  "padelhub-slough": {
+    "all_courts": {
+      "1c11ea9f-2602-4ab9-82cb-eb518c601cc0": "Court 1c11",
+      "415b15fc-d2de-475d-a2a9-3e72b1759b67": "Court 415b",
+      "793e3b1f-4279-4ccb-8e9c-39bb850d8f94": "Court 793e",
+      "ca27a384-f5cb-4afc-9c55-5135933197d0": "Court ca27",
+      "ee5c64bf-2d06-4c8b-9396-d6928f82feed": "Court ee5c"
+    },
+    "courts": {
+      "1c11ea9f-2602-4ab9-82cb-eb518c601cc0": "Court 1c11",
+      "415b15fc-d2de-475d-a2a9-3e72b1759b67": "Court 415b",
+      "793e3b1f-4279-4ccb-8e9c-39bb850d8f94": "Court 793e",
+      "ca27a384-f5cb-4afc-9c55-5135933197d0": "Court ca27",
+      "ee5c64bf-2d06-4c8b-9396-d6928f82feed": "Court ee5c"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-25",
+    "seen_range": [
+      480,
+      1380
+    ],
+    "tenant_id": "41062339-4a0c-4167-8593-f3dc861fb415"
+  },
+  "ukpadel-holmer-green": {
+    "club_id": "216905",
+    "club_ids": [
+      "216938",
+      "216906",
+      "216924",
+      "216907",
+      "216905"
+    ],
+    "club_name": "UK PADEL Holmer Green",
+    "courts": {
+      "Centre Court | Doyle Plastering": "Centre Court | Doyle Plastering",
+      "The Punchy Court": "The Punchy Court",
+      "The Shandy Shack Court": "The Shandy Shack Court"
+    },
+    "excluded": [
+      "The Singles Court"
+    ],
+    "seen_range": [
+      480,
+      1320
+    ]
+  },
+  "ukpadel-stoke-poges": {
+    "club_id": "216907",
+    "club_ids": [
+      "216938",
+      "216906",
+      "216924",
+      "216907",
+      "216905"
+    ],
+    "club_name": "UK PADEL Stoke Poges",
+    "courts": {
+      "Court 1": "Court 1",
+      "Court 2": "Court 2"
+    },
+    "seen_range": [
+      480,
+      1320
+    ]
+  }
+}
