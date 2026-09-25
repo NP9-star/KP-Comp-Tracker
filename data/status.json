@@ -2,25 +2,25 @@
   "padel-maidenhead": {
     "courts": 7,
     "error": null,
-    "last_attempt": "2026-09-25T19:15:14+00:00",
-    "last_ok": "2026-09-25T19:15:14+00:00"
+    "last_attempt": "2026-09-25T19:43:14+00:00",
+    "last_ok": "2026-09-25T19:43:14+00:00"
   },
   "padelhub-slough": {
     "courts": 5,
     "error": null,
-    "last_attempt": "2026-09-25T19:15:14+00:00",
-    "last_ok": "2026-09-25T19:15:14+00:00"
+    "last_attempt": "2026-09-25T19:43:14+00:00",
+    "last_ok": "2026-09-25T19:43:14+00:00"
   },
   "ukpadel-holmer-green": {
     "courts": 3,
     "error": null,
-    "last_attempt": "2026-09-25T19:15:14+00:00",
-    "last_ok": "2026-09-25T19:15:14+00:00"
+    "last_attempt": "2026-09-25T19:43:14+00:00",
+    "last_ok": "2026-09-25T19:43:14+00:00"
   },
   "ukpadel-stoke-poges": {
     "courts": 2,
     "error": null,
-    "last_attempt": "2026-09-25T19:15:14+00:00",
-    "last_ok": "2026-09-25T19:15:14+00:00"
+    "last_attempt": "2026-09-25T19:43:14+00:00",
+    "last_ok": "2026-09-25T19:43:14+00:00"
   }
 }
