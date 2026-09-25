@@ -18,6 +18,7 @@ def main():
     resolved: dict = {}
     dbg = DATA / "debug"
     dbg.mkdir(parents=True, exist_ok=True)
+    matchi.DEBUG["on"] = True
     pt = []
     for club in cfg["clubs"]:
         print("=" * 70)
@@ -40,7 +41,6 @@ def main():
                 info = matchi.resolve(club, resolved)
                 print("facility id:", info["facility_id"], "| sport id:", info["sport"])
                 html = matchi.schedule_html(club, info["facility_id"], day, info["sport"], None)
-                (dbg / f"{club['key']}_schedule.html").write_text(html)
                 cells = list(matchi.parse_cells(html))
                 print("cells:", len(cells), "| classes:", dict(collections.Counter(c[4] for c in cells).most_common(5)))
                 print("courts:", sorted({c[0] for c in cells}))
