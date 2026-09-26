@@ -4,6 +4,62 @@
     "evidence": "Padel Maidenhead: earliest slot vs opening (min) [-30, -30, -30]",
     "times": "utc"
   },
+  "denham-grove": {
+    "all_courts": {
+      "c623d05c-392a-4884-80f2-b5510216e2f8": "Court c623",
+      "ebfddde4-015c-4269-913d-1f2b5b7c11d2": "Court ebfd"
+    },
+    "courts": {
+      "c623d05c-392a-4884-80f2-b5510216e2f8": "Court c623",
+      "ebfddde4-015c-4269-913d-1f2b5b7c11d2": "Court ebfd"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-26",
+    "seen_range": [
+      420,
+      1320
+    ],
+    "tenant_id": "d265b308-c4b0-4e43-914b-aa9954f69702"
+  },
+  "ezeepadel-weybridge": {
+    "all_courts": {
+      "6a0841f2-e904-418c-86c5-6d242ed01a79": "Court 6a08",
+      "7810d4c5-5d9a-45cb-9129-23caa28db85f": "Court 7810",
+      "85fab9c1-fee2-44f0-baa9-31559cf59fbf": "Court 85fa",
+      "aa5f0ac6-63b2-4f22-9492-2d55145f3f7a": "Court aa5f"
+    },
+    "courts": {
+      "6a0841f2-e904-418c-86c5-6d242ed01a79": "Court 6a08",
+      "7810d4c5-5d9a-45cb-9129-23caa28db85f": "Court 7810",
+      "85fab9c1-fee2-44f0-baa9-31559cf59fbf": "Court 85fa",
+      "aa5f0ac6-63b2-4f22-9492-2d55145f3f7a": "Court aa5f"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-26",
+    "seen_range": [
+      420,
+      1320
+    ],
+    "tenant_id": "1eb90d21-84ba-4f46-b523-61dffef0739f"
+  },
+  "lacey-green": {
+    "all_courts": {
+      "24d2adde-61a5-4f9b-9f59-787c8dc279b9": "Court 24d2"
+    },
+    "courts": {
+      "24d2adde-61a5-4f9b-9f59-787c8dc279b9": "Court 24d2"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-26",
+    "seen_range": [
+      420,
+      1320
+    ],
+    "tenant_id": "fbefee6e-829f-4e09-bc7b-67ea018aa143"
+  },
   "padel-maidenhead": {
     "all_courts": {
       "1031b72c-3d99-4e4e-99fd-e4fe3b8896f2": "Court 1031",
@@ -57,6 +113,72 @@
     ],
     "tenant_id": "41062339-4a0c-4167-8593-f3dc861fb415"
   },
+  "powerhouse-burnham": {
+    "all_courts": {
+      "8c7a0362-41ca-4a26-8e1e-8a1fd5ee4a97": "Court 8c7a",
+      "f9d4b845-171c-45da-8e60-f5dbcdceb6eb": "Court f9d4"
+    },
+    "courts": {
+      "8c7a0362-41ca-4a26-8e1e-8a1fd5ee4a97": "Court 8c7a",
+      "f9d4b845-171c-45da-8e60-f5dbcdceb6eb": "Court f9d4"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-26",
+    "seen_range": [
+      420,
+      1320
+    ],
+    "tenant_id": "4d95d6f6-09a7-4e44-9291-f7ddc5b5624c"
+  },
+  "psc-earls-court": {
+    "all_courts": {
+      "0c120283-ac8b-4953-bd0a-f9fa02ad7d79": "Court 0c12",
+      "5103312a-cbbc-49aa-84be-a44a002def4b": "Court 5103",
+      "7858ffd4-5ee2-4494-9409-3be8a91e715b": "Court 7858",
+      "a8b3fce4-f32c-43f7-927b-ebc7a48c484f": "Court a8b3",
+      "abbae263-9e59-4a5a-a15c-4ce41d799f0e": "Court abba",
+      "fb788ccc-a7bd-4672-b53d-f9fbdfcf0527": "Court fb78"
+    },
+    "courts": {
+      "0c120283-ac8b-4953-bd0a-f9fa02ad7d79": "Court 0c12",
+      "5103312a-cbbc-49aa-84be-a44a002def4b": "Court 5103",
+      "7858ffd4-5ee2-4494-9409-3be8a91e715b": "Court 7858",
+      "a8b3fce4-f32c-43f7-927b-ebc7a48c484f": "Court a8b3",
+      "abbae263-9e59-4a5a-a15c-4ce41d799f0e": "Court abba",
+      "fb788ccc-a7bd-4672-b53d-f9fbdfcf0527": "Court fb78"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-26",
+    "seen_range": [
+      420,
+      1380
+    ],
+    "tenant_id": "1c97a3d1-ded7-4c4b-808e-8c37bb1b2a1f"
+  },
+  "rulo-chesham": {
+    "all_courts": {
+      "0ba0ba4e-2ab8-4724-8011-5d71d4d8db30": "Court 0ba0",
+      "1fdd4b4e-a39b-45f9-b203-e9026f7fdc6f": "Court 1fdd",
+      "244d2f8c-d5df-41aa-bac0-37aa02fd65ef": "Court 244d",
+      "c71a3fb2-30b6-4482-90ff-5b7799644456": "Court c71a"
+    },
+    "courts": {
+      "0ba0ba4e-2ab8-4724-8011-5d71d4d8db30": "Court 0ba0",
+      "1fdd4b4e-a39b-45f9-b203-e9026f7fdc6f": "Court 1fdd",
+      "244d2f8c-d5df-41aa-bac0-37aa02fd65ef": "Court 244d",
+      "c71a3fb2-30b6-4482-90ff-5b7799644456": "Court c71a"
+    },
+    "page_error": null,
+    "page_names": {},
+    "refreshed": "2026-09-26",
+    "seen_range": [
+      420,
+      1320
+    ],
+    "tenant_id": "1b0fa0b0-8e4a-42b0-92a0-b6ea026e48ac"
+  },
   "ukpadel-holmer-green": {
     "club_id": "216905",
     "club_ids": [
@@ -77,6 +199,25 @@
     ],
     "seen_range": [
       480,
+      1320
+    ]
+  },
+  "ukpadel-princes-risborough": {
+    "club_id": "216924",
+    "club_ids": [
+      "216938",
+      "216906",
+      "216924",
+      "216907",
+      "216905"
+    ],
+    "club_name": "UK PADEL Princes Risborough",
+    "courts": {
+      "Court 1": "Court 1",
+      "Court 2": "Court 2"
+    },
+    "seen_range": [
+      420,
       1320
     ]
   },
