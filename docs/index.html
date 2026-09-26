@@ -174,16 +174,24 @@ const kindText = c => { const k = c.court_kinds || {}; const parts = Object.keys
 
 /* ---------------- demo data ---------------- */
 function demoData() {
-  const spec = [["padel-maidenhead","Padel Maidenhead","playtomic","local",7,{outdoor:4,indoor:3},.62,50],["padelhub-slough","PADELHUB SL2 Slough","playtomic","local",5,{indoor:5},.66,40],
-    ["ukpadel-holmer-green","UK Padel Holmer Green","padelos","local",3,{outdoor:2,covered:1},.47,40],["ukpadel-stoke-poges","UK Padel Stoke Poges","padelos","local",2,{outdoor:2},.41,40],
-    ["rulo-chesham","Rulo Clubs Chesham","playtomic","local",3,{indoor:3},.58,48],["denham-grove","Padel at Denham Grove","playtomic","local",2,{outdoor:2},.33,36],
-    ["psc-earls-court","Padel Social Club Earl's Court","playtomic","benchmark",6,{outdoor:6},.78,70]];
+  const spec = [
+    ["padel-maidenhead","Padel Maidenhead","playtomic","local",7,{covered:6,outdoor:1},.63,50],
+    ["padelhub-slough","PADELHUB SL2 Slough","playtomic","local",5,{indoor:5},.66,40],
+    ["rulo-chesham","Rulo Clubs Chesham","playtomic","local",3,{indoor:3},.52,70],
+    ["ukpadel-holmer-green","UK Padel Holmer Green","padelos","local",3,{covered:1,outdoor:2},.48,40],
+    ["ukpadel-stoke-poges","UK Padel Stoke Poges","padelos","local",2,{outdoor:2},.44,38],
+    ["ukpadel-princes-risborough","UK Padel Princes Risborough","padelos","local",2,{outdoor:2},.38,36],
+    ["denham-grove","Padel at Denham Grove","playtomic","local",2,{outdoor:2},.41,44],
+    ["lacey-green","Lacey Green & Loosley Row","playtomic","local",1,{outdoor:1},.35,28],
+    ["powerhouse-burnham","Padel Powerhouse Burnham","playtomic","local",2,{outdoor:2},.30,50],
+    ["ezeepadel-weybridge","Ezeepadel Weybridge","playtomic","benchmark",4,{outdoor:4},.71,52],
+    ["psc-earls-court","Padel Social Club Earl's Court","playtomic","benchmark",6,{outdoor:4,indoor:2},.79,75]];
   let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
   const today = new Date(); today.setHours(12);
   const mk = (base, courts, price, n, daily) => { const s = daily.slice(-n); const occ = s.reduce((a,b)=>a+b.occ,0)/s.length, rev = s.reduce((a,b)=>a+b.rev,0);
     return {days:n, occupancy:occ, occupancy_peak:Math.min(.99,occ+.24), occupancy_offpeak:Math.max(.05,occ-.2), watched_bookings_share:.58,
       court_hours_sold_per_day:+(occ*courts*15).toFixed(1), revenue:rev, revenue_annualised:rev/n*355, revenue_per_court_annualised:rev/n*355/courts,
-      avg_price_per_court_hour:price, peak_price_per_court_hour:price*1.15, offpeak_price_per_court_hour:price*.8, median_lead_h:40+rnd()*60}; };
+      avg_price_per_court_hour:price, peak_price_per_court_hour:price*1.1, offpeak_price_per_court_hour:price*.85, median_lead_h:40+rnd()*60}; };
   const clubs = spec.map(([key,name,platform,group,courts,kinds,base,price]) => {
     const daily = [];
     for (let i = 90; i >= 1; i--) { const d = new Date(today - i*864e5), we = d.getDay()%6===0, rain = rnd() < .3 ? +(rnd()*12).toFixed(1) : 0;
@@ -203,7 +211,7 @@ function demoData() {
       market[g][sc][lab] = {occupancy:w("occupancy"), occupancy_peak:w("occupancy_peak"), occupancy_offpeak:w("occupancy_offpeak")}; } }
   return {generated:new Date().toISOString(), as_of:new Date(today - 864e5).toISOString().slice(0,10), demo:true, days_open_per_year:355,
     standard_hours_label:"07:00–22:00 weekdays, 08:00–22:00 weekends", peak_label:"weekdays 17:00–22:00, weekends 08:00–20:00",
-    groups:{local:"Local clubs", benchmark:"Wider benchmarks"}, clubs, market, by_kind:{indoor:.63, covered:.52, outdoor:.44}};
+    groups:{local:"Local clubs", benchmark:"Wider benchmarks"}, group_order:["local","benchmark"], clubs, market, by_kind:{indoor:.61, covered:.58, outdoor:.40}};
 }
 
 /* ---------------- market strip ---------------- */
