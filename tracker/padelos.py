@@ -171,7 +171,8 @@ def extract_slots(availability, d: date, zone):
                 length = (end - start) if end and end > start else int(g.get("duration") or 60)
                 for c in sl.get("courts") or []:
                     out.append(({"name": c.get("name") or f"Court {c.get('id')}",
-                                 "size": (c.get("courtSize") or "").lower()},
+                                 "size": (c.get("courtSize") or "").lower(),
+                                 "kind": (c.get("courtType") or "").lower()},
                                 start, length, parse_price(c.get("price"))))
         return out
     return _generic_slots(availability, d, zone)
@@ -247,6 +248,8 @@ def free_blocks(club, info, d: date, zone, block: int, mode=None):
                 info["excluded"].append(name)
             continue
         info["courts"].setdefault(name, name)
+        if court.get("kind"):
+            info.setdefault("court_kinds", {})[name] = court["kind"]
         rate = price / (length / block) if price is not None and length else None
         for m in range(start, min(start + length, 24 * 60), block):
             hm, key = min_to_hm(m), (name, min_to_hm(m))

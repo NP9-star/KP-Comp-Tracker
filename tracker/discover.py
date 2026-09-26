@@ -29,14 +29,23 @@ def main():
                 pt.append((club, info))
                 print("tenant:", info["tenant_id"])
                 print("club page:", "OK" if not info.get("page_error") else f"FAILED {info['page_error']}")
-                print("court names from page:", info.get("page_names") or "none found")
+                print("hours from page:", info.get("hours"))
+                print("courts listed on page:", info.get("page_courts") or "none read")
+                print("court ids matched to names:", len(info.get("page_names") or {}))
+                try:
+                    _, _, _, _, _, html = playtomic._page_info(club)
+                    (dbg / f"{club['key']}_club_page.html").write_text(html, encoding="utf-8")
+                except Exception:  # noqa: BLE001
+                    pass
                 raw = playtomic.availability(club, info["tenant_id"], day)
                 write_json(dbg / f"{club['key']}_availability.json", raw, compact=False)
-                starts = sorted({s["start_time"] for r in raw or [] for s in r.get("slots", [])})
-                print(f"resources in response: {len(raw or [])}; raw start times first/last:",
-                      starts[:3], starts[-3:])
-                print("sample:", json.dumps({"start_date": raw[0].get("start_date"),
-                                             "slot": (raw[0].get("slots") or [None])[0]}) if raw else None)
+                table = {}
+                for r in raw or []:
+                    rates = sorted(float(s["price"].split()[0]) / (int(s["duration"]) / 60)
+                                   for s in r.get("slots") or [] if s.get("price"))
+                    if rates:
+                        table[r["resource_id"][:8]] = f"£{rates[len(rates) // 2]:.0f}/hr, {len(rates)} free slots"
+                print(f"resources in response: {len(raw or [])}; per-court typical price:", table)
             elif club["platform"] == "padelos":
                 info = padelos.resolve(club, resolved)
                 print("club:", info["club_id"], info.get("club_name"), "| company clubs:", info["club_ids"])
