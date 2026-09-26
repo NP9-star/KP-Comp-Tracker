@@ -39,7 +39,7 @@ clubs:
     slug: padel-maidenhead            # the part after playtomic.com/clubs/
     tenant_id: 2083cefd-b6a3-4bf9-b2a7-28a6ac704e25
     exclude_courts: ["Indoor Singles", "4121a5c6-c9fd-4ff0-829a-6b5895f3c048"]   # singles court (the £40/hr one)
-    hours: {all: "06:00-24:00"}
+    hours: null
     realisation: 1.0     # share of listed price actually collected (lower it to allow for member discounts)
 
   - key: padelhub-slough
