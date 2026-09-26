@@ -11,56 +11,78 @@
 <style>
 :root{
   --paper:#F3F5F7; --card:#FFFFFF; --ink:#13212F; --muted:#5E6B78; --line:#D5DCE3;
-  --court:#1C4F8C; --court-soft:#DCE6F2; --ball:#D7E24A; --ball-ink:#5B6100; --warn:#A2461F;
+  --court:#1C4F8C; --court-2:#6F95C4; --court-soft:#DCE6F2; --ball:#D7E24A; --ball-ink:#5B6100; --warn:#A2461F; --rain:#8FB3D9;
   --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Barlow","Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root{--paper:#0F1822;--card:#16222F;--ink:#E6ECF2;--muted:#9AA7B4;--line:#2A3848;
-    --court:#7FA8DA;--court-soft:#1E3148;--ball:#C9D43E;--ball-ink:#DDE78A;--warn:#E9926A;}
+    --court:#7FA8DA;--court-2:#4E6F97;--court-soft:#1E3148;--ball:#C9D43E;--ball-ink:#DDE78A;--warn:#E9926A;--rain:#35577C;}
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
-main{max-width:1120px;margin:0 auto;padding:40px 24px 64px}
+main{max-width:1180px;margin:0 auto;padding:40px 24px 64px}
 h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.01em;margin:0}
 h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.05}
 h2{font-size:1.5rem;margin-bottom:4px}
 p{margin:0}
 .lede{color:var(--muted);max-width:62ch;margin-top:10px}
-.bar-top{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:32px}
+.bar-top{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:28px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
-.seg button{font:500 .95rem var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+.seg button{font:500 .92rem var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:6px 13px;cursor:pointer;white-space:nowrap}
 .seg button[aria-pressed="true"]{background:var(--court);color:var(--card)}
-button:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--court);outline-offset:2px}
+.btn{font:600 .92rem var(--body);color:var(--card);background:var(--ink);border:0;border-radius:999px;padding:9px 16px;cursor:pointer}
+.btn[disabled]{opacity:.6;cursor:progress}
+button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--court);outline-offset:2px}
 .banner{background:var(--ball);color:#1d1f00;padding:8px 14px;border-radius:6px;margin-bottom:24px;font-weight:500}
 section{margin-top:40px}
-.sub{color:var(--muted);margin-bottom:18px}
+.sub{color:var(--muted);margin-bottom:16px}
+.num{font-family:var(--display);font-weight:600;font-variant-numeric:tabular-nums}
 
-/* the ladder */
-.ladder{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 24px 18px}
-.rung{display:grid;grid-template-columns:minmax(150px,220px) 1fr 88px;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-.rung:last-of-type{border-bottom:0}
-.rung .who{font-weight:600}
-.rung .who small{display:block;font-weight:400;color:var(--muted)}
-.track{position:relative;height:30px}
-.track .base{position:absolute;inset:11px 0;background:var(--court-soft);border-radius:4px}
+/* market strip */
+.strip{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.6fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.strip>div{background:var(--card);padding:18px 20px}
+.strip .lab{color:var(--muted);font-size:.9rem}
+.strip .big{font-size:3.2rem;line-height:1}
+.strip .mid{font-size:2.1rem;line-height:1.1}
+.kinds{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+.kinds span{font-size:.95rem}
+.kinds b{font-family:var(--display);font-size:1.35rem;margin-right:4px}
+
+/* scorecards */
+.group-h{display:flex;justify-content:space-between;align-items:baseline;margin:26px 0 8px}
+.group-h h3{font-size:1.2rem}
+.group-h span{color:var(--muted);font-size:.9rem}
+.cards{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 22px}
+.row{display:grid;grid-template-columns:minmax(170px,1.1fr) 2.4fr 1fr 1fr;gap:22px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row.head{padding:10px 0;color:var(--muted);font-size:.85rem}
+.who{font-weight:600;line-height:1.25}
+.who small{display:block;font-weight:400;color:var(--muted);font-size:.85rem;margin-top:2px}
+.overall{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:center}
+.overall .num{font-size:2.1rem;text-align:right}
+.track{position:relative;height:26px}
+.track .base{position:absolute;inset:9px 0;background:var(--court-soft);border-radius:4px}
 .track .plan{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--ball) 45%,transparent);border-left:2px solid var(--ball-ink);border-right:2px solid var(--ball-ink)}
-.track .fill{position:absolute;left:0;top:11px;height:8px;background:var(--court);border-radius:4px}
-.track .pk{position:absolute;top:5px;width:2px;height:20px;background:var(--ink)}
-.rung .val{font-family:var(--display);font-size:2rem;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
-.rung .val.na{font-size:1rem;color:var(--muted);font-family:var(--body);font-weight:400}
-.axis{display:grid;grid-template-columns:minmax(150px,220px) 1fr 88px;gap:18px;color:var(--muted);font-size:.8rem;padding-top:6px}
-.axis .ticks{position:relative;height:16px}
-.axis .ticks span{position:absolute;transform:translateX(-50%)}
-.key{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:.9rem;margin-top:12px}
+.track .fill{position:absolute;left:0;top:9px;height:8px;background:var(--court);border-radius:4px}
+.mini{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center}
+.mini .num{font-size:1.3rem;text-align:right}
+.mini .t{height:6px;background:var(--court-soft);border-radius:3px;position:relative}
+.mini .t i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.mini.pk .t i{background:var(--court)}
+.mini.op .t i{background:var(--court-2)}
+.na{color:var(--muted);font-size:.95rem}
+.key{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:.88rem;margin-top:10px}
 .key i{display:inline-block;vertical-align:middle;margin-right:6px}
 
 /* table */
 .tbl-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
-table{border-collapse:collapse;width:100%;min-width:760px;font-variant-numeric:tabular-nums}
-th,td{padding:12px 14px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
-th{font-weight:500;color:var(--muted);font-size:.9rem}
-th:first-child,td:first-child{text-align:left}
+table{border-collapse:collapse;width:100%;min-width:1080px;font-variant-numeric:tabular-nums}
+th,td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:500;color:var(--muted);font-size:.85rem;vertical-align:bottom}
+th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){text-align:left}
+tr.grp td{background:var(--paper);font-weight:600;color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.04em}
 tr:last-child td{border-bottom:0}
 td.dim{color:var(--muted)}
 
@@ -73,20 +95,24 @@ select{font:500 1rem var(--body);color:var(--ink);background:var(--card);border:
 .panel h3{font-size:1.1rem;margin-bottom:10px}
 svg text{font-family:var(--body);fill:var(--muted);font-size:11px}
 .heat{display:grid;gap:2px;font-size:.72rem;color:var(--muted)}
-.heat div{height:22px;border-radius:2px;display:flex;align-items:center;justify-content:center}
-.heat .lab{justify-content:flex-start}
+.heat div{height:22px;border-radius:2px}
+.heat .lab{display:flex;align-items:center}
 .note{color:var(--warn);margin-top:10px;font-size:.95rem}
 .health{font-size:.9rem;color:var(--muted);margin-top:8px}
-details{margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+details{margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 20px}
 summary{cursor:pointer;font-weight:600}
-details p{margin-top:10px;max-width:75ch;color:var(--muted)}
+details h4{font-family:var(--display);font-size:1.05rem;margin:18px 0 4px}
+details p{max-width:78ch;color:var(--muted);margin-top:6px}
+details code{font-size:.9em;background:var(--paper);padding:1px 5px;border-radius:4px}
 .empty{background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:28px;color:var(--muted)}
-@media (max-width:760px){
+.dl-links{font-size:.85rem;color:var(--muted);text-align:right;margin-top:6px}
+.dl-links a{color:var(--muted)}
+@media (max-width:860px){
+  .strip{grid-template-columns:1fr 1fr}
+  .row{grid-template-columns:1fr 1fr;gap:10px 16px}
+  .row .who,.row .overall{grid-column:1 / -1}
+  .row.head{display:none}
   .pair{grid-template-columns:1fr}
-  .rung,.axis{grid-template-columns:1fr 64px}
-  .rung .who{grid-column:1 / -1}
-  .axis .spacer{display:none}
-  .rung .val{font-size:1.5rem}
 }
 </style>
 </head>
@@ -96,20 +122,27 @@ details p{margin-top:10px;max-width:75ch;color:var(--muted)}
   <div class="bar-top">
     <div>
       <h1>Local padel market</h1>
-      <p class="lede" id="lede">Occupancy and estimated court revenue for four local clubs, measured from their public booking availability.</p>
+      <p class="lede" id="lede">Occupancy and estimated court revenue for local padel clubs, measured from their public booking availability.</p>
     </div>
-    <div class="seg" role="group" aria-label="Period">
-      <button data-p="d7">7 days</button><button data-p="d28" aria-pressed="true">28 days</button><button data-p="d90">90 days</button>
+    <div>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Period" id="seg-period">
+          <button data-v="d7">7 days</button><button data-v="d28" aria-pressed="true">28 days</button><button data-v="d90">90 days</button>
+        </div>
+        <div class="seg" role="group" aria-label="Hours measured" id="seg-scope">
+          <button data-v="all" aria-pressed="true">All opening hours</button><button data-v="std">Standard hours</button>
+        </div>
+        <button class="btn" id="dl">Download Excel</button>
+      </div>
+      <div class="dl-links">or CSV: <a href="data/daily.csv">daily</a> · <a href="data/hourly.csv">hourly</a> · <a href="data/courts.csv">courts</a></div>
     </div>
   </div>
 
   <div id="root"></div>
 
-  <details>
+  <details id="method">
     <summary>How these figures are measured</summary>
-    <p>Every 30 minutes the tracker reads each club's public availability for the next 14 days and records every 30-minute court block. A block counts as occupied if it was not available at the last check before it started. Blocks that were watched going from available to taken are bookings seen happening; blocks never offered publicly may be early bookings, member-only booking windows, coaching, leagues or maintenance, so occupancy is an upper bound on paid court hire.</p>
-    <p>Revenue multiplies each occupied block by the price listed for it (or the median price for the same hour, or the price table in config.yaml for MATCHi clubs) and by the club's realisation factor. It excludes member discounts unless you lower that factor, and excludes coaching fees, events, memberships and food and drink.</p>
-    <p>Blocks with no check within three hours of their start are excluded. The singles court at Padel Maidenhead is excluded so figures compare with doubles courts.</p>
+    <div id="method-body"></div>
   </details>
 </main>
 
@@ -119,9 +152,10 @@ const fmtPct = v => v == null ? "–" : Math.round(v * 100) + "%";
 const fmtGBP = v => v == null ? "–" : "£" + (v >= 1e6 ? (v/1e6).toFixed(2) + "m" : v >= 1e4 ? Math.round(v/1e3) + "k" : Math.round(v).toLocaleString("en-GB"));
 const fmtNum = v => v == null ? "–" : v.toLocaleString("en-GB");
 const DOW = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const PLATFORM = {playtomic:"Playtomic", padelos:"UK Padel app", matchi:"MATCHi"};
+const KIND = {indoor:"indoor", covered:"covered", outdoor:"outdoor", unknown:"type tbc"};
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let DATA = null, PERIOD = "d28", CLUB = null;
-// Your own occupancy plan lives only in the address (#plan=40-55), never in the public repository.
+let DATA = null, PERIOD = "d28", SCOPE = "all", CLUB = null;
 const PLAN = (() => { const m = location.hash.match(/plan=(\d+(?:\.\d+)?)(?:-(\d+(?:\.\d+)?))?/);
   if (!m) return null; const lo = +m[1] / 100, hi = m[2] ? +m[2] / 100 : lo; return {lo: Math.min(lo, hi), hi: Math.max(lo, hi)}; })();
 window.addEventListener("hashchange", () => location.reload());
@@ -133,132 +167,255 @@ function fmtDate(iso, withTime) {
   if (withTime) Object.assign(o, {hour:"2-digit", minute:"2-digit"});
   return d.toLocaleString("en-GB", o);
 }
+const M = c => ((c.metrics || {})[SCOPE] || {})[PERIOD] || {};
+const groupList = () => { const g = (DATA && DATA.groups) || {local:"Local clubs"}; const order = (DATA && DATA.group_order) || Object.keys(g).sort((a,b) => (a === "local" ? -1 : b === "local" ? 1 : 0)); return order.filter(k => g[k]).map(k => [k, g[k]]); };
+const kindText = c => { const k = c.court_kinds || {}; const parts = Object.keys(k).filter(x => x !== "unknown");
+  return parts.length ? parts.map(x => (Object.keys(k).length > 1 ? k[x] + " " : "") + KIND[x]).join(" + ") : ""; };
 
+/* ---------------- demo data ---------------- */
 function demoData() {
-  const clubs = [["padel-maidenhead","Padel Maidenhead","playtomic",7,.72,58],["padelhub-slough","PADELHUB SL2 Slough","playtomic",5,.63,60],
-                 ["ukpadel-holmer-green","UK Padel Holmer Green","matchi",2,.49,40],["ukpadel-stoke-poges","UK Padel Stoke Poges","matchi",2,.41,40]];
+  const spec = [["padel-maidenhead","Padel Maidenhead","playtomic","local",7,{outdoor:4,indoor:3},.62,50],["padelhub-slough","PADELHUB SL2 Slough","playtomic","local",5,{indoor:5},.66,40],
+    ["ukpadel-holmer-green","UK Padel Holmer Green","padelos","local",3,{outdoor:2,covered:1},.47,40],["ukpadel-stoke-poges","UK Padel Stoke Poges","padelos","local",2,{outdoor:2},.41,40],
+    ["rulo-chesham","Rulo Clubs Chesham","playtomic","local",3,{indoor:3},.58,48],["denham-grove","Padel at Denham Grove","playtomic","local",2,{outdoor:2},.33,36],
+    ["psc-earls-court","Padel Social Club Earl's Court","playtomic","benchmark",6,{outdoor:6},.78,70]];
   let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
   const today = new Date(); today.setHours(12);
-  return {generated:new Date().toISOString(), as_of:new Date(today - 864e5).toISOString().slice(0,10), demo:true,
-    clubs: clubs.map(([key,name,platform,courts,base,price]) => {
-      const daily = [];
-      for (let i = 90; i >= 1; i--) {
-        const d = new Date(today - i*864e5), we = d.getDay()%6===0;
-        const occ = Math.min(.97, Math.max(.1, base + (we?.08:0) + (rnd()-.5)*.14));
-        daily.push({date:d.toISOString().slice(0,10), occ, peak:Math.min(.99,occ+.2), off:Math.max(.05,occ-.18), rev:Math.round(occ*courts*16*price)});
-      }
-      const hours = [...Array(16)].map((_,i)=>i+7);
-      const grid = DOW.map((_,dw)=>hours.map(h=>{const p=(h>=17&&h<22)||(dw>=5&&h<19)?.25:-.15;return Math.min(1,Math.max(0,base+p+(rnd()-.5)*.2))}));
-      const w = n => { const s = daily.slice(-n); const occ = s.reduce((a,b)=>a+b.occ,0)/s.length; const rev = s.reduce((a,b)=>a+b.rev,0);
-        return {days:n, occupancy:occ, occupancy_peak:Math.min(.99,occ+.2), occupancy_offpeak:occ-.18, watched_bookings_share:.62,
-          court_hours_sold_per_day:+(occ*courts*16).toFixed(1), revenue:rev, revenue_annualised:rev/n*365, revenue_per_court_annualised:rev/n*365/courts, avg_price_per_court_hour:price}; };
-      return {key,name,platform,courts,last_ok:new Date().toISOString(),error:null,d7:w(7),d28:w(28),d90:w(90),daily,heatmap:{hours,grid},notes:[]};
-    })};
+  const mk = (base, courts, price, n, daily) => { const s = daily.slice(-n); const occ = s.reduce((a,b)=>a+b.occ,0)/s.length, rev = s.reduce((a,b)=>a+b.rev,0);
+    return {days:n, occupancy:occ, occupancy_peak:Math.min(.99,occ+.24), occupancy_offpeak:Math.max(.05,occ-.2), watched_bookings_share:.58,
+      court_hours_sold_per_day:+(occ*courts*15).toFixed(1), revenue:rev, revenue_annualised:rev/n*355, revenue_per_court_annualised:rev/n*355/courts,
+      avg_price_per_court_hour:price, peak_price_per_court_hour:price*1.15, offpeak_price_per_court_hour:price*.8, median_lead_h:40+rnd()*60}; };
+  const clubs = spec.map(([key,name,platform,group,courts,kinds,base,price]) => {
+    const daily = [];
+    for (let i = 90; i >= 1; i--) { const d = new Date(today - i*864e5), we = d.getDay()%6===0, rain = rnd() < .3 ? +(rnd()*12).toFixed(1) : 0;
+      const occ = Math.min(.97, Math.max(.1, base + (we?.08:0) - (kinds.outdoor && rain > 4 ? .12 : 0) + (rnd()-.5)*.12));
+      daily.push({date:d.toISOString().slice(0,10), occ, peak:Math.min(.99,occ+.24), off:Math.max(.05,occ-.2), occ_std:Math.min(.99,occ+.05), rev:Math.round(occ*courts*16*price), rain_mm:rain}); }
+    const hours = [...Array(17)].map((_,i)=>i+6);
+    const grid = DOW.map((_,dw)=>hours.map(h=>{const p=(h>=17&&h<22)||(dw>=5&&h>=8&&h<20)?.25:(h<8||h>=22?-.35:-.15);return Math.min(1,Math.max(0,base+p+(rnd()-.5)*.2))}));
+    const metrics = {all:{}, std:{}};
+    for (const [lab,n] of [["d7",7],["d28",28],["d90",90]]) { metrics.all[lab] = mk(base,courts,price,n,daily);
+      const s = {...metrics.all[lab]}; for (const k of ["occupancy","occupancy_peak","occupancy_offpeak"]) s[k] = Math.min(.99, s[k] + .05); metrics.std[lab] = s; }
+    return {key,name,platform,group,courts,court_kinds:kinds,last_ok:new Date().toISOString(),error:null,metrics,daily,heatmap:{hours,grid},notes:[]};
+  });
+  const market = {};
+  for (const g of ["local","benchmark"]) { market[g] = {all:{}, std:{}};
+    for (const sc of ["all","std"]) for (const lab of ["d7","d28","d90"]) { const cs = clubs.filter(c=>c.group===g); const tot = cs.reduce((a,c)=>a+c.courts,0);
+      const w = k => cs.reduce((a,c)=>a+c.metrics[sc][lab][k]*c.courts,0)/tot;
+      market[g][sc][lab] = {occupancy:w("occupancy"), occupancy_peak:w("occupancy_peak"), occupancy_offpeak:w("occupancy_offpeak")}; } }
+  return {generated:new Date().toISOString(), as_of:new Date(today - 864e5).toISOString().slice(0,10), demo:true, days_open_per_year:355,
+    standard_hours_label:"07:00–22:00 weekdays, 08:00–22:00 weekends", peak_label:"weekdays 17:00–22:00, weekends 08:00–20:00",
+    groups:{local:"Local clubs", benchmark:"Wider benchmarks"}, clubs, market, by_kind:{indoor:.63, covered:.52, outdoor:.44}};
 }
 
-function ladder() {
-  const b = PLAN || {}, lo = b.lo, hi = b.hi;
-  const rows = DATA.clubs.map(c => {
-    const m = c[PERIOD] || {}, v = m.occupancy, pk = m.occupancy_peak;
-    return `<div class="rung">
-      <div class="who">${esc(c.name)}<small>${c.courts || "?"} courts · ${c.platform === "matchi" ? "MATCHi" : "Playtomic"}</small></div>
-      <div class="track" role="img" aria-label="${esc(c.name)} occupancy ${fmtPct(v)}, peak ${fmtPct(pk)}">
-        <div class="base"></div>
+/* ---------------- market strip ---------------- */
+function strip() {
+  const mk = (((DATA.market || {}).local || {})[SCOPE] || {})[PERIOD] || {};
+  const local = DATA.clubs.filter(c => (c.group || "local") === "local");
+  const courts = local.reduce((a,c) => a + (c.courts || 0), 0);
+  const bk = DATA.by_kind || {};
+  const kinds = ["indoor","covered","outdoor"].filter(k => bk[k] != null).map(k => `<span><b>${fmtPct(bk[k])}</b>${k}</span>`).join("");
+  return `<div class="strip">
+    <div><div class="lab">Local market occupancy</div><div class="num big">${fmtPct(mk.occupancy)}</div><div class="lab" style="margin-top:6px">${local.length} clubs · ${courts} doubles courts</div></div>
+    <div><div class="lab">Peak</div><div class="num mid">${fmtPct(mk.occupancy_peak)}</div></div>
+    <div><div class="lab">Off-peak</div><div class="num mid">${fmtPct(mk.occupancy_offpeak)}</div></div>
+    <div><div class="lab">By court type (local, last 28 days, all hours)</div><div class="kinds">${kinds || '<span class="na">Builds up as data arrives</span>'}</div></div>
+  </div>`;
+}
+
+/* ---------------- scorecards ---------------- */
+function mini(cls, label, v) {
+  return `<div class="mini ${cls}" title="${label} ${fmtPct(v)}"><div class="num">${fmtPct(v)}</div><div class="t">${v != null ? `<i style="width:${v*100}%"></i>` : ""}</div></div>`;
+}
+function card(c) {
+  const m = M(c), v = m.occupancy, lo = PLAN && PLAN.lo, hi = PLAN && PLAN.hi;
+  const meta = [`${c.courts || "?"} courts`, kindText(c), PLATFORM[c.platform] || c.platform].filter(Boolean).join(" · ");
+  if (v == null) return `<div class="row"><div class="who">${esc(c.name)}<small>${esc(meta)}</small></div>
+      <div class="na">${c.error ? "Check failed – see club detail" : "No full day yet"}</div><div></div><div></div></div>`;
+  return `<div class="row">
+    <div class="who">${esc(c.name)}<small>${esc(meta)}</small></div>
+    <div class="overall"><div class="num">${fmtPct(v)}</div>
+      <div class="track" role="img" aria-label="${esc(c.name)} occupancy ${fmtPct(v)}"><div class="base"></div>
         ${lo != null ? `<div class="plan" style="left:${lo*100}%;width:${(hi-lo)*100}%"></div>` : ""}
-        ${v != null ? `<div class="fill" style="width:${v*100}%"></div>` : ""}
-        ${pk != null ? `<div class="pk" style="left:calc(${pk*100}% - 1px)" title="Peak ${fmtPct(pk)}"></div>` : ""}
-      </div>
-      <div class="val ${v == null ? "na" : ""}">${v == null ? "No data yet" : fmtPct(v)}</div>
-    </div>`;
-  }).join("");
-  const ticks = [0,25,50,75,100].map(t => `<span style="left:${t}%">${t}%</span>`).join("");
-  return `<section style="margin-top:0">
-    <h2>Occupancy${lo != null ? " against your plan" : ""}</h2>
-    <p class="sub">Share of bookable court time taken, last ${PERIOD.slice(1)} days to ${fmtDate(DATA.as_of)}.</p>
-    <div class="ladder">${rows}
-      <div class="axis"><div class="spacer"></div><div class="ticks">${ticks}</div><div></div></div>
-    </div>
-    <div class="key">
-      <span><i style="width:18px;height:8px;background:var(--court);border-radius:4px"></i>All hours</span>
-      <span><i style="width:2px;height:16px;background:var(--ink)"></i>Peak hours</span>
-      ${lo != null ? `<span><i style="width:18px;height:14px;background:color-mix(in srgb,var(--ball) 45%,transparent);border:2px solid var(--ball-ink);border-width:0 2px"></i>Your plan: ${fmtPct(lo)} rising to ${fmtPct(hi)}</span>` : ""}
-    </div>
-  </section>`;
+        <div class="fill" style="width:${v*100}%"></div></div></div>
+    ${mini("pk", "Peak", m.occupancy_peak)}
+    ${mini("op", "Off-peak", m.occupancy_offpeak)}
+  </div>`;
+}
+function scorecards() {
+  let html = `<section><h2>Occupancy by club</h2>
+    <p class="sub">Share of bookable court time taken, last ${PERIOD.slice(1)} days to ${fmtDate(DATA.as_of)}, ${SCOPE === "std" ? "standard hours only (" + esc(DATA.standard_hours_label) + ")" : "all opening hours"}. Peak is ${esc(DATA.peak_label)}.</p>`;
+  for (const [g, label] of groupList()) {
+    const cs = DATA.clubs.filter(c => (c.group || "local") === g).sort((a,b) => (M(b).occupancy ?? -1) - (M(a).occupancy ?? -1));
+    if (!cs.length) continue;
+    const mk = (((DATA.market || {})[g] || {})[SCOPE] || {})[PERIOD] || {};
+    html += `<div class="group-h"><h3>${esc(label)}</h3><span>Combined: ${fmtPct(mk.occupancy)} · peak ${fmtPct(mk.occupancy_peak)} · off-peak ${fmtPct(mk.occupancy_offpeak)}</span></div>
+      <div class="cards"><div class="row head"><div>Club</div><div>Overall occupancy</div><div>Peak</div><div>Off-peak</div></div>${cs.map(card).join("")}</div>`;
+  }
+  html += `<div class="key"><span><i style="width:18px;height:8px;background:var(--court);border-radius:4px"></i>Overall</span>
+    <span><i style="width:18px;height:6px;background:var(--court);border-radius:3px"></i>Peak</span>
+    <span><i style="width:18px;height:6px;background:var(--court-2);border-radius:3px"></i>Off-peak</span>
+    ${PLAN ? `<span><i style="width:18px;height:14px;background:color-mix(in srgb,var(--ball) 45%,transparent);border:2px solid var(--ball-ink);border-width:0 2px"></i>Your plan: ${fmtPct(PLAN.lo)} rising to ${fmtPct(PLAN.hi)}</span>` : ""}</div></section>`;
+  return html;
 }
 
+/* ---------------- table ---------------- */
 function table() {
-  const body = DATA.clubs.map(c => {
-    const m = c[PERIOD] || {};
-    return `<tr><td>${esc(c.name)}</td><td>${c.courts || "–"}</td><td>${fmtPct(m.occupancy)}</td><td>${fmtPct(m.occupancy_peak)}</td>
-      <td>${fmtPct(m.occupancy_offpeak)}</td><td>${fmtNum(m.court_hours_sold_per_day)}</td><td>${m.avg_price_per_court_hour ? "£" + m.avg_price_per_court_hour.toFixed(0) : "–"}</td>
-      <td>${fmtGBP(m.revenue_annualised)}</td><td>${fmtGBP(m.revenue_per_court_annualised)}</td><td class="dim">${fmtPct(m.watched_bookings_share)}</td></tr>`;
-  }).join("");
+  let body = "";
+  for (const [g, label] of groupList()) {
+    const cs = DATA.clubs.filter(c => (c.group || "local") === g).sort((a,b) => (M(b).occupancy ?? -1) - (M(a).occupancy ?? -1));
+    if (!cs.length) continue;
+    body += `<tr class="grp"><td colspan="13">${esc(label)}</td></tr>`;
+    body += cs.map(c => { const m = M(c);
+      return `<tr><td>${esc(c.name)}</td><td>${c.courts || "–"}</td><td>${esc(kindText(c) || "–")}</td><td>${fmtPct(m.occupancy)}</td><td>${fmtPct(m.occupancy_peak)}</td><td>${fmtPct(m.occupancy_offpeak)}</td>
+        <td>${fmtNum(m.court_hours_sold_per_day)}</td><td>${m.peak_price_per_court_hour ? "£" + m.peak_price_per_court_hour.toFixed(0) : "–"}</td><td>${m.offpeak_price_per_court_hour ? "£" + m.offpeak_price_per_court_hour.toFixed(0) : "–"}</td>
+        <td>${fmtGBP(m.revenue_annualised)}</td><td>${fmtGBP(m.revenue_per_court_annualised)}</td><td class="dim">${fmtPct(m.watched_bookings_share)}</td>
+        <td class="dim">${m.median_lead_h != null ? (m.median_lead_h >= 48 ? (m.median_lead_h/24).toFixed(1) + " days" : Math.round(m.median_lead_h) + " hrs") : "–"}</td></tr>`; }).join("");
+  }
   return `<section><h2>Club comparison</h2>
-    <p class="sub">Revenue is court hire only, annualised from the days measured in the period.</p>
+    <p class="sub">Revenue is court hire only: average daily court revenue × ${DATA.days_open_per_year || 355} operating days. Prices are the average paid per court hour for occupied time.</p>
     <div class="tbl-wrap"><table>
-      <thead><tr><th>Club</th><th>Courts</th><th>Occupancy</th><th>Peak</th><th>Off-peak</th><th>Court hours sold / day</th><th>Avg price / court hr</th><th>Est. revenue / yr</th><th>Per court / yr</th><th title="Share of occupied blocks we saw being booked; the rest were never offered publicly">Seen booked</th></tr></thead>
+      <thead><tr><th>Club</th><th>Courts</th><th>Type</th><th>Occupancy</th><th>Peak</th><th>Off-peak</th><th>Court hours<br>sold / day</th><th>Peak<br>£ / court hr</th><th>Off-peak<br>£ / court hr</th><th>Est. revenue<br>/ yr</th><th>Per court<br>/ yr</th><th title="Share of occupied time the tracker watched being booked">Seen<br>booked</th><th title="Average time between a court being booked and the game">Booked<br>ahead</th></tr></thead>
       <tbody>${body}</tbody></table></div></section>`;
 }
 
+/* ---------------- detail ---------------- */
 function trend(c) {
-  const n = {d7:7,d28:28,d90:90}[PERIOD], pts = (c.daily || []).slice(-Math.max(n, 14));
+  const n = {d7:7,d28:28,d90:90}[PERIOD], key = SCOPE === "std" ? "occ_std" : "occ", pts = (c.daily || []).slice(-Math.max(n, 14));
   if (!pts.length) return `<p class="sub">No finished days yet.</p>`;
-  const W = 640, H = 220, L = 34, R = 26, T = 10, B = 26, x = i => L + (pts.length === 1 ? 0 : i * (W-L-R) / (pts.length-1)), y = v => T + (1-v) * (H-T-B);
-  const roll = pts.map((_, i) => { const s = pts.slice(Math.max(0, i-6), i+1).filter(p => p.occ != null); return s.length ? s.reduce((a,b)=>a+b.occ,0)/s.length : null; });
-  const line = arr => arr.map((v,i) => v == null ? null : `${x(i).toFixed(1)},${y(v).toFixed(1)}`).filter(Boolean).join(" ");
-  const b = PLAN || {};
+  const W = 640, H = 230, L = 34, R = 34, T = 10, B = 26, x = i => L + (pts.length === 1 ? (W-L-R)/2 : i * (W-L-R) / (pts.length-1)), y = v => T + (1-v) * (H-T-B);
+  const maxRain = Math.max(10, ...pts.map(p => p.rain_mm || 0)), bw = Math.max(2, (W-L-R) / pts.length * .6);
+  const rain = pts.map((p,i) => p.rain_mm ? `<rect x="${x(i)-bw/2}" y="${H-B-(p.rain_mm/maxRain)*(H-T-B)*.45}" width="${bw}" height="${(p.rain_mm/maxRain)*(H-T-B)*.45}" fill="var(--rain)" opacity=".55"><title>${fmtDate(p.date)}: ${p.rain_mm} mm rain</title></rect>` : "").join("");
+  const roll = pts.map((_, i) => { const s = pts.slice(Math.max(0, i-6), i+1).filter(p => p[key] != null); return s.length ? s.reduce((a,b)=>a+b[key],0)/s.length : null; });
+  const line = roll.map((v,i) => v == null ? null : `${x(i).toFixed(1)},${y(v).toFixed(1)}`).filter(Boolean).join(" ");
   const grid = [0,.25,.5,.75,1].map(v => `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v*100}%</text>`).join("");
-  const band = b.lo != null ? `<rect x="${L}" width="${W-L-R}" y="${y(b.hi)}" height="${y(b.lo)-y(b.hi)}" fill="var(--ball)" opacity=".35"/>` : "";
+  const band = PLAN ? `<rect x="${L}" width="${W-L-R}" y="${y(PLAN.hi)}" height="${Math.max(2, y(PLAN.lo)-y(PLAN.hi))}" fill="var(--ball)" opacity=".35"/>` : "";
   const step = Math.ceil(pts.length / 6);
   const xl = pts.map((p,i) => i % step === 0 ? `<text x="${x(i)}" y="${H-6}" text-anchor="middle">${fmtDate(p.date).replace(/ \d{4}$/,"")}</text>` : "").join("");
-  const dots = pts.map((p,i) => p.occ == null ? "" : `<circle cx="${x(i)}" cy="${y(p.occ)}" r="2.2" fill="var(--court)" opacity=".45"><title>${fmtDate(p.date)}: ${fmtPct(p.occ)}</title></circle>`).join("");
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Daily occupancy for ${esc(c.name)}">${band}${grid}${xl}${dots}
-    <polyline points="${line(roll)}" fill="none" stroke="var(--court)" stroke-width="2.5" stroke-linejoin="round"/></svg>
-    <div class="key" style="margin-top:4px"><span>Dots: daily occupancy</span><span>Line: 7-day average</span>${band ? "<span>Band: your plan</span>" : ""}</div>`;
+  const dots = pts.map((p,i) => p[key] == null ? "" : `<circle cx="${x(i)}" cy="${y(p[key])}" r="2.4" fill="var(--court)" opacity=".5"><title>${fmtDate(p.date)}: ${fmtPct(p[key])}${p.rain_mm != null ? ", " + p.rain_mm + " mm rain" : ""}</title></circle>`).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Daily occupancy for ${esc(c.name)}">${band}${grid}${rain}${xl}${dots}
+    <polyline points="${line}" fill="none" stroke="var(--court)" stroke-width="2.5" stroke-linejoin="round"/></svg>
+    <div class="key" style="margin-top:4px"><span>Dots: daily occupancy</span><span>Line: 7-day average</span><span><i style="width:10px;height:12px;background:var(--rain)"></i>Daily rainfall</span>${band ? "<span>Band: your plan</span>" : ""}</div>`;
 }
-
 function heat(c) {
   const h = c.heatmap || {}, hours = h.hours || [];
   if (!hours.length) return `<p class="sub">Builds up after the first finished day.</p>`;
-  const cell = v => { if (v == null) return `<div></div>`; const a = .08 + .92 * v;
-    return `<div style="background:color-mix(in srgb,var(--court) ${Math.round(a*100)}%,var(--card));" title="${fmtPct(v)}"></div>`; };
-  const cols = `grid-template-columns:34px repeat(${hours.length},minmax(8px,1fr))`;
-  let html = `<div class="heat" style="${cols}"><div></div>${hours.map(x => `<div>${x % 3 === 0 ? x : ""}</div>`).join("")}`;
+  const cell = v => v == null ? `<div></div>` : `<div style="background:color-mix(in srgb,var(--court) ${Math.round((.08 + .92*v)*100)}%,var(--card))" title="${fmtPct(v)}"></div>`;
+  let html = `<div class="heat" style="grid-template-columns:34px repeat(${hours.length},minmax(8px,1fr))"><div></div>${hours.map(x => `<div style="height:auto">${x % 3 === 0 ? x : ""}</div>`).join("")}`;
   DOW.forEach((d, i) => { html += `<div class="lab">${d}</div>` + (h.grid[i] || []).map(cell).join(""); });
-  return html + `</div><div class="key" style="margin-top:10px;font-size:.85rem"><span><i style="width:14px;height:14px;background:color-mix(in srgb,var(--court) 10%,var(--card))"></i>Quiet</span><span><i style="width:14px;height:14px;background:var(--court)"></i>Full</span><span>Hover a square for the %</span></div>`;
+  return html + `</div><div class="key" style="font-size:.85rem"><span><i style="width:14px;height:14px;background:color-mix(in srgb,var(--court) 10%,var(--card))"></i>Quiet</span><span><i style="width:14px;height:14px;background:var(--court)"></i>Full</span><span>Hover for %, last 28 days</span></div>`;
 }
-
 function detail() {
   const c = DATA.clubs.find(x => x.key === CLUB) || DATA.clubs[0]; CLUB = c.key;
   const opts = DATA.clubs.map(x => `<option value="${x.key}" ${x.key === c.key ? "selected" : ""}>${esc(x.name)}</option>`).join("");
   const health = c.error ? `<p class="note">Last check failed: ${esc(c.error)}</p>` : `<p class="health">Last successful check ${fmtDate(c.last_ok, true)}.</p>`;
   return `<section><div class="detail-head"><h2>Club detail</h2><select id="club" aria-label="Choose club">${opts}</select></div>
-    <div class="pair"><div class="panel"><h3>Daily occupancy</h3>${trend(c)}</div><div class="panel"><h3>When courts are busy</h3>${heat(c)}</div></div>
+    <div class="pair"><div class="panel"><h3>Daily occupancy and rainfall</h3>${trend(c)}</div><div class="panel"><h3>When courts are busy</h3>${heat(c)}</div></div>
     ${(c.notes || []).map(n => `<p class="note">${esc(n)}</p>`).join("")}${health}</section>`;
 }
 
+/* ---------------- method notes ---------------- */
+function method() {
+  const days = (DATA && DATA.days_open_per_year) || 355, std = (DATA && DATA.standard_hours_label) || "07:00–22:00 weekdays, 08:00–22:00 weekends",
+        peak = (DATA && DATA.peak_label) || "weekdays 17:00–22:00, weekends 08:00–20:00";
+  $("#method-body").innerHTML = `
+    <h4>Occupancy</h4>
+    <p>Every 30 minutes the tracker reads each club's public availability for the days ahead (the next 3 days every run, days 4 to 10 every 2 hours) and records every 30-minute court block within opening hours. A block counts as occupied if it was not available at the last check before it started. Occupancy is occupied blocks divided by all bookable blocks. Only doubles courts are counted; singles courts are left out.</p>
+    <h4>Peak and off-peak</h4>
+    <p>Peak is ${esc(peak)}. Off-peak is every other opening hour. Club pricing windows vary slightly, so this is a common definition applied to every club.</p>
+    <h4>All opening hours vs standard hours</h4>
+    <p>Clubs open for different hours, and very early or late hours are rarely busy, which pulls occupancy down for clubs that open longer. The Standard hours view measures only ${esc(std)}, so clubs are compared on the same hours.</p>
+    <h4>Seen booked</h4>
+    <p>The share of occupied court time that the tracker actually watched change from available to booked. The rest was already unavailable the first time it was seen: booked before it came into view, held for members' longer advance booking window, or blocked for coaching, leagues, events or maintenance. A high share means occupancy is mostly genuine bookings made in public view. A low share means more of it is advance, member or blocked time, so treat that club's occupancy as an upper bound on paid court hire.</p>
+    <h4>Estimated revenue</h4>
+    <p>Each occupied block is valued at the price the club listed for it. Blocks never seen for sale take the typical listed price for the same hour and day type. Prices are as listed to players, so they include VAT. Annual revenue = average daily court revenue over the days measured × ${days} operating days (365 less 10 closure days). Per court divides that by the number of doubles courts. It uses non-member prices, so it overstates clubs where members pay less (adjustable per club in <code>config.yaml</code>), and it excludes coaching fees, events, memberships and food and drink.</p>
+    <h4>Booked ahead</h4>
+    <p>For bookings the tracker saw happen, the average time between the booking and the start of the game. It only covers bookings made within the 10-day watch window.</p>
+    <h4>Court type and weather</h4>
+    <p>Courts are grouped as indoor, covered (roofed or canopy) or outdoor, from each club's listing. Daily and hourly rainfall for South Buckinghamshire comes from Open-Meteo, so wet days can be compared with occupancy on outdoor courts.</p>
+    <h4>Days left out</h4>
+    <p>Blocks with no check within three hours of their start are excluded, and any day where less than 80% of opening hours was watched (for example because the tracking computer was off) is left out of every figure.</p>
+    <h4>Download</h4>
+    <p>The Excel download has a Summary sheet for the period and hours selected above, plus every day and every hour by club, and the court list. The same data is available as CSV files.</p>`;
+}
+
+/* ---------------- render ---------------- */
 function render() {
+  method();
   if (!DATA || !DATA.clubs) return;
-  $("#lede").textContent = `Occupancy and estimated court revenue for four local clubs, measured from their public booking availability. Updated ${fmtDate(DATA.generated, true)}.`;
+  $("#lede").textContent = `Occupancy and estimated court revenue for local padel clubs, measured from their public booking availability. Updated ${fmtDate(DATA.generated, true)}.`;
   const any = DATA.clubs.some(c => (c.daily || []).length);
-  $("#root").innerHTML = any ? ladder() + table() + detail()
+  $("#root").innerHTML = any ? strip() + scorecards() + table() + detail()
     : `<div class="empty"><h2>Waiting for the first full day</h2><p style="margin-top:8px">The tracker is running. A club's figures appear once a whole day has been watched, so check back tomorrow.</p>
        ${DATA.clubs.map(c => `<p class="${c.error ? "note" : "health"}">${esc(c.name)}: ${c.error ? "check failed – " + esc(c.error) : c.last_ok ? "checked " + fmtDate(c.last_ok, true) : "not checked yet"}</p>`).join("")}</div>`;
   const sel = $("#club"); if (sel) sel.onchange = e => { CLUB = e.target.value; render(); };
 }
+for (const [id, set] of [["#seg-period", v => PERIOD = v], ["#seg-scope", v => SCOPE = v]]) {
+  document.querySelectorAll(id + " button").forEach(b => b.onclick = () => {
+    set(b.dataset.v); document.querySelectorAll(id + " button").forEach(x => x.setAttribute("aria-pressed", x === b)); render(); });
+}
 
-document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
-  PERIOD = b.dataset.p; document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b)); render(); });
+/* ---------------- Excel export ---------------- */
+function loadXLSX() {
+  if (window.XLSX) return Promise.resolve();
+  return new Promise((res, rej) => { const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"; s.onload = res; s.onerror = () => rej(new Error("Could not load the Excel library")); document.head.appendChild(s); });
+}
+function pctCols(ws) {
+  const r = XLSX.utils.decode_range(ws["!ref"] || "A1"); const cols = [];
+  for (let c = r.s.c; c <= r.e.c; c++) { const h = ws[XLSX.utils.encode_cell({r:0, c})]; if (!h) continue;
+    const name = String(h.v); cols.push({wch: Math.max(10, Math.min(28, name.length + 2))});
+    if (name === "date") for (let rr = 1; rr <= r.e.r; rr++) { const cell = ws[XLSX.utils.encode_cell({r:rr, c})]; if (cell && typeof cell.v === "number") cell.z = "dd/mm/yyyy"; }
+    if (/^occupancy|coverage|share/.test(name)) for (let rr = 1; rr <= r.e.r; rr++) { const cell = ws[XLSX.utils.encode_cell({r:rr, c})]; if (cell && typeof cell.v === "number") cell.z = "0.0%"; } }
+  ws["!cols"] = cols; return ws;
+}
+async function csvSheet(url) {
+  if (DATA && DATA.demo) return XLSX.utils.aoa_to_sheet([["Demo mode: no real data to export"]]);
+  const r = await fetch(url + "?t=" + Date.now()); const text = r.ok ? await r.text() : "";
+  if (!text.trim()) return XLSX.utils.aoa_to_sheet([["No data yet"]]);
+  const wb = XLSX.read(text, {type:"string", cellDates:false});
+  return pctCols(wb.Sheets[wb.SheetNames[0]]);
+}
+async function download() {
+  const btn = $("#dl"); btn.disabled = true; btn.textContent = "Preparing…";
+  try {
+    await loadXLSX();
+    const wb = XLSX.utils.book_new();
+    const readme = [["Local padel market – data export"], ["Generated", DATA ? DATA.generated : ""], ["Summary sheet period", PERIOD.slice(1) + " days"],
+      ["Summary sheet hours", SCOPE === "std" ? "Standard hours (" + (DATA.standard_hours_label || "") + ")" : "All opening hours"], [],
+      ["Sheet", "Contents"], ["Summary", "One row per club for the period and hours selected on the dashboard"],
+      ["Daily", "One row per club per day: occupancy (all hours, standard hours, peak, off-peak), court hours, seen-booked share, booked-ahead time, estimated revenue, weather. 'included' = 0 means the day was only partly watched and is left out of dashboard figures"],
+      ["Hourly", "One row per club per day per hour: court blocks (30 min), occupied blocks, occupancy, estimated revenue, rainfall"],
+      ["Courts", "Courts tracked and their type"], [],
+      ["Definitions", "See 'How these figures are measured' on the dashboard. Occupancy = occupied 30-minute blocks / bookable blocks. Revenue annualised = average daily revenue × " + ((DATA && DATA.days_open_per_year) || 355) + " days."]];
+    const rm = XLSX.utils.aoa_to_sheet(readme); rm["!cols"] = [{wch:22}, {wch:120}]; XLSX.utils.book_append_sheet(wb, rm, "Read me");
+    const head = ["Club","Group","Platform","Courts","Occupancy","Peak","Off-peak","Court hours sold / day","Bookable court hours / day","Peak £ / court hr","Off-peak £ / court hr","Avg £ / court hr","Est. revenue / yr (£)","Per court / yr (£)","Seen booked share","Booked ahead (hrs)","Days measured"];
+    const rows = DATA.clubs.map(c => { const m = M(c); return [c.name, (DATA.groups||{})[c.group] || c.group, PLATFORM[c.platform] || c.platform, c.courts, m.occupancy, m.occupancy_peak, m.occupancy_offpeak,
+      m.court_hours_sold_per_day, m.bookable_court_hours_per_day, m.peak_price_per_court_hour, m.offpeak_price_per_court_hour, m.avg_price_per_court_hour, m.revenue_annualised, m.revenue_per_court_annualised, m.watched_bookings_share, m.median_lead_h, m.days]; });
+    const sm = XLSX.utils.aoa_to_sheet([head, ...rows]);
+    for (let r = 1; r <= rows.length; r++) for (const c of [4,5,6,14]) { const cell = sm[XLSX.utils.encode_cell({r, c})]; if (cell && typeof cell.v === "number") cell.z = "0.0%"; }
+    for (let r = 1; r <= rows.length; r++) for (const c of [12,13]) { const cell = sm[XLSX.utils.encode_cell({r, c})]; if (cell && typeof cell.v === "number") cell.z = "£#,##0"; }
+    sm["!cols"] = head.map((h, i) => ({wch: i === 0 ? 32 : Math.max(11, h.length + 1)}));
+    XLSX.utils.book_append_sheet(wb, sm, "Summary");
+    XLSX.utils.book_append_sheet(wb, await csvSheet("data/daily.csv"), "Daily");
+    XLSX.utils.book_append_sheet(wb, await csvSheet("data/hourly.csv"), "Hourly");
+    XLSX.utils.book_append_sheet(wb, await csvSheet("data/courts.csv"), "Courts");
+    XLSX.writeFile(wb, "padel-market-" + new Date().toISOString().slice(0,10) + ".xlsx");
+  } catch (e) { alert("Download failed: " + e.message); }
+  btn.disabled = false; btn.textContent = "Download Excel";
+}
+$("#dl").onclick = download;
 
 (async () => {
+  method();
   if (new URLSearchParams(location.search).has("demo")) {
     DATA = demoData(); $("#demo").innerHTML = `<div class="banner">Demo data. These numbers are invented to show the layout.</div>`; return render();
   }
   try {
     const r = await fetch("data/summary.json?t=" + Date.now()); if (!r.ok) throw new Error(r.status);
-    DATA = await r.json(); render();
+    DATA = await r.json();
+    if (DATA.clubs && DATA.clubs.length && !DATA.clubs[0].metrics) throw new Error("old format");
+    render();
   } catch (e) {
-    $("#root").innerHTML = `<div class="empty"><h2>No data file yet</h2><p style="margin-top:8px">The first tracker run creates it. Start one from the Actions tab, or add <code>?demo=1</code> to this page's address to preview the layout.</p></div>`;
+    $("#root").innerHTML = `<div class="empty"><h2>No data file yet</h2><p style="margin-top:8px">The next tracker run creates it. Add <code>?demo=1</code> to this page's address to preview the layout.</p></div>`;
   }
 })();
 </script>
