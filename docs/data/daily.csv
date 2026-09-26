@@ -1,0 +1,5 @@
+club,group,platform,date,weekday,courts,included,coverage,bookable_court_hours,occupied_court_hours,occupancy,occupancy_peak,occupancy_offpeak,occupancy_standard_hours,occupancy_standard_peak,occupancy_standard_offpeak,seen_booked_share,avg_lead_hours,revenue_est_gbp,rain_mm,rain_hours_7_22,max_temp_c
+Padel Maidenhead,local,playtomic,2026-09-25,Fri,7,0,0.3333,0.0,0.0,,,,,,,,,0,0.0,0,22.1
+PADELHUB SL2 Slough,local,playtomic,2026-09-25,Fri,5,0,0.3333,0.0,0.0,,,,,,,,,0,0.0,0,22.1
+UK Padel Holmer Green,local,padelos,2026-09-25,Fri,3,0,0.2857,0.0,0.0,,,,,,,,,0,0.0,0,22.1
+UK Padel Stoke Poges,local,padelos,2026-09-25,Fri,2,0,0.2857,0.0,0.0,,,,,,,,,0,0.0,0,22.1
