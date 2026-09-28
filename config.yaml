@@ -37,9 +37,10 @@ clubs:
     group: local
     platform: playtomic
     slug: padel-maidenhead            # the part after playtomic.com/clubs/
+    exclude_dates: ["2026-09-26"]   # court names changed that day, so its figures are unreliable
     tenant_id: 2083cefd-b6a3-4bf9-b2a7-28a6ac704e25
     exclude_courts: ["Indoor Singles", "4121a5c6-c9fd-4ff0-829a-6b5895f3c048"]   # singles court (the £40/hr one)
-    hours: null
+    hours: null          # read from its Playtomic page (06:30-24:00 when last checked)
     realisation: 1.0     # share of listed price actually collected (lower it to allow for member discounts)
 
   - key: padelhub-slough
@@ -47,6 +48,7 @@ clubs:
     group: local
     platform: playtomic
     slug: the-padel-hub-sl2-slough
+    exclude_dates: ["2026-09-26"]   # court names changed that day, so its figures are unreliable
     court_type: indoor
     exclude_courts: []
     hours: {mon-fri: "08:00-23:00", sat: "08:30-23:00", sun: "08:30-22:00"}
@@ -84,6 +86,7 @@ clubs:
     group: local
     platform: playtomic
     slug: padel-at-denham-grove
+    exclude_dates: ["2026-09-26"]   # court names changed that day, so its figures are unreliable
     court_type: outdoor
     hours: null          # null = read from the club's Playtomic page (09:00-21:00 when last checked)
     realisation: 1.0
