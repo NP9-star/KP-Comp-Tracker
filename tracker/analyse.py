@@ -164,6 +164,19 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd):
         cover[r["date"]][1] += 1
         cover[r["date"]][0] += r["status"] != "unknown"
     partial = {ds for ds, (k, n) in cover.items() if n and k / n < min_cov}
+    partial |= set(str(x) for x in (club.get("exclude_dates") or []))
+
+    # A free :30 half-hour just before a booking or closing time can only be offered as part of
+    # the hour slot starting at :00. Once that slot starts it drops off the booking page, which
+    # looks like a booking made minutes before play. If the court was free at :00 and the :30
+    # "sale" happened under 30 minutes before start, count the half-hour as free.
+    status_at = {(r["date"], r["court"], r["time"]): r["status"] for r in rows}
+    for r in rows:
+        if r["status"] == "sold" and r["time"].endswith(":30") and r.get("lead_h") not in ("", None) \
+                and float(r["lead_h"]) < 0.5:
+            prev = f'{r["time"][:2]}:00'
+            if status_at.get((r["date"], r["court"], prev)) == "free":
+                r["status"] = "free"
 
     # day -> scope -> counters ; hourly -> counters
     Z = lambda: defaultdict(float)  # noqa: E731
@@ -307,8 +320,9 @@ def run():
                 kind_all[k]["occ"] += v["occ"]
                 kind_all[k]["total"] += v["total"]
         if partial:
-            entry["notes"].append(f"{len(partial)} day(s) left out because checks covered less than "
-                                  f"{int(float(cfg.get('min_day_coverage', 0.8)) * 100)}% of opening hours.")
+            entry["notes"].append(f"{len(partial)} day(s) left out: partly watched (under "
+                                  f"{int(float(cfg.get('min_day_coverage', 0.8)) * 100)}% of opening hours) "
+                                  f"or excluded in config.yaml.")
         if missing_price:
             entry["notes"].append("Revenue incomplete: no prices seen yet for some hours.")
         out["clubs"].append(entry)
