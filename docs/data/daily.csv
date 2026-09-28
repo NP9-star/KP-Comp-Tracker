@@ -1,27 +1,27 @@
 club,group,platform,date,weekday,courts,included,coverage,bookable_court_hours,occupied_court_hours,occupancy,occupancy_peak,occupancy_offpeak,occupancy_standard_hours,occupancy_standard_peak,occupancy_standard_offpeak,seen_booked_share,avg_lead_hours,revenue_est_gbp,rain_mm,rain_hours_7_22,max_temp_c
 Padel Maidenhead,local,playtomic,2026-09-25,Fri,7,0,0.3333,0.0,0.0,,,,,,,,,0,0.0,0,22.1
-Padel Maidenhead,local,playtomic,2026-09-26,Sat,7,1,1.0,122.5,105.5,0.8612,0.9643,0.6364,0.9133,0.9643,0.6071,0.1374,0.6,5275.0,0.0,0,19.8
-Padel Maidenhead,local,playtomic,2026-09-27,Sun,7,1,1.0,122.5,111.5,0.9102,0.9524,0.8182,0.9592,0.9524,1.0,0.2646,4.3,5575.0,0.0,0,20.6
+Padel Maidenhead,local,playtomic,2026-09-26,Sat,7,0,1.0,0.0,0.0,,,,,,,,,0,0.0,0,19.8
+Padel Maidenhead,local,playtomic,2026-09-27,Sun,7,1,1.0,122.5,108.5,0.8857,0.9405,0.7662,0.949,0.9405,1.0,0.2442,4.8,5425.0,0.0,0,20.6
 PADELHUB SL2 Slough,local,playtomic,2026-09-25,Fri,5,0,0.3333,0.0,0.0,,,,,,,,,0,0.0,0,22.1
-PADELHUB SL2 Slough,local,playtomic,2026-09-26,Sat,5,1,1.0,72.5,72.0,0.9931,0.9913,1.0,0.9926,0.9913,1.0,0.0903,1.4,3730.0,0.0,0,19.8
+PADELHUB SL2 Slough,local,playtomic,2026-09-26,Sat,5,0,1.0,0.0,0.0,,,,,,,,,0,0.0,0,19.8
 PADELHUB SL2 Slough,local,playtomic,2026-09-27,Sun,5,1,1.0,67.5,65.5,0.9704,0.9652,1.0,0.9704,0.9652,1.0,0.2748,10.4,3250.0,0.0,0,20.6
 UK Padel Holmer Green,local,padelos,2026-09-25,Fri,3,0,0.2857,0.0,0.0,,,,,,,,,0,0.0,0,22.1
-UK Padel Holmer Green,local,padelos,2026-09-26,Sat,3,1,1.0,42.0,39.0,0.9286,0.9444,0.8333,0.9286,0.9444,0.8333,0.2436,5.5,1673.98,0.0,0,19.8
-UK Padel Holmer Green,local,padelos,2026-09-27,Sun,3,1,1.0,33.0,32.5,0.9848,0.9848,,0.9848,0.9848,,0.1846,14.5,1448.32,0.0,0,20.6
+UK Padel Holmer Green,local,padelos,2026-09-26,Sat,3,1,1.0,42.0,37.0,0.881,0.9028,0.75,0.881,0.9028,0.75,0.2027,6.9,1593.98,0.0,0,19.8
+UK Padel Holmer Green,local,padelos,2026-09-27,Sun,3,1,1.0,33.0,32.0,0.9697,0.9697,,0.9697,0.9697,,0.1719,15.7,1423.32,0.0,0,20.6
 UK Padel Stoke Poges,local,padelos,2026-09-25,Fri,2,0,0.2857,0.0,0.0,,,,,,,,,0,0.0,0,22.1
-UK Padel Stoke Poges,local,padelos,2026-09-26,Sat,2,1,1.0,28.0,22.0,0.7857,0.7917,0.75,0.7857,0.7917,0.75,0.25,1.9,924.0,0.0,0,19.8
-UK Padel Stoke Poges,local,padelos,2026-09-27,Sun,2,1,1.0,28.0,21.0,0.75,0.7083,1.0,0.75,0.7083,1.0,0.4286,4.0,840.5,0.0,0,20.6
+UK Padel Stoke Poges,local,padelos,2026-09-26,Sat,2,1,1.0,28.0,19.5,0.6964,0.7083,0.625,0.6964,0.7083,0.625,0.1538,3.3,838.0,0.0,0,19.8
+UK Padel Stoke Poges,local,padelos,2026-09-27,Sun,2,1,1.0,28.0,19.0,0.6786,0.625,1.0,0.6786,0.625,1.0,0.3684,5.1,747.0,0.0,0,20.6
 UK Padel Princes Risborough,local,padelos,2026-09-26,Sat,2,0,0.7333,0.0,0.0,,,,,,,,,0,0.0,0,19.8
-UK Padel Princes Risborough,local,padelos,2026-09-27,Sun,2,1,1.0,28.0,19.5,0.6964,0.6458,1.0,0.6964,0.6458,1.0,0.4359,6.2,796.0,0.0,0,20.6
-Padel at Denham Grove,local,playtomic,2026-09-26,Sat,2,1,0.8462,22.0,20.0,0.9091,0.9722,0.625,0.9091,0.9722,0.625,0.15,0.6,880.0,0.0,0,19.8
+UK Padel Princes Risborough,local,padelos,2026-09-27,Sun,2,1,1.0,28.0,16.0,0.5714,0.5,1.0,0.5714,0.5,1.0,0.3125,10.4,662.0,0.0,0,20.6
+Padel at Denham Grove,local,playtomic,2026-09-26,Sat,2,0,0.8462,0.0,0.0,,,,,,,,,0,0.0,0,19.8
 Padel at Denham Grove,local,playtomic,2026-09-27,Sun,2,1,1.0,24.0,22.5,0.9375,0.9318,1.0,0.9375,0.9318,1.0,0.3333,3.3,990.0,0.0,0,20.6
 Lacey Green & Loosley Row,local,playtomic,2026-09-26,Sat,1,0,0.7857,0.0,0.0,,,,,,,,,0,0.0,0,19.8
-Lacey Green & Loosley Row,local,playtomic,2026-09-27,Sun,1,1,1.0,14.0,10.0,0.7143,0.7917,0.25,0.7143,0.7917,0.25,0.25,0.4,280.0,0.0,0,20.6
+Lacey Green & Loosley Row,local,playtomic,2026-09-27,Sun,1,1,1.0,14.0,9.0,0.6429,0.75,0.0,0.6429,0.75,0.0,0.1667,0.5,252.0,0.0,0,20.6
 Rulo Clubs Chesham,local,playtomic,2026-09-26,Sat,3,0,0.7333,0.0,0.0,,,,,,,,,0,0.0,0,19.8
-Rulo Clubs Chesham,local,playtomic,2026-09-27,Sun,3,1,1.0,45.0,36.0,0.8,0.8056,0.7778,0.8214,0.8056,0.9167,0.5,5.3,2520.0,0.0,0,20.6
+Rulo Clubs Chesham,local,playtomic,2026-09-27,Sun,3,1,1.0,45.0,30.0,0.6667,0.6944,0.5556,0.7143,0.6944,0.8333,0.4,7.9,2100.0,0.0,0,20.6
 Padel Powerhouse Burnham,local,playtomic,2026-09-26,Sat,2,0,0.7333,0.0,0.0,,,,,,,,,0,0.0,0,19.8
-Padel Powerhouse Burnham,local,playtomic,2026-09-27,Sun,2,1,1.0,30.0,3.5,0.1167,0.0625,0.3333,0.0893,0.0625,0.25,1.0,0.3,175.0,0.0,0,20.6
+Padel Powerhouse Burnham,local,playtomic,2026-09-27,Sun,2,1,1.0,30.0,1.0,0.0333,0.0417,0.0,0.0357,0.0417,0.0,1.0,0.6,50.0,0.0,0,20.6
 Ezeepadel Weybridge,benchmark,playtomic,2026-09-26,Sat,4,0,0.7333,0.0,0.0,,,,,,,,,0,0.0,0,19.8
-Ezeepadel Weybridge,benchmark,playtomic,2026-09-27,Sun,4,1,1.0,60.0,57.5,0.9583,0.9688,0.9167,0.9732,0.9688,1.0,0.1913,3.2,2990.0,0.0,0,20.6
+Ezeepadel Weybridge,benchmark,playtomic,2026-09-27,Sun,4,1,1.0,60.0,55.5,0.925,0.9479,0.8333,0.9554,0.9479,1.0,0.1622,3.9,2886.0,0.0,0,20.6
 Padel Social Club Earl's Court,benchmark,playtomic,2026-09-26,Sat,6,0,0.75,0.0,0.0,,,,,,,,,0,0.0,0,19.8
-Padel Social Club Earl's Court,benchmark,playtomic,2026-09-27,Sun,6,1,1.0,96.0,93.5,0.974,1.0,0.8958,1.0,1.0,1.0,0.1711,13.4,6986.25,0.0,0,20.6
+Padel Social Club Earl's Court,benchmark,playtomic,2026-09-27,Sun,6,1,1.0,96.0,91.0,0.9479,1.0,0.7917,1.0,1.0,1.0,0.1484,15.8,6796.25,0.0,0,20.6
