@@ -69,9 +69,25 @@ def _click_tab(page, labels):
     return None
 
 
+def _goto(page, url, log):
+    """Open a page, retrying a couple of times if the site is slow (e.g. a 504 from Playtomic)."""
+    for attempt in range(3):
+        try:
+            resp = page.goto(url, wait_until="networkidle", timeout=60000)
+            if resp is None or resp.status < 500:
+                return True
+            log.append(f"     page returned HTTP {resp.status}, retrying")
+        except Exception as e:  # noqa: BLE001
+            log.append(f"     page load problem ({type(e).__name__}), retrying")
+        page.wait_for_timeout(8000 * (attempt + 1))
+    return False
+
+
 def _capture(url, tabs, key, out_dir, log):
     from playwright.sync_api import sync_playwright
+    from . import net
     from .net import BROWSER_UA
+    net.close()   # the fallback browser from earlier checks must be closed before starting another
     out_dir.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -81,10 +97,10 @@ def _capture(url, tabs, key, out_dir, log):
         for tab, labels in tabs.items():
             records = []
             handler = _recorder(page, records)
-            try:
-                page.goto(url, wait_until="networkidle", timeout=60000)
-            except Exception:  # noqa: BLE001
-                pass
+            if not _goto(page, url, log):
+                log.append(f"  {tab}: page would not load")
+                page.remove_listener("response", handler)
+                continue
             _dismiss_cookies(page)
             clicked = _click_tab(page, labels)
             page.wait_for_timeout(5000)
