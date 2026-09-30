@@ -5,7 +5,7 @@ import collections
 import json
 from datetime import timedelta
 
-from . import matchi, net, padelos, playtomic
+from . import activities, matchi, net, padelos, playtomic
 from .collect import club_hours
 from .common import DATA, load_config, min_to_hm, now_utc, tz, write_json
 
@@ -97,6 +97,11 @@ def main():
                   max((max(v) for v in free.values() if v), default=None))
         except Exception as ex:  # noqa: BLE001
             print(club["name"], "ERROR:", ex)
+    print("=" * 70)
+    print("CLUB PROGRAMMING (open matches, events, academy) - recording what each tab loads")
+    log = []
+    activities.discover(cfg, {c["key"]: c for c in cfg["clubs"]}, log)
+    print("\n".join(log))
     if net.used_browser:
         print("Headless-browser fallback was needed for:", ", ".join(sorted(net.used_browser)))
     net.close()
