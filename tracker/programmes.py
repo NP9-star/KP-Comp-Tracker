@@ -102,21 +102,47 @@ def fetch_playtomic(club, today):
 
 # ------------------------------------------------------------------ PadelOS (UK Padel)
 
-def _padelos_rows(club, info, url):
+def _padelos_rows(club, info, url, horizon: date | None = None, max_pages=30):
+    """Read pages until the feed runs out or reaches the horizon (feeds list from term start)."""
     from . import padelos
     rows = []
-    for page in range(1, 6):
+    for page in range(1, max_pages + 1):
         d = padelos._request("GET", url.format(club=info["club_id"], page=page), club["company_id"], info.get("club_ids"))
         data = d.get("data") or {}
-        batch = data.get("rows") if isinstance(data, dict) else data
-        rows += batch or []
-        if not (isinstance(data, dict) and data.get("hasMore")):
+        batch = (data.get("rows") if isinstance(data, dict) else data) or []
+        rows += batch
+        if not (isinstance(data, dict) and data.get("hasMore")) or not batch:
+            break
+        last = max((str(r.get("startDate") or r.get("date") or "") for r in batch), default="")
+        if horizon and last > horizon.isoformat():
             break
     return rows
 
 
-def fetch_padelos(club, info):
+SAMPLES: list = []   # a few term-course rows (no personal data), printed by discover
+
+
+def _sessions(r, kind):
+    """Dates a row takes place on. A course with an end date after its start date and a weekly
+    (or daily) recurrence is expanded into its individual sessions."""
+    sd = r.get("startDate") or r.get("date")
+    ed = r.get("endDate") or sd
+    if kind != "training" or not ed or ed <= sd:
+        return [sd]
+    step = 1 if str(r.get("recurrType", "")).lower() == "daily" else 7
+    d0, d1 = date.fromisoformat(sd), date.fromisoformat(ed)
+    out, d = [], d0
+    while d <= d1 and len(out) < 60:
+        out.append(d.isoformat())
+        d += timedelta(days=step)
+    n = int(r.get("totalSessions") or 0)
+    return out[:n] if n and n < len(out) else out
+
+
+def fetch_padelos(club, info, today: date | None = None):
     from .padelos import API
+    today = today or date.today()
+    horizon = today + timedelta(days=14)
     out = []
     feeds = [
         ("training", API + "/trainings/listing?clubId={club}&trainerId=&day=&startTime=&endTime=&limit=50&availability=&sport=Padel&categoryNames=&page={page}"),
@@ -125,20 +151,23 @@ def fetch_padelos(club, info):
         ("open_match", "https://api.padelos.co/V2/customers/open-match/listing?sport=Padel&page={page}&limit=50&clubId={club}&gender=&date=&availability="),
     ]
     for kind, url in feeds:
-        try:
-            rows = _padelos_rows(club, info, url)
-        except Exception:  # noqa: BLE001 - one feed failing shouldn't stop the others
+        rows = None
+        for u in (url, re.sub(r"availability=(&|$)", r"availability=available\1", url)):
+            try:
+                rows = _padelos_rows(club, info, u, horizon)
+                break
+            except Exception:  # noqa: BLE001 - try the other variant, then give up on this feed
+                continue
+        if rows is None:
             continue
         for r in rows:
             if str(r.get("clubId") or (r.get("club") or {}).get("id") or (r.get("club") or {}).get("clubId")) != str(info["club_id"]):
                 continue
-            day = r.get("startDate") or r.get("date")
             st, en = (r.get("startTime") or "")[:5], (r.get("endTime") or "")[:5]
-            if not (day and st and en):
+            if not (st and en) or not (r.get("startDate") or r.get("date")):
                 continue
-            s = datetime.fromisoformat(f"{day}T{st}")
-            e = datetime.fromisoformat(f"{day}T{en}")
-            minutes = int((e - s).total_seconds() // 60) or 60
+            dates = _sessions(r, kind)
+            n_sess = len(dates)
             if kind == "open_match":
                 filled = len(r.get("participants") or [])
                 cap = 4 if (r.get("courtSize") or "Double").lower().startswith("d") else 2
@@ -150,12 +179,25 @@ def fetch_padelos(club, info):
                 if cap is None and r.get("remainingSlots") not in (None, ""):
                     cap = int(r["remainingSlots"]) + int(filled or 0)
                 price = r.get("participantPrice") or r.get("price")
+                if price not in (None, "") and n_sess > 1:
+                    price = float(price) / n_sess          # term price spread across its sessions
                 court = None
-            out.append({"id": f"{kind}-{r.get('id')}", "kind": kind, "name": (r.get("name") or "Open match")[:120],
-                        "start": s.isoformat(timespec="minutes"), "minutes": minutes,
-                        "filled": int(filled) if filled not in (None, "") else None,
-                        "capacity": int(cap) if cap not in (None, "") else None,
-                        "price": float(price) if price not in (None, "") else None, "court": court})
+            if kind == "training" and n_sess > 1 and len(SAMPLES) < 3:
+                SAMPLES.append({k: r.get(k) for k in ("name", "type", "recurrType", "startDate", "endDate",
+                                                     "startTime", "endTime", "totalSessions", "participantPrice",
+                                                     "maxParticipants", "participantCount")})
+            for day in dates:
+                if day < (today - timedelta(days=3)).isoformat() or day > horizon.isoformat():
+                    continue
+                s_ = datetime.fromisoformat(f"{day}T{st}")
+                e_ = datetime.fromisoformat(f"{day}T{en}")
+                minutes = int((e_ - s_).total_seconds() // 60) or 60
+                out.append({"id": f"{kind}-{r.get('id')}" + (f"-{day}" if n_sess > 1 else ""), "kind": kind,
+                            "name": (r.get("name") or "Open match")[:120],
+                            "start": s_.isoformat(timespec="minutes"), "minutes": minutes,
+                            "filled": int(filled) if filled not in (None, "") else None,
+                            "capacity": int(cap) if cap not in (None, "") else None,
+                            "price": round(float(price), 2) if price not in (None, "") else None, "court": court})
     return out
 
 
@@ -170,7 +212,7 @@ def update(cfg, resolved, now_local):
             if club["platform"] == "playtomic":
                 items = fetch_playtomic(club, today)
             elif club["platform"] == "padelos" and resolved.get(key, {}).get("club_id"):
-                items = fetch_padelos(club, resolved[key])
+                items = fetch_padelos(club, resolved[key], today)
             else:
                 continue
         except Exception as e:  # noqa: BLE001

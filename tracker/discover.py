@@ -105,7 +105,7 @@ def main():
             if club["platform"] == "playtomic":
                 items = programmes.fetch_playtomic(club, today)
             elif club["platform"] == "padelos" and resolved.get(club["key"], {}).get("club_id"):
-                items = programmes.fetch_padelos(club, resolved[club["key"]])
+                items = programmes.fetch_padelos(club, resolved[club["key"]], today)
             else:
                 continue
             kinds = {}
@@ -117,6 +117,10 @@ def main():
                       f"£{x.get('price')} {('court ' + x['court']) if x.get('court') else ''} {x['name'][:40]}")
         except Exception as ex:  # noqa: BLE001
             print(f"{club['name']}: ERROR {type(ex).__name__}: {ex}")
+    if programmes.SAMPLES:
+        print("UK Padel term courses (to check how they are expanded into weekly sessions):")
+        for x in programmes.SAMPLES:
+            print("  ", x)
     if cfg.get("capture_activity_pages"):
         log = []
         activities.discover(cfg, {c["key"]: c for c in cfg["clubs"]}, log)
