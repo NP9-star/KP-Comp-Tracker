@@ -1,0 +1,144 @@
+# Local padel market tracker
+# Edit this file to change clubs, hours or prices. Times are UK local time.
+
+timezone: Europe/London
+horizon_days: 10          # how many days ahead to watch
+near_days: 3              # the next 3 days are checked every run...
+far_days_every_n_runs: 4  # ...days further ahead every 4th run (every 2 hours), to keep requests low
+block_minutes: 30         # occupancy is measured in 30-minute court blocks
+max_gap_minutes: 180      # if no check ran within this long before a block starts, the block is excluded
+min_day_coverage: 0.8     # days with less than 80% of opening hours watched are left out
+
+# Revenue is annualised as: average daily court revenue x days_open_per_year
+days_open_per_year: 355   # 365 less 10 closure days (maintenance, Christmas)
+
+# Peak windows (used to split occupancy into peak / off-peak)
+peak:
+  weekday: "17:00-22:00"
+  weekend: "08:00-20:00"
+peak_label: "weekdays 17:00–22:00, weekends 08:00–20:00"
+
+# "Standard hours" view: occupancy measured only within these hours, so clubs that open
+# early or late are compared like-for-like
+standard_hours: {mon-fri: "07:00-22:00", sat-sun: "08:00-22:00"}
+standard_hours_label: "07:00–22:00 weekdays, 08:00–22:00 weekends"
+
+# Rainfall and temperature for the area (Open-Meteo), used to see weather effects on outdoor courts
+weather: {lat: 51.60, lon: -0.70, label: "South Buckinghamshire"}
+
+groups:
+  local: "Local clubs"
+  benchmark: "Wider benchmarks"
+
+clubs:
+  # ---------------- local clubs ----------------
+  - key: padel-maidenhead
+    name: Padel Maidenhead
+    group: local
+    platform: playtomic
+    slug: padel-maidenhead            # the part after playtomic.com/clubs/
+    exclude_dates: ["2026-09-26"]   # court names changed that day, so its figures are unreliable
+    tenant_id: 2083cefd-b6a3-4bf9-b2a7-28a6ac704e25
+    exclude_courts: ["Indoor Singles", "4121a5c6-c9fd-4ff0-829a-6b5895f3c048"]   # singles court (the £40/hr one)
+    hours: null          # read from its Playtomic page (06:30-24:00 when last checked)
+    realisation: 1.0     # share of listed price actually collected (lower it to allow for member discounts)
+
+  - key: padelhub-slough
+    name: PADELHUB SL2 Slough
+    group: local
+    platform: playtomic
+    slug: the-padel-hub-sl2-slough
+    tenant_id: 41062339-4a0c-4167-8593-f3dc861fb415
+    exclude_dates: ["2026-09-26"]   # court names changed that day, so its figures are unreliable
+    court_type: indoor
+    exclude_courts: []
+    hours: {mon-fri: "08:00-23:00", sat: "08:30-23:00", sun: "08:30-22:00"}
+    realisation: 1.0
+
+  - key: ukpadel-holmer-green
+    name: UK Padel Holmer Green
+    group: local
+    platform: padelos                 # UK Padel's own booking system (player.padelos.co)
+    company_id: 204
+    venue_match: "Holmer Green"
+    hours: {mon-sat: "08:00-22:00", sun: "09:00-20:00"}
+    realisation: 1.0
+
+  - key: ukpadel-stoke-poges
+    name: UK Padel Stoke Poges
+    group: local
+    platform: padelos
+    company_id: 204
+    venue_match: "Stoke Poges"
+    hours: {all: "08:00-22:00"}
+    realisation: 1.0
+
+  - key: ukpadel-princes-risborough
+    name: UK Padel Princes Risborough
+    group: local
+    platform: padelos
+    company_id: 204
+    venue_match: "Risborough"
+    hours: {mon-sat: "07:00-22:00", sun: "08:00-22:00"}   # slots seen from 07:00 on weekdays
+    realisation: 1.0
+
+  - key: denham-grove
+    name: Padel at Denham Grove
+    group: local
+    platform: playtomic
+    slug: padel-at-denham-grove
+    tenant_id: d265b308-c4b0-4e43-914b-aa9954f69702
+    exclude_dates: ["2026-09-26"]   # court names changed that day, so its figures are unreliable
+    court_type: outdoor
+    hours: null          # null = read from the club's Playtomic page (09:00-21:00 when last checked)
+    realisation: 1.0
+
+  - key: lacey-green
+    name: Lacey Green & Loosley Row
+    group: local
+    platform: playtomic
+    slug: lacey-green-loosley-row-padel-tennis
+    tenant_id: fbefee6e-829f-4e09-bc7b-67ea018aa143
+    court_type: outdoor
+    hours: null          # 08:00-22:00 when last checked
+    realisation: 1.0
+
+  - key: rulo-chesham
+    name: Rulo Clubs Chesham
+    group: local
+    platform: playtomic
+    slug: rulo-clubs
+    tenant_id: 1b0fa0b0-8e4a-42b0-92a0-b6ea026e48ac
+    court_type: indoor
+    exclude_courts: ["Singles"]      # Court 1 is a singles court
+    hours: null          # 07:00-22:00 when last checked
+    realisation: 1.0
+
+  - key: powerhouse-burnham
+    name: Padel Powerhouse Burnham
+    group: local
+    platform: playtomic
+    slug: padel-powerhouse-burnham
+    tenant_id: 4d95d6f6-09a7-4e44-9291-f7ddc5b5624c
+    hours: null          # 07:00-22:00 when last checked
+    realisation: 1.0
+
+  # ---------------- wider benchmarks ----------------
+  - key: ezeepadel-weybridge
+    name: Ezeepadel Weybridge
+    group: benchmark
+    platform: playtomic
+    slug: ezeepadel-weybridge
+    tenant_id: 1eb90d21-84ba-4f46-b523-61dffef0739f
+    court_type: outdoor
+    hours: null
+    realisation: 1.0
+
+  - key: psc-earls-court
+    name: Padel Social Club Earl's Court
+    group: benchmark
+    platform: playtomic
+    slug: padel-social-club-earls-court
+    tenant_id: 1c97a3d1-ded7-4c4b-808e-8c37bb1b2a1f
+    hours: null          # 06:00-23:00 when last checked
+    realisation: 1.0
