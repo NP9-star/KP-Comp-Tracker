@@ -12,7 +12,7 @@ import sys
 import traceback
 from datetime import timedelta
 
-from . import matchi, net, padelos, playtomic
+from . import matchi, net, padelos, playtomic, programmes
 from .common import (DATA, blocks_for_day, block_start, hours_by_weekday, load_config,
                      min_to_hm, now_utc, read_json, tz, write_json, hm_to_min)
 
@@ -155,6 +155,12 @@ def run():
             print(f"FAIL {club['name']}: {e}", file=sys.stderr)
             traceback.print_exc()
 
+    # club programmes (classes, events, tournaments) change slowly: refresh every few runs
+    if (ts // 1800) % max(1, int(cfg.get("programmes_every_n_runs", 4))) == 0:
+        try:
+            programmes.update(cfg, resolved, now.astimezone(zone))
+        except Exception as e:  # noqa: BLE001
+            print(f"WARN programmes update failed: {e}", file=sys.stderr)
     if net.used_browser:
         print("Note: headless-browser fallback was needed for:", ", ".join(sorted(net.used_browser)))
     write_json(DATA / "resolved.json", resolved, compact=False)

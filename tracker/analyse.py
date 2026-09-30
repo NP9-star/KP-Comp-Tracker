@@ -15,9 +15,10 @@ import bisect
 import csv
 import statistics
 from collections import defaultdict
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 from . import weather as wx
+from .programmes import est_courts
 from .collect import club_hours
 from .common import (DATA, DOCS_DATA, block_start, blocks_for_day, config_price_per_hour,
                      hours_by_weekday, hm_to_min, is_peak, load_config, now_utc, read_json,
@@ -155,7 +156,27 @@ class PriceBook:
 
 # ---------------------------------------------------------------- per-club aggregation
 
-def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd):
+def programme_maps(items, block):
+    """(club programme courts needed per (date, HH:MM), set of (date, court, HH:MM) open-match blocks)"""
+    need, openm = defaultdict(int), set()
+    for a in items or []:
+        try:
+            start = datetime.fromisoformat(a["start"])
+        except (KeyError, ValueError):
+            continue
+        n_blocks = max(1, int(a.get("minutes") or 60) // block)
+        for i in range(n_blocks):
+            t = start + timedelta(minutes=i * block)
+            key = (t.date().isoformat(), t.strftime("%H:%M"))
+            if a.get("kind") == "open_match":
+                if a.get("court"):
+                    openm.add((key[0], a["court"], key[1]))
+            else:
+                need[key] += est_courts(a.get("kind"), a.get("capacity"))
+    return need, openm
+
+
+def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd, prog=None):
     real = float(club.get("realisation", 1.0))
     min_cov = float(cfg.get("min_day_coverage", 0.8))
     prices = PriceBook(club, rows, state, block)
@@ -178,6 +199,16 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd):
             if status_at.get((r["date"], r["court"], prev)) == "free":
                 r["status"] = "free"
 
+    # club programmes: how many occupied courts at each time were club classes/events/tournaments
+    need, openm = programme_maps(prog, block)
+    occ_other = defaultdict(int)
+    for r in rows:
+        if r["status"] in ("sold", "never") and r["date"] not in partial \
+                and (r["date"], r["court"], r["time"]) not in openm:
+            occ_other[(r["date"], r["time"])] += 1
+    prog_courts = {k: min(v, occ_other.get(k, 0)) for k, v in need.items()}
+    allocated = defaultdict(int)
+
     # day -> scope -> counters ; hourly -> counters
     Z = lambda: defaultdict(float)  # noqa: E731
     daily = defaultdict(lambda: {"all": Z(), "std": Z()})
@@ -191,6 +222,11 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd):
         peak = is_peak(cfg, d, r["time"])
         rt = prices.rate(r, d) if occ else None
         rev = rt * real if rt is not None else 0.0
+        is_open = occ and (r["date"], r["court"], r["time"]) in openm
+        is_club = False
+        if occ and not is_open and allocated[(r["date"], r["time"])] < prog_courts.get((r["date"], r["time"]), 0):
+            allocated[(r["date"], r["time"])] += 1
+            is_club = True
         scopes = ["all"] + (["std"] if in_standard(cfg, d, r["time"], std) else [])
         for sc in scopes:
             a = daily[r["date"]][sc]
@@ -199,6 +235,11 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd):
             if occ:
                 a["occ"] += 1
                 a["peak_occ" if peak else "off_occ"] += 1
+                if is_club:
+                    a["club"] += 1
+                    a["peak_club" if peak else "off_club"] += 1
+                if is_open:
+                    a["open"] += 1
                 a[r["status"]] += 1
                 a["rev"] += rev
                 if peak:
@@ -211,6 +252,7 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd):
         h = hourly[(r["date"], int(r["time"][:2]))]
         h["total"] += 1
         h["occ"] += occ
+        h["club"] += is_club
         h["rev"] += rev
         h["std"] = 1 if in_standard(cfg, d, r["time"], std) else h.get("std", 0)
         h["peak"] = 1 if peak else h.get("peak", 0)
@@ -237,6 +279,11 @@ def window_metrics(daily, scope, start_iso, courts, block, days_open):
         "occupancy": pct(t["occ"], t["total"]),
         "occupancy_peak": pct(t["peak_occ"], t["peak_total"]),
         "occupancy_offpeak": pct(t["off_occ"], t["off_total"]),
+        "occupancy_club": pct(t["club"], t["total"]),
+        "occupancy_player": pct(t["occ"] - t["club"], t["total"]),
+        "club_share": pct(t["club"], t["occ"]),
+        "club_share_peak": pct(t["peak_club"], t["peak_occ"]),
+        "club_share_offpeak": pct(t["off_club"], t["off_occ"]),
         "watched_bookings_share": pct(t["sold"], t["occ"]),
         "court_hours_sold_per_day": round(hrs / n, 1) if n else None,
         "bookable_court_hours_per_day": round(t["total"] * block / 60 / n, 1) if n else None,
@@ -247,9 +294,24 @@ def window_metrics(daily, scope, start_iso, courts, block, days_open):
         "peak_price_per_court_hour": round(t["peak_rev"] / peak_hrs, 2) if peak_hrs and t["peak_rev"] else None,
         "offpeak_price_per_court_hour": round(t["off_rev"] / off_hrs, 2) if off_hrs and t["off_rev"] else None,
         "median_lead_h": round(t["lead_sum"] / t["lead_n"], 1) if t["lead_n"] else None,
-        "_occ": t["occ"], "_total": t["total"], "_peak_occ": t["peak_occ"], "_peak_total": t["peak_total"],
+        "_occ": t["occ"], "_total": t["total"], "_club": t["club"], "_peak_occ": t["peak_occ"], "_peak_total": t["peak_total"],
         "_off_occ": t["off_occ"], "_off_total": t["off_total"],
     }
+
+
+TYPE_LABEL = {"class": "Class", "course": "Course", "training": "Coaching", "tournament": "Tournament",
+              "league": "League", "event": "Club event", "open_match": "Open match"}
+
+
+def activity_stats(prog, start, end):
+    """Club programme sessions that took place in [start, end): count, fill rate, price per player."""
+    s_iso, e_iso = start.isoformat(), end.isoformat()
+    xs = [x for x in prog or [] if x.get("kind") != "open_match" and s_iso <= x.get("start", "")[:10] < e_iso]
+    filled = sum(x["filled"] for x in xs if x.get("filled") is not None and x.get("capacity"))
+    places = sum(x["capacity"] for x in xs if x.get("filled") is not None and x.get("capacity"))
+    prices = [x["price"] for x in xs if x.get("price")]
+    return {"programme_sessions": len(xs), "programme_fill_rate": pct(filled, places),
+            "programme_price_per_player": round(statistics.median(prices), 2) if prices else None}
 
 
 # ---------------------------------------------------------------- run
@@ -269,7 +331,7 @@ def run():
            "standard_hours_label": cfg.get("standard_hours_label", "07:00–22:00 weekdays, 08:00–22:00 weekends"),
            "peak_label": cfg.get("peak_label", "weekdays 17:00–22:00, weekends 08:00–20:00"),
            "groups": groups, "group_order": list(groups.keys()), "clubs": [], "market": {}, "by_kind": {}}
-    daily_rows, hourly_rows, court_rows = [], [], []
+    daily_rows, hourly_rows, court_rows, activity_rows = [], [], [], []
     market_daily = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))  # group->scope->counters by window
     kind_all = defaultdict(lambda: defaultdict(float))
 
@@ -281,8 +343,9 @@ def run():
         courts = len(state.get("courts", []))
         kinds = state.get("court_kinds") or {}
         rows = load_blocks(club["key"], today - timedelta(days=400))
+        prog = list(read_json(DATA / "programmes" / f"{club['key']}.json", {}).values())
         daily, hourly, kind_tot, partial, missing_price, cover = aggregate(
-            cfg, club, rows, state, kinds, today, block, std, days_open, wxd)
+            cfg, club, rows, state, kinds, today, block, std, days_open, wxd, prog)
         st = status.get(club["key"], {})
         grp = club.get("group", "local")
         entry = {"key": club["key"], "name": club["name"], "platform": club["platform"], "group": grp,
@@ -294,8 +357,9 @@ def run():
             for label, days in (("d7", 7), ("d28", 28), ("d90", 90)):
                 m = window_metrics(daily, scope, (today - timedelta(days=days)).isoformat(), courts, block, days_open)
                 mk = market_daily[(grp, label)][scope]
-                for k in ("_occ", "_total", "_peak_occ", "_peak_total", "_off_occ", "_off_total"):
+                for k in ("_occ", "_total", "_peak_occ", "_peak_total", "_off_occ", "_off_total", "_club"):
                     mk[k] += m.pop(k)
+                m.update(activity_stats(prog, today - timedelta(days=days), today))
                 entry["metrics"][scope][label] = m
         # daily series (last 120 days) with weather
         series = []
@@ -304,7 +368,8 @@ def run():
             w = wxd.get(ds) or {}
             series.append({"date": ds, "occ": pct(a["occ"], a["total"]), "peak": pct(a["peak_occ"], a["peak_total"]),
                            "off": pct(a["off_occ"], a["off_total"]), "occ_std": pct(s_["occ"], s_["total"]),
-                           "rev": round(a["rev"]) if a["rev"] else None, "rain_mm": w.get("rain_mm")})
+                           "rev": round(a["rev"]) if a["rev"] else None, "rain_mm": w.get("rain_mm"),
+                           "club": pct(a["club"], a["total"])})
         entry["daily"] = series
         # heatmap, last 28 days
         heat = defaultdict(lambda: [0, 0])
@@ -344,6 +409,12 @@ def run():
                 "occupancy_standard_hours": pct(s_["occ"], s_["total"]),
                 "occupancy_standard_peak": pct(s_["peak_occ"], s_["peak_total"]),
                 "occupancy_standard_offpeak": pct(s_["off_occ"], s_["off_total"]),
+                "occupancy_player": pct(a["occ"] - a["club"], a["total"]),
+                "occupancy_club": pct(a["club"], a["total"]),
+                "club_programme_share": pct(a["club"], a["occ"]),
+                "club_programme_court_hours": round(a["club"] * block / 60, 1),
+                "open_match_court_hours": round(a["open"] * block / 60, 1),
+                "programme_sessions": sum(1 for x in prog if x.get("kind") != "open_match" and x.get("start", "")[:10] == ds),
                 "seen_booked_share": pct(a["sold"], a["occ"]),
                 "avg_lead_hours": round(a["lead_sum"] / a["lead_n"], 1) if a["lead_n"] else None,
                 "revenue_est_gbp": round(a["rev"], 2) if a["rev"] else 0,
@@ -354,22 +425,37 @@ def run():
                                 "hour": f"{hh:02d}:00", "peak": int(v.get("peak", 0)),
                                 "standard_hours": int(v.get("std", 0)),
                                 "court_blocks": int(v["total"]), "occupied_blocks": int(v["occ"]),
+                                "club_programme_blocks": int(v.get("club", 0)),
                                 "occupancy": pct(v["occ"], v["total"]), "revenue_est_gbp": round(v["rev"], 2),
                                 "rain_mm": ((wxd.get(ds) or {}).get("hourly_mm") or {}).get(f"{hh:02d}")})
         for cname, k in sorted(kinds.items()):
             court_rows.append({"club": club["name"], "court": cname, "type": k})
+        for x in sorted(prog, key=lambda x: x.get("start", "")):
+            cap, fil = x.get("capacity"), x.get("filled")
+            activity_rows.append({
+                "club": club["name"], "group": grp, "type": TYPE_LABEL.get(x.get("kind"), x.get("kind")),
+                "name": x.get("name"), "date": x.get("start", "")[:10], "start": x.get("start", "")[11:16],
+                "minutes": x.get("minutes"), "places_filled": fil, "places": cap,
+                "fill_rate": pct(fil, cap) if fil is not None and cap else None,
+                "price_per_player_gbp": x.get("price"),
+                "est_courts": None if x.get("kind") == "open_match" else est_courts(x.get("kind"), cap),
+                "court": x.get("court") or "", "players_revenue_gbp": round(fil * x["price"], 2)
+                if fil is not None and x.get("price") is not None else None,
+                "last_seen": x.get("last_seen")})
 
     for (grp, label), scopes in market_daily.items():
         for scope, t in scopes.items():
             out["market"].setdefault(grp, {}).setdefault(scope, {})[label] = {
                 "occupancy": pct(t["_occ"], t["_total"]), "occupancy_peak": pct(t["_peak_occ"], t["_peak_total"]),
-                "occupancy_offpeak": pct(t["_off_occ"], t["_off_total"])}
+                "occupancy_offpeak": pct(t["_off_occ"], t["_off_total"]),
+                "occupancy_club": pct(t["_club"], t["_total"]), "club_share": pct(t["_club"], t["_occ"])}
     out["by_kind"] = {k: pct(v["occ"], v["total"]) for k, v in kind_all.items() if v["total"]}
 
     write_json(DOCS_DATA / "summary.json", out)
     _csv(DOCS_DATA / "daily.csv", daily_rows)
     _csv(DOCS_DATA / "hourly.csv", hourly_rows)
     _csv(DOCS_DATA / "courts.csv", court_rows)
+    _csv(DOCS_DATA / "activities.csv", activity_rows)
     print("Wrote docs/data/summary.json, daily.csv, hourly.csv, courts.csv")
 
 

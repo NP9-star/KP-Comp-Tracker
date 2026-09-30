@@ -5,7 +5,7 @@ import collections
 import json
 from datetime import timedelta
 
-from . import activities, matchi, net, padelos, playtomic
+from . import activities, matchi, net, padelos, playtomic, programmes
 from .collect import club_hours
 from .common import DATA, load_config, min_to_hm, now_utc, tz, write_json
 
@@ -98,10 +98,29 @@ def main():
         except Exception as ex:  # noqa: BLE001
             print(club["name"], "ERROR:", ex)
     print("=" * 70)
-    print("CLUB PROGRAMMING (open matches, events, academy) - recording what each tab loads")
-    log = []
-    activities.discover(cfg, {c["key"]: c for c in cfg["clubs"]}, log)
-    print("\n".join(log))
+    print("CLUB PROGRAMMES (classes, courses, tournaments, club events; UK Padel open matches)")
+    today = now_utc().astimezone(zone).date()
+    for club in cfg["clubs"]:
+        try:
+            if club["platform"] == "playtomic":
+                items = programmes.fetch_playtomic(club, today)
+            elif club["platform"] == "padelos" and resolved.get(club["key"], {}).get("club_id"):
+                items = programmes.fetch_padelos(club, resolved[club["key"]])
+            else:
+                continue
+            kinds = {}
+            for x in items:
+                kinds[x["kind"]] = kinds.get(x["kind"], 0) + 1
+            print(f"{club['name']}: {len(items)} listed {kinds}")
+            for x in sorted(items, key=lambda x: x["start"])[:3]:
+                print(f"   {x['kind']:<10} {x['start']} {x['minutes']}min places {x.get('filled')}/{x.get('capacity')} "
+                      f"£{x.get('price')} {('court ' + x['court']) if x.get('court') else ''} {x['name'][:40]}")
+        except Exception as ex:  # noqa: BLE001
+            print(f"{club['name']}: ERROR {type(ex).__name__}: {ex}")
+    if cfg.get("capture_activity_pages"):
+        log = []
+        activities.discover(cfg, {c["key"]: c for c in cfg["clubs"]}, log)
+        print("\n".join(log))
     if net.used_browser:
         print("Headless-browser fallback was needed for:", ", ".join(sorted(net.used_browser)))
     net.close()
