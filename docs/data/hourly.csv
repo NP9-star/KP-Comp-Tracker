@@ -159,6 +159,24 @@ Padel Maidenhead,local,2026-10-06,Tue,20:00,1,1,14,14,6,1.0,350.0,0.0
 Padel Maidenhead,local,2026-10-06,Tue,21:00,1,1,14,14,0,1.0,350.0,0.0
 Padel Maidenhead,local,2026-10-06,Tue,22:00,0,0,14,13,0,0.9286,325.0,0.0
 Padel Maidenhead,local,2026-10-06,Tue,23:00,0,0,14,6,0,0.4286,150.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,06:00,0,0,7,4,0,0.5714,100.0,0.4
+Padel Maidenhead,local,2026-10-07,Wed,07:00,0,1,14,11,0,0.7857,275.0,0.6
+Padel Maidenhead,local,2026-10-07,Wed,08:00,0,1,14,6,0,0.4286,150.0,0.8
+Padel Maidenhead,local,2026-10-07,Wed,09:00,0,1,14,10,0,0.7143,250.0,1.9
+Padel Maidenhead,local,2026-10-07,Wed,10:00,0,1,14,6,2,0.4286,150.0,2.0
+Padel Maidenhead,local,2026-10-07,Wed,11:00,0,1,14,11,2,0.7857,275.0,0.7
+Padel Maidenhead,local,2026-10-07,Wed,12:00,0,1,14,8,0,0.5714,200.0,0.1
+Padel Maidenhead,local,2026-10-07,Wed,13:00,0,1,14,5,4,0.3571,125.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,14:00,0,1,14,12,2,0.8571,300.0,0.2
+Padel Maidenhead,local,2026-10-07,Wed,15:00,0,1,14,11,2,0.7857,275.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,16:00,0,1,14,8,2,0.5714,200.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,17:00,1,1,14,14,0,1.0,350.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,18:00,1,1,14,14,0,1.0,350.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,19:00,1,1,14,14,0,1.0,350.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,20:00,1,1,14,14,0,1.0,350.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,21:00,1,1,14,14,0,1.0,350.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,22:00,0,0,14,14,0,1.0,350.0,0.0
+Padel Maidenhead,local,2026-10-07,Wed,23:00,0,0,14,6,0,0.4286,150.0,0.0
 PADELHUB SL2 Slough,local,2026-09-27,Sun,08:00,1,1,5,1,0,0.2,20.0,0.0
 PADELHUB SL2 Slough,local,2026-09-27,Sun,09:00,1,1,10,10,0,1.0,230.0,0.0
 PADELHUB SL2 Slough,local,2026-09-27,Sun,10:00,1,1,10,10,0,1.0,290.0,0.0
@@ -292,6 +310,21 @@ PADELHUB SL2 Slough,local,2026-10-06,Tue,19:00,1,1,10,10,0,1.0,350.0,0.0
 PADELHUB SL2 Slough,local,2026-10-06,Tue,20:00,1,1,10,10,0,1.0,350.0,0.0
 PADELHUB SL2 Slough,local,2026-10-06,Tue,21:00,1,1,10,10,0,1.0,350.0,0.0
 PADELHUB SL2 Slough,local,2026-10-06,Tue,22:00,0,0,10,8,0,0.8,280.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,08:00,0,1,10,2,2,0.2,40.0,0.8
+PADELHUB SL2 Slough,local,2026-10-07,Wed,09:00,0,1,10,2,0,0.2,40.0,1.9
+PADELHUB SL2 Slough,local,2026-10-07,Wed,10:00,0,1,10,8,0,0.8,160.0,2.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,11:00,0,1,10,6,0,0.6,120.0,0.7
+PADELHUB SL2 Slough,local,2026-10-07,Wed,12:00,0,1,10,10,4,1.0,200.0,0.1
+PADELHUB SL2 Slough,local,2026-10-07,Wed,13:00,0,1,10,8,2,0.8,160.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,14:00,0,1,10,10,0,1.0,200.0,0.2
+PADELHUB SL2 Slough,local,2026-10-07,Wed,15:00,0,1,10,8,0,0.8,160.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,16:00,0,1,10,10,0,1.0,217.5,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,17:00,1,1,10,10,0,1.0,317.5,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,18:00,1,1,10,10,0,1.0,350.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,19:00,1,1,10,10,0,1.0,350.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,20:00,1,1,10,10,0,1.0,350.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,21:00,1,1,10,10,0,1.0,350.0,0.0
+PADELHUB SL2 Slough,local,2026-10-07,Wed,22:00,0,0,10,8,0,0.8,280.0,0.0
 UK Padel Holmer Green,local,2026-09-26,Sat,08:00,1,1,6,6,0,1.0,114.0,0.0
 UK Padel Holmer Green,local,2026-09-26,Sat,09:00,1,1,6,6,0,1.0,135.0,0.0
 UK Padel Holmer Green,local,2026-09-26,Sat,10:00,1,1,6,6,0,1.0,147.0,0.0
@@ -428,6 +461,20 @@ UK Padel Holmer Green,local,2026-10-06,Tue,18:00,1,1,6,6,1,1.0,144.0,0.0
 UK Padel Holmer Green,local,2026-10-06,Tue,19:00,1,1,6,6,0,1.0,148.0,0.0
 UK Padel Holmer Green,local,2026-10-06,Tue,20:00,1,1,6,6,0,1.0,148.0,0.0
 UK Padel Holmer Green,local,2026-10-06,Tue,21:00,1,1,6,6,0,1.0,148.0,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,08:00,0,1,6,0,0,0.0,0.0,0.8
+UK Padel Holmer Green,local,2026-10-07,Wed,09:00,0,1,6,5,0,0.8333,90.0,1.9
+UK Padel Holmer Green,local,2026-10-07,Wed,10:00,0,1,6,4,4,0.6667,76.0,2.0
+UK Padel Holmer Green,local,2026-10-07,Wed,11:00,0,1,6,6,0,1.0,114.0,0.7
+UK Padel Holmer Green,local,2026-10-07,Wed,12:00,0,1,6,5,0,0.8333,95.0,0.1
+UK Padel Holmer Green,local,2026-10-07,Wed,13:00,0,1,6,5,0,0.8333,95.0,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,14:00,0,1,6,6,0,1.0,119.0,0.2
+UK Padel Holmer Green,local,2026-10-07,Wed,15:00,0,1,6,6,0,1.0,120.0,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,16:00,0,1,6,6,0,1.0,126.34,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,17:00,1,1,6,6,3,1.0,133.17,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,18:00,1,1,6,6,6,1.0,144.0,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,19:00,1,1,6,6,6,1.0,150.0,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,20:00,1,1,6,6,6,1.0,150.0,0.0
+UK Padel Holmer Green,local,2026-10-07,Wed,21:00,1,1,6,6,6,1.0,150.0,0.0
 UK Padel Stoke Poges,local,2026-09-26,Sat,08:00,1,1,4,0,0,0.0,0.0,0.0
 UK Padel Stoke Poges,local,2026-09-26,Sat,09:00,1,1,4,4,0,1.0,86.0,0.0
 UK Padel Stoke Poges,local,2026-09-26,Sat,10:00,1,1,4,4,0,1.0,96.0,0.0
@@ -567,6 +614,20 @@ UK Padel Stoke Poges,local,2026-10-06,Tue,18:00,1,1,4,4,2,1.0,96.0,0.0
 UK Padel Stoke Poges,local,2026-10-06,Tue,19:00,1,1,4,4,0,1.0,96.0,0.0
 UK Padel Stoke Poges,local,2026-10-06,Tue,20:00,1,1,4,4,0,1.0,96.0,0.0
 UK Padel Stoke Poges,local,2026-10-06,Tue,21:00,1,1,4,2,0,0.5,48.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,08:00,0,1,4,0,0,0.0,0.0,0.8
+UK Padel Stoke Poges,local,2026-10-07,Wed,09:00,0,1,4,2,0,0.5,33.5,1.9
+UK Padel Stoke Poges,local,2026-10-07,Wed,10:00,0,1,4,2,0,0.5,38.0,2.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,11:00,0,1,4,2,0,0.5,38.0,0.7
+UK Padel Stoke Poges,local,2026-10-07,Wed,12:00,0,1,4,0,0,0.0,0.0,0.1
+UK Padel Stoke Poges,local,2026-10-07,Wed,13:00,0,1,4,0,0,0.0,0.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,14:00,0,1,4,0,0,0.0,0.0,0.2
+UK Padel Stoke Poges,local,2026-10-07,Wed,15:00,0,1,4,2,1,0.5,38.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,16:00,0,1,4,4,2,1.0,76.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,17:00,1,1,4,4,2,1.0,92.25,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,18:00,1,1,4,2,2,0.5,48.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,19:00,1,1,4,4,1,1.0,96.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,20:00,1,1,4,1,0,0.25,24.0,0.0
+UK Padel Stoke Poges,local,2026-10-07,Wed,21:00,1,1,4,2,0,0.5,48.0,0.0
 UK Padel Princes Risborough,local,2026-09-27,Sun,08:00,1,1,4,0,0,0.0,0.0,0.0
 UK Padel Princes Risborough,local,2026-09-27,Sun,09:00,1,1,4,4,0,1.0,86.0,0.0
 UK Padel Princes Risborough,local,2026-09-27,Sun,10:00,1,1,4,4,0,1.0,96.0,0.0
@@ -700,6 +761,21 @@ UK Padel Princes Risborough,local,2026-10-06,Tue,18:00,1,1,4,0,0,0.0,0.0,0.0
 UK Padel Princes Risborough,local,2026-10-06,Tue,19:00,1,1,4,4,2,1.0,96.0,0.0
 UK Padel Princes Risborough,local,2026-10-06,Tue,20:00,1,1,4,2,2,0.5,48.0,0.0
 UK Padel Princes Risborough,local,2026-10-06,Tue,21:00,1,1,4,2,0,0.5,48.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,07:00,0,1,4,0,0,0.0,0.0,0.6
+UK Padel Princes Risborough,local,2026-10-07,Wed,08:00,0,1,4,0,0,0.0,0.0,0.8
+UK Padel Princes Risborough,local,2026-10-07,Wed,09:00,0,1,4,0,0,0.0,0.0,1.9
+UK Padel Princes Risborough,local,2026-10-07,Wed,10:00,0,1,4,0,0,0.0,0.0,2.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,11:00,0,1,4,0,0,0.0,0.0,0.7
+UK Padel Princes Risborough,local,2026-10-07,Wed,12:00,0,1,4,0,0,0.0,0.0,0.1
+UK Padel Princes Risborough,local,2026-10-07,Wed,13:00,0,1,4,0,0,0.0,0.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,14:00,0,1,4,0,0,0.0,0.0,0.2
+UK Padel Princes Risborough,local,2026-10-07,Wed,15:00,0,1,4,0,0,0.0,0.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,16:00,0,1,4,0,0,0.0,0.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,17:00,1,1,4,0,0,0.0,0.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,18:00,1,1,4,0,0,0.0,0.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,19:00,1,1,4,4,0,1.0,96.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,20:00,1,1,4,4,0,1.0,96.0,0.0
+UK Padel Princes Risborough,local,2026-10-07,Wed,21:00,1,1,4,2,0,0.5,48.0,0.0
 Padel at Denham Grove,local,2026-09-27,Sun,09:00,1,1,4,4,0,1.0,88.0,0.0
 Padel at Denham Grove,local,2026-09-27,Sun,10:00,1,1,4,4,0,1.0,88.0,0.0
 Padel at Denham Grove,local,2026-09-27,Sun,11:00,1,1,4,3,0,0.75,66.0,0.0
@@ -829,6 +905,21 @@ Padel at Denham Grove,local,2026-10-06,Tue,18:00,1,1,4,4,0,1.0,88.0,0.0
 Padel at Denham Grove,local,2026-10-06,Tue,19:00,1,1,4,4,0,1.0,88.0,0.0
 Padel at Denham Grove,local,2026-10-06,Tue,20:00,1,1,4,4,0,1.0,88.0,0.0
 Padel at Denham Grove,local,2026-10-06,Tue,21:00,1,1,4,4,0,1.0,88.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,07:00,0,1,4,0,0,0.0,0.0,0.6
+Padel at Denham Grove,local,2026-10-07,Wed,08:00,0,1,4,0,0,0.0,0.0,0.8
+Padel at Denham Grove,local,2026-10-07,Wed,09:00,0,1,4,0,0,0.0,0.0,1.9
+Padel at Denham Grove,local,2026-10-07,Wed,10:00,0,1,4,0,0,0.0,0.0,2.0
+Padel at Denham Grove,local,2026-10-07,Wed,11:00,0,1,4,0,0,0.0,0.0,0.7
+Padel at Denham Grove,local,2026-10-07,Wed,12:00,0,1,4,0,0,0.0,0.0,0.1
+Padel at Denham Grove,local,2026-10-07,Wed,13:00,0,1,4,0,0,0.0,0.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,14:00,0,1,4,0,0,0.0,0.0,0.2
+Padel at Denham Grove,local,2026-10-07,Wed,15:00,0,1,4,0,0,0.0,0.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,16:00,0,1,4,2,0,0.5,25.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,17:00,1,1,4,2,0,0.5,44.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,18:00,1,1,4,2,0,0.5,44.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,19:00,1,1,4,4,0,1.0,88.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,20:00,1,1,4,4,0,1.0,88.0,0.0
+Padel at Denham Grove,local,2026-10-07,Wed,21:00,1,1,4,2,0,0.5,44.0,0.0
 Lacey Green & Loosley Row,local,2026-09-27,Sun,08:00,1,1,2,2,0,1.0,28.0,0.0
 Lacey Green & Loosley Row,local,2026-09-27,Sun,09:00,1,1,2,2,0,1.0,28.0,0.0
 Lacey Green & Loosley Row,local,2026-09-27,Sun,10:00,1,1,2,2,0,1.0,28.0,0.0
@@ -961,6 +1052,21 @@ Lacey Green & Loosley Row,local,2026-10-06,Tue,18:00,1,1,2,2,0,1.0,28.0,0.0
 Lacey Green & Loosley Row,local,2026-10-06,Tue,19:00,1,1,2,2,0,1.0,28.0,0.0
 Lacey Green & Loosley Row,local,2026-10-06,Tue,20:00,1,1,2,2,0,1.0,28.0,0.0
 Lacey Green & Loosley Row,local,2026-10-06,Tue,21:00,1,1,2,2,0,1.0,28.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,07:00,0,1,2,0,0,0.0,0.0,0.6
+Lacey Green & Loosley Row,local,2026-10-07,Wed,08:00,0,1,2,0,0,0.0,0.0,0.8
+Lacey Green & Loosley Row,local,2026-10-07,Wed,09:00,0,1,2,2,0,1.0,22.0,1.9
+Lacey Green & Loosley Row,local,2026-10-07,Wed,10:00,0,1,2,2,0,1.0,22.0,2.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,11:00,0,1,2,2,0,1.0,22.0,0.7
+Lacey Green & Loosley Row,local,2026-10-07,Wed,12:00,0,1,2,2,0,1.0,22.0,0.1
+Lacey Green & Loosley Row,local,2026-10-07,Wed,13:00,0,1,2,0,0,0.0,0.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,14:00,0,1,2,2,0,1.0,22.0,0.2
+Lacey Green & Loosley Row,local,2026-10-07,Wed,15:00,0,1,2,0,0,0.0,0.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,16:00,0,1,2,0,0,0.0,0.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,17:00,1,1,2,2,0,1.0,28.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,18:00,1,1,2,2,0,1.0,28.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,19:00,1,1,2,2,0,1.0,28.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,20:00,1,1,2,2,0,1.0,28.0,0.0
+Lacey Green & Loosley Row,local,2026-10-07,Wed,21:00,1,1,2,2,0,1.0,28.0,0.0
 Rulo Clubs Chesham,local,2026-09-27,Sun,07:00,0,0,6,0,0,0.0,0.0,0.0
 Rulo Clubs Chesham,local,2026-09-27,Sun,08:00,1,1,6,0,0,0.0,0.0,0.0
 Rulo Clubs Chesham,local,2026-09-27,Sun,09:00,1,1,6,6,0,1.0,210.0,0.0
@@ -1095,6 +1201,21 @@ Rulo Clubs Chesham,local,2026-10-06,Tue,18:00,1,1,6,4,1,0.6667,140.0,0.0
 Rulo Clubs Chesham,local,2026-10-06,Tue,19:00,1,1,6,6,0,1.0,210.0,0.0
 Rulo Clubs Chesham,local,2026-10-06,Tue,20:00,1,1,6,6,0,1.0,210.0,0.0
 Rulo Clubs Chesham,local,2026-10-06,Tue,21:00,1,1,6,6,0,1.0,210.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,07:00,0,1,6,0,0,0.0,0.0,0.6
+Rulo Clubs Chesham,local,2026-10-07,Wed,08:00,0,1,6,0,0,0.0,0.0,0.8
+Rulo Clubs Chesham,local,2026-10-07,Wed,09:00,0,1,6,0,0,0.0,0.0,1.9
+Rulo Clubs Chesham,local,2026-10-07,Wed,10:00,0,1,6,2,0,0.3333,50.0,2.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,11:00,0,1,6,2,0,0.3333,50.0,0.7
+Rulo Clubs Chesham,local,2026-10-07,Wed,12:00,0,1,6,4,0,0.6667,100.0,0.1
+Rulo Clubs Chesham,local,2026-10-07,Wed,13:00,0,1,6,4,0,0.6667,100.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,14:00,0,1,6,3,2,0.5,75.0,0.2
+Rulo Clubs Chesham,local,2026-10-07,Wed,15:00,0,1,6,5,2,0.8333,125.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,16:00,0,1,6,3,0,0.5,75.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,17:00,1,1,6,4,0,0.6667,128.34,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,18:00,1,1,6,6,0,1.0,210.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,19:00,1,1,6,6,0,1.0,210.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,20:00,1,1,6,6,0,1.0,210.0,0.0
+Rulo Clubs Chesham,local,2026-10-07,Wed,21:00,1,1,6,6,0,1.0,210.0,0.0
 Padel Powerhouse Burnham,local,2026-09-27,Sun,07:00,0,0,4,0,0,0.0,0.0,0.0
 Padel Powerhouse Burnham,local,2026-09-27,Sun,08:00,1,1,4,0,0,0.0,0.0,0.0
 Padel Powerhouse Burnham,local,2026-09-27,Sun,09:00,1,1,4,0,0,0.0,0.0,0.0
@@ -1229,6 +1350,21 @@ Padel Powerhouse Burnham,local,2026-10-06,Tue,18:00,1,1,4,4,0,1.0,100.0,0.0
 Padel Powerhouse Burnham,local,2026-10-06,Tue,19:00,1,1,4,3,0,0.75,75.0,0.0
 Padel Powerhouse Burnham,local,2026-10-06,Tue,20:00,1,1,4,3,0,0.75,75.0,0.0
 Padel Powerhouse Burnham,local,2026-10-06,Tue,21:00,1,1,4,2,0,0.5,50.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,07:00,0,1,4,0,0,0.0,0.0,0.6
+Padel Powerhouse Burnham,local,2026-10-07,Wed,08:00,0,1,4,0,0,0.0,0.0,0.8
+Padel Powerhouse Burnham,local,2026-10-07,Wed,09:00,0,1,4,0,0,0.0,0.0,1.9
+Padel Powerhouse Burnham,local,2026-10-07,Wed,10:00,0,1,4,0,0,0.0,0.0,2.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,11:00,0,1,4,0,0,0.0,0.0,0.7
+Padel Powerhouse Burnham,local,2026-10-07,Wed,12:00,0,1,4,2,0,0.5,35.0,0.1
+Padel Powerhouse Burnham,local,2026-10-07,Wed,13:00,0,1,4,2,0,0.5,35.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,14:00,0,1,4,2,0,0.5,35.0,0.2
+Padel Powerhouse Burnham,local,2026-10-07,Wed,15:00,0,1,4,2,0,0.5,35.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,16:00,0,1,4,2,0,0.5,35.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,17:00,1,1,4,2,0,0.5,50.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,18:00,1,1,4,4,0,1.0,100.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,19:00,1,1,4,2,0,0.5,50.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,20:00,1,1,4,2,0,0.5,50.0,0.0
+Padel Powerhouse Burnham,local,2026-10-07,Wed,21:00,1,1,4,4,0,1.0,100.0,0.0
 Ezeepadel Weybridge,benchmark,2026-09-27,Sun,07:00,0,0,8,4,0,0.5,34.68,0.0
 Ezeepadel Weybridge,benchmark,2026-09-27,Sun,08:00,1,1,8,7,0,0.875,95.35,0.0
 Ezeepadel Weybridge,benchmark,2026-09-27,Sun,09:00,1,1,8,8,0,1.0,104.02,0.0
@@ -1363,6 +1499,21 @@ Ezeepadel Weybridge,benchmark,2026-10-06,Tue,18:00,1,1,8,8,8,1.0,208.0,0.0
 Ezeepadel Weybridge,benchmark,2026-10-06,Tue,19:00,1,1,8,8,0,1.0,208.0,0.0
 Ezeepadel Weybridge,benchmark,2026-10-06,Tue,20:00,1,1,8,8,0,1.0,208.0,0.0
 Ezeepadel Weybridge,benchmark,2026-10-06,Tue,21:00,1,1,8,8,0,1.0,208.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,07:00,0,1,8,0,0,0.0,0.0,0.6
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,08:00,0,1,8,4,0,0.5,34.68,0.8
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,09:00,0,1,8,8,0,1.0,69.36,1.9
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,10:00,0,1,8,2,0,0.25,52.0,2.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,11:00,0,1,8,4,0,0.5,104.0,0.7
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,12:00,0,1,8,8,0,1.0,208.0,0.1
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,13:00,0,1,8,0,0,0.0,0.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,14:00,0,1,8,8,0,1.0,208.0,0.2
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,15:00,0,1,8,8,0,1.0,208.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,16:00,0,1,8,2,0,0.25,52.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,17:00,1,1,8,4,0,0.5,104.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,18:00,1,1,8,8,0,1.0,208.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,19:00,1,1,8,8,0,1.0,208.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,20:00,1,1,8,8,0,1.0,208.0,0.0
+Ezeepadel Weybridge,benchmark,2026-10-07,Wed,21:00,1,1,8,8,0,1.0,208.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,07:00,0,0,12,4,0,0.3333,150.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,08:00,1,1,12,12,0,1.0,480.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,09:00,1,1,12,12,0,1.0,445.0,0.0
@@ -1506,3 +1657,19 @@ Padel Social Club Earl's Court,benchmark,2026-10-06,Tue,19:00,1,1,12,12,0,1.0,46
 Padel Social Club Earl's Court,benchmark,2026-10-06,Tue,20:00,1,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-06,Tue,21:00,1,1,12,12,0,1.0,455.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-06,Tue,22:00,0,0,12,12,0,1.0,460.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,07:00,0,1,12,10,0,0.8333,380.0,0.6
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,08:00,0,1,12,7,0,0.5833,262.5,0.8
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,09:00,0,1,12,8,0,0.6667,305.0,1.9
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,10:00,0,1,12,10,0,0.8333,385.0,2.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,11:00,0,1,12,12,0,1.0,465.0,0.7
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,12:00,0,1,12,10,2,0.8333,395.0,0.1
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,13:00,0,1,12,12,0,1.0,461.25,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,14:00,0,1,12,12,0,1.0,445.0,0.2
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,15:00,0,1,12,12,0,1.0,445.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,16:00,0,1,12,10,0,0.8333,375.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,17:00,1,1,12,12,0,1.0,445.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,18:00,1,1,12,12,0,1.0,480.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,19:00,1,1,12,12,0,1.0,470.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,20:00,1,1,12,12,1,1.0,457.5,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,21:00,1,1,12,12,3,1.0,457.5,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-07,Wed,22:00,0,0,12,8,0,0.6667,310.0,0.0
