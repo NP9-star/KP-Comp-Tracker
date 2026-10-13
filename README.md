@@ -7,7 +7,7 @@ availability, and shows it on a dashboard that updates every 30 minutes. Clubs a
 | Group | Clubs | Platforms |
 |---|---|---|
 | Local clubs | Padel Maidenhead, PADELHUB SL2 Slough, UK Padel Holmer Green, UK Padel Stoke Poges, UK Padel Princes Risborough, Padel at Denham Grove, Lacey Green & Loosley Row, Rulo Clubs Chesham, Padel Powerhouse Burnham | Playtomic, UK Padel app |
-| TW17 benchmarks | Ezeepadel Weybridge, Thorpe Lakes Floating Padel, PopUpPadel Chertsey, Padel Boutique Staines, PadelStars Egham, CourtFit Cobham, Tennis England Club Molesey, Game4Padel Bloom Heathrow | Playtomic, MATCHi |
+| TW17 benchmarks | Ezeepadel Weybridge, Padel Boutique Staines, PadelStars Egham, CourtFit Cobham, Tennis England Club Molesey, Game4Padel Bloom Heathrow | Playtomic, MATCHi |
 | Wider benchmarks | Padel Social Club Earl's Court | Playtomic |
 
 Each group gets its own combined figure on the dashboard. A group can have its own rainfall area
@@ -39,8 +39,8 @@ Each group gets its own combined figure on the dashboard. A group can have its o
 
 ## Things to fill in (`config.yaml`)
 
-- **MATCHi prices.** If MATCHi does not show prices on its schedule, revenue for Game4Padel
-  Heathrow needs the non-member court price per hour in its `prices` table (example in the file).
+- **MATCHi prices.** MATCHi does not show prices on its schedule, so Game4Padel Heathrow's
+  revenue uses the non-member price per hour in its `prices` table.
 - **`realisation`.** Share of the listed price actually collected. Leave at 1.0 for list price,
   or lower it (e.g. 0.85) to allow for member discounts.
 - **Hours.** Opening hours define the bookable court time. Check them against each club's app.

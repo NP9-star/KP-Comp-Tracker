@@ -189,8 +189,6 @@ function demoData() {
     ["lacey-green","Lacey Green & Loosley Row","playtomic","local",1,{outdoor:1},.35,28],
     ["powerhouse-burnham","Padel Powerhouse Burnham","playtomic","local",2,{outdoor:2},.30,50],
     ["ezeepadel-weybridge","Ezeepadel Weybridge","playtomic","tw17",4,{outdoor:4},.71,52],
-    ["thorpe-lakes","Thorpe Lakes Floating Padel","playtomic","tw17",1,{outdoor:1},.46,40],
-    ["popuppadel-chertsey","PopUpPadel Chertsey","playtomic","tw17",2,{outdoor:2},.39,32],
     ["padel-boutique","Padel Boutique Staines","playtomic","tw17",3,{covered:2,outdoor:1},.58,44],
     ["padelstars-egham","PadelStars Egham","playtomic","tw17",3,{outdoor:3},.50,40],
     ["courtfit-cobham","CourtFit Cobham","playtomic","tw17",2,{outdoor:2},.47,42],
@@ -371,7 +369,7 @@ function method() {
     <h4>Court type and weather</h4>
     <p>Courts are grouped as indoor, covered (roofed or canopy) or outdoor, from each club's listing. Daily and hourly rainfall comes from Open-Meteo, so wet days can be compared with occupancy on outdoor courts: ${esc((DATA && DATA.weather_label) || "South Buckinghamshire")} for the local clubs${Object.entries((DATA && DATA.group_weather) || {}).map(([g, l]) => `, ${esc(l)} for ${esc(((DATA.groups || {})[g]) || g)}`).join("")}${Object.keys((DATA && DATA.group_weather) || {}).length ? ", and the main area for any other group" : ""}.</p>
     <h4>Club groups</h4>
-    <p>Local clubs are those within about a 20-minute drive. TW17 benchmarks are the clubs around Shepperton (Chertsey, Staines, Egham, Weybridge, Cobham, Molesey and Heathrow), tracked the same way as a second area for comparison. Wider benchmarks are established clubs further afield. Each group has its own combined figure; the headline strip at the top is the local clubs only.</p>
+    <p>Local clubs are those within about a 20-minute drive. TW17 benchmarks are the clubs around Shepperton (Staines, Egham, Weybridge, Cobham, Molesey and Heathrow), tracked the same way as a second area for comparison. Wider benchmarks are established clubs further afield. Each group has its own combined figure; the headline strip at the top is the local clubs only.</p>
     <h4>Days left out</h4>
     <p>Blocks with no check within three hours of their start are excluded, and any day where less than 80% of opening hours was watched (for example because the tracking computer was off) is left out of every figure. A day on which a club offered no court time at all is treated as closed (out of season or not taking public bookings) and is also left out, rather than counted as fully booked.</p>
     <h4>Download</h4>
