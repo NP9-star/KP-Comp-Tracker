@@ -44,4 +44,19 @@ def run(urls):
                         "links": sorted({l for l in links if not any(s in l.lower() for s in SKIP)})[:150]}
             pg.close()
         b.close()
+    import requests
+    from datetime import date, timedelta
+    api = "https://europe-west1-nettle-prod-2024.cloudfunctions.net/rpc/availability/search"
+    samples = []
+    for i in (1, 2):
+        d = date.today() + timedelta(days=i)
+        body = {"json": {"clubId": "4B9cCzLjmXHR2FvtDnOn", "startDateTime": f"{d}T00:00:00.000Z",
+                         "endDateTime": f"{d}T22:59:59.999Z"}}
+        try:
+            r = requests.post(api, json=body, headers={"User-Agent": BROWSER_UA, "Referer": "https://padelstars.co.uk/",
+                                                         "Origin": "https://padelstars.co.uk"}, timeout=30)
+            samples.append({"date": str(d), "status": r.status_code, "body": r.text[:60000]})
+        except Exception as e:  # noqa: BLE001
+            samples.append({"date": str(d), "error": str(e)})
+    out["_nettla_search"] = samples
     write_json(DATA / "probe.json", out, compact=False)
