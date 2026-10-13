@@ -12,7 +12,7 @@ import sys
 import traceback
 from datetime import timedelta
 
-from . import matchi, net, padelos, playtomic, programmes
+from . import matchi, net, nettla, padelos, playtomic, programmes
 from .common import (DATA, blocks_for_day, block_start, hours_by_weekday, load_config,
                      min_to_hm, now_utc, read_json, tz, write_json, hm_to_min)
 
@@ -43,7 +43,9 @@ def court_kinds(club, info):
     """{court name: indoor/covered/outdoor/unknown}"""
     out = {}
     for rid, name in (info.get("courts") or {}).items():
-        if club["platform"] == "playtomic":
+        if name in (info.get("nettla_kinds") or {}):
+            out[name] = info["nettla_kinds"][name]
+        elif club["platform"] == "playtomic":
             out[name] = playtomic.court_kind(club, info, rid)
         else:
             out[name] = playtomic.normalise_kind((info.get("court_kinds") or {}).get(name)
@@ -137,6 +139,12 @@ def run():
                 for d in frees:
                     for r in info.get("auto_excluded") or []:
                         frees[d].pop((info.get("all_courts") or {}).get(r, r), None)
+            if club.get("nettla"):          # extra courts booked through the club's own Nettla widget
+                for d in list(frees):
+                    nf = nettla.free_blocks(club, info, d, zone, block)
+                    frees[d].update(nf)
+                    note_seen_range(info, nf, block, d)
+                info["courts"].update(info.get("nettla_courts") or {})
             hours = club_hours(club, info)
             state = read_json(DATA / "state" / f"{key}.json", {"runs": [], "days": {}})
             courts = sorted(info["courts"].values())
@@ -161,12 +169,6 @@ def run():
             programmes.update(cfg, resolved, now.astimezone(zone))
         except Exception as e:  # noqa: BLE001
             print(f"WARN programmes update failed: {e}", file=sys.stderr)
-    if cfg.get("probe_urls") and not (DATA / "probe.json").exists():   # temporary one-off check
-        try:
-            from . import probe
-            probe.run(cfg["probe_urls"])
-        except Exception as e:  # noqa: BLE001
-            print(f"WARN probe failed: {e}", file=sys.stderr)
     if net.used_browser:
         print("Note: headless-browser fallback was needed for:", ", ".join(sorted(net.used_browser)))
     write_json(DATA / "resolved.json", resolved, compact=False)

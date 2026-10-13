@@ -253,7 +253,7 @@ function barFill(v, m) {
 }
 function card(c) {
   const m = M(c), v = m.occupancy, lo = PLAN && PLAN.lo, hi = PLAN && PLAN.hi;
-  const meta = [`${c.courts || "?"} courts`, kindText(c), PLATFORM[c.platform] || c.platform].filter(Boolean).join(" · ");
+  const meta = [`${c.courts || "?"} courts`, kindText(c), (PLATFORM[c.platform] || c.platform) + (c.also ? " + club website" : "")].filter(Boolean).join(" · ");
   if (v == null) return `<div class="row"><div class="who">${esc(c.name)}<small>${esc(meta)}</small></div>
       <div class="na">${c.error ? "Check failed – see club detail" : "No full day yet"}</div><div></div><div></div></div>`;
   return `<div class="row">

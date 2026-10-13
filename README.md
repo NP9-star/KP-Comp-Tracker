@@ -7,7 +7,7 @@ availability, and shows it on a dashboard that updates every 30 minutes. Clubs a
 | Group | Clubs | Platforms |
 |---|---|---|
 | Local clubs | Padel Maidenhead, PADELHUB SL2 Slough, UK Padel Holmer Green, UK Padel Stoke Poges, UK Padel Princes Risborough, Padel at Denham Grove, Lacey Green & Loosley Row, Rulo Clubs Chesham, Padel Powerhouse Burnham | Playtomic, UK Padel app |
-| TW17 benchmarks | Ezeepadel Weybridge, Padel Boutique Staines, PadelStars Egham, CourtFit Cobham, Tennis England Club Molesey, Game4Padel Bloom Heathrow | Playtomic, MATCHi |
+| TW17 benchmarks | Ezeepadel Weybridge, Padel Boutique Staines, PadelStars Egham, CourtFit Cobham, Tennis England Club Molesey, Game4Padel Bloom Heathrow | Playtomic, MATCHi, Nettla (PadelStars' own website, courts 1–2) |
 | Wider benchmarks | Padel Social Club Earl's Court | Playtomic |
 
 Each group gets its own combined figure on the dashboard. A group can have its own rainfall area

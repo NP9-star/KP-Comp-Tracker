@@ -357,6 +357,7 @@ def run():
         st = status.get(club["key"], {})
         grp = club.get("group", "local")
         entry = {"key": club["key"], "name": club["name"], "platform": club["platform"], "group": grp,
+                 "also": "nettla" if club.get("nettla") else None,
                  "courts": courts, "court_kinds": dict(sorted(
                      {k: list(kinds.values()).count(k) for k in set(kinds.values())}.items())),
                  "last_ok": st.get("last_ok"), "error": st.get("error"), "metrics": {}, "notes": []}

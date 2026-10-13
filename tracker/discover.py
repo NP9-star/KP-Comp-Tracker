@@ -46,6 +46,11 @@ def main():
                     if rates:
                         table[r["resource_id"][:8]] = f"£{rates[len(rates) // 2]:.0f}/hr, {len(rates)} free slots"
                 print(f"resources in response: {len(raw or [])}; per-court typical price:", table)
+                if club.get("nettla"):
+                    from . import nettla
+                    nf = nettla.free_blocks(club, info, day, zone, block)
+                    print("Nettla courts (club website):", info.get("nettla_courts"),
+                          "| free blocks:", {c: len(v) for c, v in nf.items()})
             elif club["platform"] == "padelos":
                 info = padelos.resolve(club, resolved)
                 print("club:", info["club_id"], info.get("club_name"), "| company clubs:", info["club_ids"])

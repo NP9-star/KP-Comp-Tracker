@@ -29,8 +29,6 @@ weather: {lat: 51.60, lon: -0.70, label: "South Buckinghamshire"}
 group_weather:
   tw17: {lat: 51.39, lon: -0.47, label: "Shepperton (TW17) area"}
 
-probe_urls: ["https://padelstars.co.uk/padelstars-egham/"]   # temporary: find where the booking widget loads from
-
 groups:
   local: "Local clubs"
   tw17: "TW17 benchmarks"
@@ -154,6 +152,9 @@ clubs:
     platform: playtomic
     slug: padelstars-egham              # Achieve Lifestyle, Vicarage Road, Egham TW20 8NL
     court_type: outdoor
+    nettla:              # courts 1-2 are booked on the club's own website (Nettla widget); Padel 3 on Playtomic
+      club_id: 4B9cCzLjmXHR2FvtDnOn
+      site: "https://padelstars.co.uk/"
     hours: null          # 07:00-22:00 weekdays, 07:00-18:00 weekends when last checked
     realisation: 1.0
 
