@@ -4,10 +4,16 @@ import sys
 from datetime import datetime, timezone
 
 
+def _annotate(msg):
+    """Show the reason on the run's summary page (GitHub 'error' annotation)."""
+    print("::error title=Save results::" + " ".join(str(msg).split())[:900])
+
+
 def git(*args, check=True):
     r = subprocess.run(["git", *args], capture_output=True, text=True)
     if check and r.returncode != 0:
         print(r.stdout, r.stderr, file=sys.stderr)
+        _annotate(f"git {' '.join(args)} failed: {(r.stderr or r.stdout).strip()}")
         raise SystemExit(f"git {' '.join(args)} failed")
     return r
 
@@ -26,12 +32,14 @@ def main():
         r = git("pull", "--rebase", "--autostash", "-q", check=False)
         if r.returncode != 0:
             print("pull failed:", r.stdout, r.stderr, file=sys.stderr)
+            _annotate(f"pull attempt {attempt + 1}: {(r.stderr or r.stdout).strip()}")
             git("rebase", "--abort", check=False)
         p = git("push", "-q", check=False)
         if p.returncode == 0:
             print("Saved.")
             return
         print(f"push attempt {attempt + 1} failed:", p.stderr.strip()[:300], file=sys.stderr)
+        _annotate(f"push attempt {attempt + 1}: {p.stderr.strip()} | status: {git('status', '-sb', check=False).stdout.strip()[:300]}")
         time.sleep(10 * (attempt + 1))
     raise SystemExit("Could not push results")
 
