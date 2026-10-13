@@ -29,6 +29,8 @@ weather: {lat: 51.60, lon: -0.70, label: "South Buckinghamshire"}
 group_weather:
   tw17: {lat: 51.39, lon: -0.47, label: "Shepperton (TW17) area"}
 
+probe_urls: ["https://padelstars.co.uk/padelstars-egham/"]   # temporary: find where the booking widget loads from
+
 groups:
   local: "Local clubs"
   tw17: "TW17 benchmarks"

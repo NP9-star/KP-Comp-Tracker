@@ -161,6 +161,12 @@ def run():
             programmes.update(cfg, resolved, now.astimezone(zone))
         except Exception as e:  # noqa: BLE001
             print(f"WARN programmes update failed: {e}", file=sys.stderr)
+    if cfg.get("probe_urls") and not (DATA / "probe.json").exists():   # temporary one-off check
+        try:
+            from . import probe
+            probe.run(cfg["probe_urls"])
+        except Exception as e:  # noqa: BLE001
+            print(f"WARN probe failed: {e}", file=sys.stderr)
     if net.used_browser:
         print("Note: headless-browser fallback was needed for:", ", ".join(sorted(net.used_browser)))
     write_json(DATA / "resolved.json", resolved, compact=False)
