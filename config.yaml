@@ -144,7 +144,7 @@ clubs:
     platform: playtomic
     slug: thorpe-lakes-floating-padel   # Thorpe Road, Chertsey KT16 8PH
     court_type: outdoor                 # one court, floating on the lake
-    hours: null          # read from its Playtomic page (09:30-20:30 weekdays, 09:30-19:00 weekends when last checked)
+    hours: {mon-fri: "09:30-20:30", sat-sun: "09:30-19:00"}   # from its Playtomic page (not readable automatically)
     realisation: 1.0
 
   - key: popuppadel-chertsey
@@ -152,7 +152,7 @@ clubs:
     group: tw17
     platform: playtomic
     slug: padelpadelchertsey            # Salesian School, Guildford Road, Chertsey KT16 9LU
-    hours: null          # 09:00-20:30 when last checked
+    hours: {all: "09:00-20:30"}         # from its Playtomic page (not readable automatically)
     realisation: 1.0
 
   - key: padel-boutique
@@ -188,7 +188,8 @@ clubs:
     platform: playtomic
     slug: open-jan-2025-tennis-england-club   # Ember Lane, East Molesey KT8 0BT
     tenant_id: 2a31c6ce-b212-4448-abd2-b05a6bbde784
-    hours: null          # 07:00-22:00 when last checked; padel courts only (tennis and pickleball ignored)
+    exclude_courts: ["Tennis", "Pickleball"]   # the club also lists 9 tennis and 4 pickleball courts
+    hours: null          # 07:00-22:00 when last checked
     realisation: 1.0
 
   - key: game4padel-heathrow

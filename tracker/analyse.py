@@ -186,6 +186,11 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd, 
         cover[r["date"]][0] += r["status"] != "unknown"
     partial = {ds for ds, (k, n) in cover.items() if n and k / n < min_cov}
     partial |= set(str(x) for x in (club.get("exclude_dates") or []))
+    # A day on which no court time was ever offered is a closed day (out of season, or not taking
+    # public bookings), not a sold-out one: leave it out rather than count it as 100% occupied.
+    offered = {r["date"] for r in rows if r["status"] in ("free", "sold")}
+    closed = {ds for ds in cover if ds not in offered and ds not in partial}
+    partial |= closed
 
     # A free :30 half-hour just before a booking or closing time can only be offered as part of
     # the hour slot starting at :00. Once that slot starts it drops off the booking page, which
@@ -260,7 +265,7 @@ def aggregate(cfg, club, rows, state, kinds, today, block, std, days_open, wxd, 
         kt = kind_tot[(r["date"], k)]
         kt["total"] += 1
         kt["occ"] += occ
-    return daily, hourly, kind_tot, partial, prices.missing, cover
+    return daily, hourly, kind_tot, partial, prices.missing, cover, closed
 
 
 def window_metrics(daily, scope, start_iso, courts, block, days_open):
@@ -347,7 +352,7 @@ def run():
         rows = load_blocks(club["key"], today - timedelta(days=400))
         prog = list(read_json(DATA / "programmes" / f"{club['key']}.json", {}).values())
         wxd = wx_groups.get(club.get("group", "local"), wx_main)
-        daily, hourly, kind_tot, partial, missing_price, cover = aggregate(
+        daily, hourly, kind_tot, partial, missing_price, cover, closed = aggregate(
             cfg, club, rows, state, kinds, today, block, std, days_open, wxd, prog)
         st = status.get(club["key"], {})
         grp = club.get("group", "local")
@@ -387,8 +392,11 @@ def run():
             if (today - date.fromisoformat(ds)).days <= 28 and grp == "local":
                 kind_all[k]["occ"] += v["occ"]
                 kind_all[k]["total"] += v["total"]
-        if partial:
-            entry["notes"].append(f"{len(partial)} day(s) left out: partly watched (under "
+        if closed:
+            entry["notes"].append(f"{len(closed)} day(s) left out: no court time offered at all that day "
+                                  f"(closed, out of season or not taking public bookings).")
+        if partial - closed:
+            entry["notes"].append(f"{len(partial - closed)} day(s) left out: partly watched (under "
                                   f"{int(float(cfg.get('min_day_coverage', 0.8)) * 100)}% of opening hours) "
                                   f"or excluded in config.yaml.")
         if missing_price:
