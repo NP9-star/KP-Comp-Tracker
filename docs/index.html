@@ -188,7 +188,14 @@ function demoData() {
     ["denham-grove","Padel at Denham Grove","playtomic","local",2,{outdoor:2},.41,44],
     ["lacey-green","Lacey Green & Loosley Row","playtomic","local",1,{outdoor:1},.35,28],
     ["powerhouse-burnham","Padel Powerhouse Burnham","playtomic","local",2,{outdoor:2},.30,50],
-    ["ezeepadel-weybridge","Ezeepadel Weybridge","playtomic","benchmark",4,{outdoor:4},.71,52],
+    ["ezeepadel-weybridge","Ezeepadel Weybridge","playtomic","tw17",4,{outdoor:4},.71,52],
+    ["thorpe-lakes","Thorpe Lakes Floating Padel","playtomic","tw17",1,{outdoor:1},.46,40],
+    ["popuppadel-chertsey","PopUpPadel Chertsey","playtomic","tw17",2,{outdoor:2},.39,32],
+    ["padel-boutique","Padel Boutique Staines","playtomic","tw17",3,{covered:2,outdoor:1},.58,44],
+    ["padelstars-egham","PadelStars Egham","playtomic","tw17",3,{outdoor:3},.50,40],
+    ["courtfit-cobham","CourtFit Cobham","playtomic","tw17",2,{outdoor:2},.47,42],
+    ["tennis-england-club","Tennis England Club Molesey","playtomic","tw17",4,{covered:2,outdoor:2},.55,46],
+    ["game4padel-heathrow","Game4Padel Bloom Heathrow","matchi","tw17",2,{outdoor:2},.42,36],
     ["psc-earls-court","Padel Social Club Earl's Court","playtomic","benchmark",6,{outdoor:4,indoor:2},.79,75]];
   const CLUBSHARE = [.08,.22,.12,.30,.16];
   let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -212,13 +219,14 @@ function demoData() {
     return {key,name,platform,group,courts,court_kinds:kinds,last_ok:new Date().toISOString(),error:null,metrics,daily,heatmap:{hours,grid},notes:[]};
   });
   const market = {};
-  for (const g of ["local","benchmark"]) { market[g] = {all:{}, std:{}};
+  for (const g of ["local","tw17","benchmark"]) { market[g] = {all:{}, std:{}};
     for (const sc of ["all","std"]) for (const lab of ["d7","d28","d90"]) { const cs = clubs.filter(c=>c.group===g); const tot = cs.reduce((a,c)=>a+c.courts,0);
       const w = k => cs.reduce((a,c)=>a+c.metrics[sc][lab][k]*c.courts,0)/tot;
       market[g][sc][lab] = {occupancy:w("occupancy"), occupancy_peak:w("occupancy_peak"), occupancy_offpeak:w("occupancy_offpeak"), club_share:w("club_share"), occupancy_club:w("occupancy_club")}; } }
   return {generated:new Date().toISOString(), as_of:new Date(today - 864e5).toISOString().slice(0,10), demo:true, days_open_per_year:355,
     standard_hours_label:"07:00–22:00 weekdays, 08:00–22:00 weekends", peak_label:"weekdays 17:00–22:00, weekends 08:00–20:00",
-    groups:{local:"Local clubs", benchmark:"Wider benchmarks"}, group_order:["local","benchmark"], clubs, market, by_kind:{indoor:.61, covered:.58, outdoor:.40}};
+    groups:{local:"Local clubs", tw17:"TW17 benchmarks", benchmark:"Wider benchmarks"}, group_order:["local","tw17","benchmark"],
+    weather_label:"South Buckinghamshire", group_weather:{tw17:"Shepperton (TW17) area"}, clubs, market, by_kind:{indoor:.61, covered:.58, outdoor:.40}};
 }
 
 /* ---------------- market strip ---------------- */
@@ -268,7 +276,8 @@ function scorecards() {
     const cs = DATA.clubs.filter(c => (c.group || "local") === g).sort((a,b) => (M(b).occupancy ?? -1) - (M(a).occupancy ?? -1));
     if (!cs.length) continue;
     const mk = (((DATA.market || {})[g] || {})[SCOPE] || {})[PERIOD] || {};
-    html += `<div class="group-h"><h3>${esc(label)}</h3><span>Combined: ${fmtPct(mk.occupancy)} · peak ${fmtPct(mk.occupancy_peak)} · off-peak ${fmtPct(mk.occupancy_offpeak)}</span></div>
+    const nCourts = cs.reduce((a,c) => a + (c.courts || 0), 0);
+    html += `<div class="group-h"><h3>${esc(label)}</h3><span>${cs.length} club${cs.length === 1 ? "" : "s"} · ${nCourts} court${nCourts === 1 ? "" : "s"} · Combined: ${fmtPct(mk.occupancy)} · peak ${fmtPct(mk.occupancy_peak)} · off-peak ${fmtPct(mk.occupancy_offpeak)}</span></div>
       <div class="cards"><div class="row head"><div>Club</div><div>Overall occupancy</div><div>Peak</div><div>Off-peak</div></div>${cs.map(card).join("")}</div>`;
   }
   html += `<div class="key"><span><i style="width:18px;height:8px;background:var(--court);border-radius:4px"></i>Player bookings</span>
@@ -331,10 +340,12 @@ function progLine(c) {
 }
 function detail() {
   const c = DATA.clubs.find(x => x.key === CLUB) || DATA.clubs[0]; CLUB = c.key;
-  const opts = DATA.clubs.map(x => `<option value="${x.key}" ${x.key === c.key ? "selected" : ""}>${esc(x.name)}</option>`).join("");
+  const opt = x => `<option value="${x.key}" ${x.key === c.key ? "selected" : ""}>${esc(x.name)}</option>`;
+  const opts = groupList().map(([g, label]) => { const cs = DATA.clubs.filter(x => (x.group || "local") === g);
+    return cs.length ? `<optgroup label="${esc(label)}">${cs.map(opt).join("")}</optgroup>` : ""; }).join("");
   const health = c.error ? `<p class="note">Last check failed: ${esc(c.error)}</p>` : `<p class="health">Last successful check ${fmtDate(c.last_ok, true)}.</p>`;
   return `<section><div class="detail-head"><h2>Club detail</h2><select id="club" aria-label="Choose club">${opts}</select></div>
-    <div class="pair"><div class="panel"><h3>Daily occupancy and rainfall</h3>${trend(c)}</div><div class="panel"><h3>When courts are busy</h3>${heat(c)}</div></div>
+    <div class="pair"><div class="panel"><h3>Daily occupancy and rainfall <small style="color:var(--muted);font-weight:400;font-size:.8rem">(rain: ${esc(((DATA.group_weather || {})[c.group]) || DATA.weather_label || "local area")})</small></h3>${trend(c)}</div><div class="panel"><h3>When courts are busy</h3>${heat(c)}</div></div>
     ${progLine(c)}${(c.notes || []).map(n => `<p class="note">${esc(n)}</p>`).join("")}${health}</section>`;
 }
 
@@ -358,7 +369,9 @@ function method() {
     <h4>Booked ahead</h4>
     <p>For bookings the tracker saw happen, the average time between the booking and the start of the game. It only covers bookings made within the 10-day watch window.</p>
     <h4>Court type and weather</h4>
-    <p>Courts are grouped as indoor, covered (roofed or canopy) or outdoor, from each club's listing. Daily and hourly rainfall for South Buckinghamshire comes from Open-Meteo, so wet days can be compared with occupancy on outdoor courts.</p>
+    <p>Courts are grouped as indoor, covered (roofed or canopy) or outdoor, from each club's listing. Daily and hourly rainfall comes from Open-Meteo, so wet days can be compared with occupancy on outdoor courts: ${esc((DATA && DATA.weather_label) || "South Buckinghamshire")} for the local clubs${Object.entries((DATA && DATA.group_weather) || {}).map(([g, l]) => `, ${esc(l)} for ${esc(((DATA.groups || {})[g]) || g)}`).join("")}${Object.keys((DATA && DATA.group_weather) || {}).length ? ", and the main area for any other group" : ""}.</p>
+    <h4>Club groups</h4>
+    <p>Local clubs are those within about a 20-minute drive. TW17 benchmarks are the clubs around Shepperton (Chertsey, Staines, Egham, Weybridge, Cobham, Molesey and Heathrow), tracked the same way as a second area for comparison. Wider benchmarks are established clubs further afield. Each group has its own combined figure; the headline strip at the top is the local clubs only.</p>
     <h4>Days left out</h4>
     <p>Blocks with no check within three hours of their start are excluded, and any day where less than 80% of opening hours was watched (for example because the tracking computer was off) is left out of every figure.</p>
     <h4>Download</h4>

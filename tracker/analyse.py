@@ -323,14 +323,16 @@ def run():
     today = now_utc().astimezone(zone).date()
     days_open = int(cfg.get("days_open_per_year", 355))
     std = hours_by_weekday(cfg.get("standard_hours") or {"mon-fri": "07:00-22:00", "sat-sun": "08:00-22:00"})
-    wxd = wx.update(cfg)
+    wx_groups, wx_main = wx.by_group(cfg)
     status = read_json(DATA / "status.json", {})
     groups = cfg.get("groups") or {}
     out = {"generated": now_utc().isoformat(timespec="seconds"), "as_of": (today - timedelta(days=1)).isoformat(),
            "block_minutes": block, "days_open_per_year": days_open,
            "standard_hours_label": cfg.get("standard_hours_label", "07:00–22:00 weekdays, 08:00–22:00 weekends"),
            "peak_label": cfg.get("peak_label", "weekdays 17:00–22:00, weekends 08:00–20:00"),
-           "groups": groups, "group_order": list(groups.keys()), "clubs": [], "market": {}, "by_kind": {}}
+           "groups": groups, "group_order": list(groups.keys()), "clubs": [], "market": {}, "by_kind": {},
+           "weather_label": (cfg.get("weather") or {}).get("label"),
+           "group_weather": {g: w.get("label") for g, w in (cfg.get("group_weather") or {}).items()}}
     daily_rows, hourly_rows, court_rows, activity_rows = [], [], [], []
     market_daily = defaultdict(lambda: defaultdict(lambda: defaultdict(float)))  # group->scope->counters by window
     kind_all = defaultdict(lambda: defaultdict(float))
@@ -344,6 +346,7 @@ def run():
         kinds = state.get("court_kinds") or {}
         rows = load_blocks(club["key"], today - timedelta(days=400))
         prog = list(read_json(DATA / "programmes" / f"{club['key']}.json", {}).values())
+        wxd = wx_groups.get(club.get("group", "local"), wx_main)
         daily, hourly, kind_tot, partial, missing_price, cover = aggregate(
             cfg, club, rows, state, kinds, today, block, std, days_open, wxd, prog)
         st = status.get(club["key"], {})

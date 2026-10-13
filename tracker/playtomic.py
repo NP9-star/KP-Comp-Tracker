@@ -70,7 +70,12 @@ def _page_info(club):
     try:
         html = net.get(club_url(club), accept="text/html,application/xhtml+xml")
     except net.FetchError as e:
-        return None, {}, [], None, str(e), ""
+        if not club.get("tenant_id"):
+            return None, {}, [], None, str(e), ""
+        try:   # Playtomic's other page address: playtomic.com/<name>/<tenant id>
+            html = net.get(f"{SITE}/{club['slug']}/{club['tenant_id']}", accept="text/html,application/xhtml+xml")
+        except net.FetchError:
+            return None, {}, [], None, str(e), ""
     h = html.replace('\\"', '"')
     tids = Counter(re.findall(r'"tenant_?[iI]d"\s*:\s*"(' + UUID + ')"', h))
     tenant = tids.most_common(1)[0][0] if tids else None

@@ -25,9 +25,13 @@ standard_hours_label: "07:00–22:00 weekdays, 08:00–22:00 weekends"
 
 # Rainfall and temperature for the area (Open-Meteo), used to see weather effects on outdoor courts
 weather: {lat: 51.60, lon: -0.70, label: "South Buckinghamshire"}
+# Groups in a different area get their own rainfall, so wet days line up with their outdoor courts
+group_weather:
+  tw17: {lat: 51.39, lon: -0.47, label: "Shepperton (TW17) area"}
 
 groups:
   local: "Local clubs"
+  tw17: "TW17 benchmarks"
   benchmark: "Wider benchmarks"
 
 clubs:
@@ -123,10 +127,10 @@ clubs:
     hours: null          # 07:00-22:00 when last checked
     realisation: 1.0
 
-  # ---------------- wider benchmarks ----------------
+  # ---------------- TW17 benchmarks (Shepperton area) ----------------
   - key: ezeepadel-weybridge
     name: Ezeepadel Weybridge
-    group: benchmark
+    group: tw17
     platform: playtomic
     slug: ezeepadel-weybridge
     tenant_id: 1eb90d21-84ba-4f46-b523-61dffef0739f
@@ -134,6 +138,74 @@ clubs:
     hours: null
     realisation: 1.0
 
+  - key: thorpe-lakes
+    name: Thorpe Lakes Floating Padel
+    group: tw17
+    platform: playtomic
+    slug: thorpe-lakes-floating-padel   # Thorpe Road, Chertsey KT16 8PH
+    court_type: outdoor                 # one court, floating on the lake
+    hours: null          # read from its Playtomic page (09:30-20:30 weekdays, 09:30-19:00 weekends when last checked)
+    realisation: 1.0
+
+  - key: popuppadel-chertsey
+    name: PopUpPadel Chertsey
+    group: tw17
+    platform: playtomic
+    slug: padelpadelchertsey            # Salesian School, Guildford Road, Chertsey KT16 9LU
+    hours: null          # 09:00-20:30 when last checked
+    realisation: 1.0
+
+  - key: padel-boutique
+    name: Padel Boutique Staines
+    group: tw17
+    platform: playtomic
+    slug: padel-boutique                # Ashford Sports Club, Short Lane, Staines TW19 7BQ
+    hours: null          # 07:00-22:00 when last checked; court types read from the page (1 outdoor, 2 covered)
+    realisation: 1.0
+
+  - key: padelstars-egham
+    name: PadelStars Egham
+    group: tw17
+    platform: playtomic
+    slug: padelstars-egham              # Achieve Lifestyle, Vicarage Road, Egham TW20 8NL
+    court_type: outdoor
+    hours: null          # 07:00-22:00 weekdays, 07:00-18:00 weekends when last checked
+    realisation: 1.0
+
+  - key: courtfit-cobham
+    name: CourtFit Cobham
+    group: tw17
+    platform: playtomic
+    slug: courtfit-padel                # Hilton Cobham KT11 1EW; slug to confirm in the discover log (the tenant id is what matters)
+    tenant_id: ab23b3e4-b416-493a-9c4d-a113bb5740a2
+    court_type: outdoor
+    hours: null
+    realisation: 1.0
+
+  - key: tennis-england-club
+    name: Tennis England Club Molesey
+    group: tw17
+    platform: playtomic
+    slug: open-jan-2025-tennis-england-club   # Ember Lane, East Molesey KT8 0BT
+    tenant_id: 2a31c6ce-b212-4448-abd2-b05a6bbde784
+    hours: null          # 07:00-22:00 when last checked; padel courts only (tennis and pickleball ignored)
+    realisation: 1.0
+
+  - key: game4padel-heathrow
+    name: Game4Padel Bloom Heathrow
+    group: tw17
+    platform: matchi                     # MATCHi (matchi.se/facilities/game4padelheathrow)
+    shortname: game4padelheathrow
+    court_type: outdoor
+    hours: {all: "08:00-22:00"}
+    realisation: 1.0
+    # MATCHi's schedule may not show prices. If revenue shows "–", add the non-member price per hour, e.g.
+    # prices:
+    #   - {days: mon-fri, from: "08:00", to: "17:00", per_hour: 30}
+    #   - {days: mon-fri, from: "17:00", to: "22:00", per_hour: 40}
+    #   - {days: sat-sun, from: "08:00", to: "22:00", per_hour: 40}
+
+  # ---------------- wider benchmarks ----------------
   - key: psc-earls-court
     name: Padel Social Club Earl's Court
     group: benchmark

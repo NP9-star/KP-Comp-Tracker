@@ -3,7 +3,7 @@
 Reads the schedule fragment the booking page loads (/book/schedule). Free cells carry
 class "slot free" and a title like "Available<br>Court 1<br> 10:00 - 11:00".
 The facility id is read from the club's public page (or set facility_id in config).
-Prices are not on the schedule, so revenue uses the price table in config.yaml.
+Prices are read from the cell when it shows one; otherwise revenue uses the price table in config.yaml.
 """
 from __future__ import annotations
 
@@ -26,9 +26,10 @@ def _save(name, text):
         (d / f"{DEBUG['n']:02d}_{name}").write_text(text or "", encoding="utf-8")
 
 BASE = "https://www.matchi.se"
-TD_RE = re.compile(r"<td\b([^>]*)>", re.I)
-ATTR_RE = re.compile(r'([\w:-]+)\s*=\s*"([^"]*)"')
+TD_RE = re.compile(r"<td\b((?:[^>\"']|\"[^\"]*\"|'[^']*')*)>", re.I)   # quoted attributes may contain <br>
+ATTR_RE = re.compile(r'([\w:-]+)\s*=\s*(?:"([^"]*)"|\'([^\']*)\')')
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})\s*[-–]\s*(\d{1,2}):(\d{2})")
+PRICE_RE = re.compile(r"(?:£|GBP)\s*(\d+(?:[.,]\d{1,2})?)|(\d+(?:[.,]\d{1,2})?)\s*(?:£|GBP)", re.I)
 SPORT_GUESSES = [5, 6, 7, 8, 9, 10, 11, 12, 4, 3, 2, 1]
 FACILITY_PATTERNS = [
     r'facilityId["\']?\s*[:=]\s*["\']?(\d{2,7})',
@@ -55,9 +56,10 @@ def schedule_html(club, facility_id: int, d: date, sport: int, indoor):
 
 
 def parse_cells(html: str):
-    """Yield (court, start_min, end_min, is_free, classes) for each timed schedule cell."""
+    """Yield (court, start_min, end_min, is_free, classes, price) for each timed schedule cell.
+    price is the slot price if the cell shows one (else None)."""
     for m in TD_RE.finditer(html or ""):
-        attrs = {k.lower(): unescape(v) for k, v in ATTR_RE.findall(m.group(1))}
+        attrs = {k.lower(): unescape(v or v2) for k, v, v2 in ATTR_RE.findall(m.group(1))}
         cls = attrs.get("class", "")
         if "slot" not in cls.split():
             continue
@@ -70,9 +72,11 @@ def parse_cells(html: str):
         if end <= start:
             end += 24 * 60
         parts = [p.strip() for p in re.split(r"<br\s*/?>|\n", title) if p.strip()]
-        court = next((p for p in parts[1:] if not TIME_RE.search(p)), None) or \
+        court = next((p for p in parts[1:] if not TIME_RE.search(p) and not PRICE_RE.search(p)), None) or \
             next((p for p in parts if not TIME_RE.search(p)), "Court")
-        yield court, start, end, ("free" in cls.split()), cls
+        pm = PRICE_RE.search(title)
+        price = float((pm.group(1) or pm.group(2)).replace(",", ".")) if pm else None
+        yield court, start, end, ("free" in cls.split()), cls, price
 
 
 def facility_page(club):
@@ -138,9 +142,10 @@ def resolve(club: dict, resolved: dict) -> dict:
 def free_blocks(club, info, d: date, zone, block: int, mode=None):
     out: dict[str, dict[str, float | None]] = {}
     cells = list(parse_cells(schedule_html(club, info["facility_id"], d, info["sport"], None)))
-    for court, start, end, is_free, _ in cells:
+    for court, start, end, is_free, _, price in cells:
         info["courts"].setdefault(court, court)
         if is_free:
+            rate = price / ((end - start) / block) if price is not None and end > start else None
             for m in range(start, min(end, 24 * 60), block):
-                out.setdefault(court, {})[min_to_hm(m)] = None
+                out.setdefault(court, {})[min_to_hm(m)] = rate
     return out

@@ -1,14 +1,17 @@
 # Local padel market tracker
 
-Measures occupancy and estimated court-hire revenue at four local padel clubs from their
-public booking availability, and shows it on a dashboard that updates every 30 minutes.
+Measures occupancy and estimated court-hire revenue at padel clubs from their public booking
+availability, and shows it on a dashboard that updates every 30 minutes. Clubs are listed in
+`config.yaml` in three groups:
 
-| Club | Platform |
-|---|---|
-| Padel Maidenhead | Playtomic |
-| PADELHUB SL2 Slough | Playtomic |
-| UK Padel Holmer Green | MATCHi |
-| UK Padel Stoke Poges | MATCHi |
+| Group | Clubs | Platforms |
+|---|---|---|
+| Local clubs | Padel Maidenhead, PADELHUB SL2 Slough, UK Padel Holmer Green, UK Padel Stoke Poges, UK Padel Princes Risborough, Padel at Denham Grove, Lacey Green & Loosley Row, Rulo Clubs Chesham, Padel Powerhouse Burnham | Playtomic, UK Padel app |
+| TW17 benchmarks | Ezeepadel Weybridge, Thorpe Lakes Floating Padel, PopUpPadel Chertsey, Padel Boutique Staines, PadelStars Egham, CourtFit Cobham, Tennis England Club Molesey, Game4Padel Bloom Heathrow | Playtomic, MATCHi |
+| Wider benchmarks | Padel Social Club Earl's Court | Playtomic |
+
+Each group gets its own combined figure on the dashboard. A group can have its own rainfall area
+(`group_weather` in `config.yaml`); the TW17 group uses the Shepperton area.
 
 ## Set up (about 15 minutes, no coding)
 
@@ -36,8 +39,8 @@ public booking availability, and shows it on a dashboard that updates every 30 m
 
 ## Things to fill in (`config.yaml`)
 
-- **MATCHi prices.** MATCHi does not show prices on its schedule, so revenue for the two UK Padel
-  clubs needs the non-member court price per hour in the `prices` table.
+- **MATCHi prices.** If MATCHi does not show prices on its schedule, revenue for Game4Padel
+  Heathrow needs the non-member court price per hour in its `prices` table (example in the file).
 - **`realisation`.** Share of the listed price actually collected. Leave at 1.0 for list price,
   or lower it (e.g. 0.85) to allow for member discounts.
 - **Hours.** Opening hours define the bookable court time. Check them against each club's app.

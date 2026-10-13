@@ -76,7 +76,8 @@ def main():
                 cells = list(matchi.parse_cells(html))
                 print("cells:", len(cells), "| classes:", dict(collections.Counter(c[4] for c in cells).most_common(5)))
                 print("courts:", sorted({c[0] for c in cells}))
-                print("sample:", [(c[0], min_to_hm(c[1]), "free" if c[3] else "taken") for c in cells[:4]])
+                print("sample:", [(c[0], min_to_hm(c[1]), "free" if c[3] else "taken", c[5]) for c in cells[:4]])
+                print("prices shown on schedule:", sum(1 for c in cells if c[5] is not None), "of", len(cells), "cells")
         except Exception as ex:  # noqa: BLE001
             print("ERROR:", type(ex).__name__, str(ex)[:600])
     print("=" * 70)
