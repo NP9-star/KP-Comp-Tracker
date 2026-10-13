@@ -4,6 +4,88 @@
     "evidence": "PADELHUB SL2 Slough: earliest slot vs opening (min) [-60, -60, -60]",
     "times": "utc"
   },
+  "courtfit-cobham": {
+    "all_courts": {
+      "70725b80-5e4c-4dc9-9e4a-83406d113b5f": "Padel 1",
+      "858563f5-2c91-4c56-9942-d905d14ae868": "Padel 2"
+    },
+    "club_kind": "outdoor",
+    "courts": {
+      "70725b80-5e4c-4dc9-9e4a-83406d113b5f": "Padel 1",
+      "858563f5-2c91-4c56-9942-d905d14ae868": "Padel 2"
+    },
+    "hours": {
+      "fri": "07:00-18:30",
+      "mon": "07:00-18:30",
+      "sat": "07:00-18:30",
+      "sun": "07:00-18:30",
+      "thu": "07:00-18:30",
+      "tue": "07:00-18:30",
+      "wed": "07:00-18:30"
+    },
+    "page_courts": [
+      [
+        "Padel 1",
+        "outdoor",
+        "double"
+      ],
+      [
+        "Padel 2",
+        "outdoor",
+        "double"
+      ]
+    ],
+    "page_error": null,
+    "page_names": {
+      "70725b80-5e4c-4dc9-9e4a-83406d113b5f": "Padel 1",
+      "858563f5-2c91-4c56-9942-d905d14ae868": "Padel 2"
+    },
+    "refreshed": "2026-10-13",
+    "rid_ratio": {
+      "70725b80-5e4c-4dc9-9e4a-83406d113b5f": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "858563f5-2c91-4c56-9942-d905d14ae868": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "seen_by_dow": {
+      "2": [
+        450,
+        1020
+      ],
+      "3": [
+        450,
+        1080
+      ]
+    },
+    "seen_range": [
+      450,
+      1080
+    ],
+    "singles_on_page": 0,
+    "tenant_id": "ab23b3e4-b416-493a-9c4d-a113bb5740a2"
+  },
   "denham-grove": {
     "all_courts": {
       "c623d05c-392a-4884-80f2-b5510216e2f8": "Court2",
@@ -574,6 +656,28 @@
     "singles_on_page": 0,
     "tenant_id": "1eb90d21-84ba-4f46-b523-61dffef0739f"
   },
+  "game4padel-heathrow": {
+    "courts": {
+      "Court 1": "Court 1",
+      "Court 2": "Court 2"
+    },
+    "facility_id": 2370,
+    "seen_by_dow": {
+      "2": [
+        480,
+        1080
+      ],
+      "3": [
+        480,
+        1080
+      ]
+    },
+    "seen_range": [
+      480,
+      1080
+    ],
+    "sport": 5
+  },
   "lacey-green": {
     "all_courts": {
       "24d2adde-61a5-4f9b-9f59-787c8dc279b9": "Padel 1"
@@ -639,6 +743,152 @@
     ],
     "singles_on_page": 0,
     "tenant_id": "fbefee6e-829f-4e09-bc7b-67ea018aa143"
+  },
+  "padel-boutique": {
+    "all_courts": {
+      "1b5804bc-de93-497a-ba6a-83437d63c0f6": "Court 2 - Covered",
+      "6fe8e833-6e81-44ef-9b0c-4bfef82c9b05": "Court 1 - Outdoor",
+      "9702a8c5-b882-4833-8586-238025e22262": "Court 3 - Covered"
+    },
+    "courts": {
+      "1b5804bc-de93-497a-ba6a-83437d63c0f6": "Court 2 - Covered",
+      "6fe8e833-6e81-44ef-9b0c-4bfef82c9b05": "Court 1 - Outdoor",
+      "9702a8c5-b882-4833-8586-238025e22262": "Court 3 - Covered"
+    },
+    "hours": {
+      "fri": "07:00-22:30",
+      "mon": "07:00-22:30",
+      "sat": "07:00-22:30",
+      "sun": "07:00-22:30",
+      "thu": "07:00-22:30",
+      "tue": "07:00-22:30",
+      "wed": "07:00-22:30"
+    },
+    "page_courts": [
+      [
+        "Court 1 - Outdoor",
+        "outdoor",
+        "double"
+      ],
+      [
+        "Court 2 - Covered",
+        "roofed",
+        "double"
+      ],
+      [
+        "Court 3 - Covered",
+        "roofed",
+        "double"
+      ]
+    ],
+    "page_error": null,
+    "page_names": {
+      "1b5804bc-de93-497a-ba6a-83437d63c0f6": "Court 2 - Covered",
+      "6fe8e833-6e81-44ef-9b0c-4bfef82c9b05": "Court 1 - Outdoor",
+      "9702a8c5-b882-4833-8586-238025e22262": "Court 3 - Covered"
+    },
+    "refreshed": "2026-10-13",
+    "rid_ratio": {
+      "1b5804bc-de93-497a-ba6a-83437d63c0f6": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "6fe8e833-6e81-44ef-9b0c-4bfef82c9b05": [
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.818,
+        0.818,
+        0.818,
+        0.921,
+        0.921,
+        0.921,
+        0.86,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.921,
+        0.818
+      ],
+      "9702a8c5-b882-4833-8586-238025e22262": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "seen_by_dow": {
+      "1": [
+        1290,
+        1350
+      ],
+      "2": [
+        420,
+        1350
+      ],
+      "3": [
+        420,
+        1350
+      ]
+    },
+    "seen_range": [
+      420,
+      1350
+    ],
+    "singles_on_page": 0,
+    "tenant_id": "861b97eb-a18f-4930-a7cf-7ef4c9b4c163"
   },
   "padel-maidenhead": {
     "all_courts": {
@@ -3489,6 +3739,84 @@
     "singles_on_page": 0,
     "tenant_id": "41062339-4a0c-4167-8593-f3dc861fb415"
   },
+  "padelstars-egham": {
+    "all_courts": {
+      "7c46b450-979e-48bb-b3fb-ce06781a3195": "Padel 3"
+    },
+    "club_kind": "outdoor",
+    "courts": {
+      "7c46b450-979e-48bb-b3fb-ce06781a3195": "Padel 3"
+    },
+    "hours": {
+      "fri": "07:00-22:00",
+      "mon": "07:00-22:00",
+      "sat": "07:00-18:00",
+      "sun": "07:00-18:00",
+      "thu": "07:00-22:00",
+      "tue": "07:00-22:00",
+      "wed": "07:00-22:00"
+    },
+    "page_courts": [
+      [
+        "Padel 3",
+        "outdoor",
+        "double"
+      ]
+    ],
+    "page_error": null,
+    "page_names": {
+      "7c46b450-979e-48bb-b3fb-ce06781a3195": "Padel 3"
+    },
+    "refreshed": "2026-10-13",
+    "seen_by_dow": {
+      "2": [
+        420,
+        1020
+      ],
+      "3": [
+        420,
+        1320
+      ]
+    },
+    "seen_range": [
+      420,
+      1320
+    ],
+    "singles_on_page": 0,
+    "tenant_id": "f27edc81-e439-4c3f-82bb-8fbea4eb25a5"
+  },
+  "popuppadel-chertsey": {
+    "all_courts": {
+      "2879d3fb-d39b-452c-972d-d3b3e24bd442": "Padel 1",
+      "87f6ec34-6771-4f0b-b690-4013c22f4f42": "Padel 2"
+    },
+    "club_kind": "outdoor",
+    "courts": {
+      "2879d3fb-d39b-452c-972d-d3b3e24bd442": "Padel 1",
+      "87f6ec34-6771-4f0b-b690-4013c22f4f42": "Padel 2"
+    },
+    "hours": null,
+    "page_courts": [
+      [
+        "Padel 1",
+        "outdoor",
+        "double"
+      ],
+      [
+        "Padel 2",
+        "outdoor",
+        "double"
+      ]
+    ],
+    "page_error": null,
+    "page_names": {
+      "2879d3fb-d39b-452c-972d-d3b3e24bd442": "Padel 1",
+      "87f6ec34-6771-4f0b-b690-4013c22f4f42": "Padel 2"
+    },
+    "refreshed": "2026-10-13",
+    "singles_on_page": 0,
+    "tenant_id": "cb6b39ca-c6ee-446d-b4d9-fe75495da09b"
+  },
   "powerhouse-burnham": {
     "all_courts": {
       "8c7a0362-41ca-4a26-8e1e-8a1fd5ee4a97": "Padel 2",
@@ -4039,8 +4367,6 @@
     "refreshed": "2026-10-12",
     "rid_ratio": {
       "0c120283-ac8b-4953-bd0a-f9fa02ad7d79": [
-        1.0,
-        0.938,
         0.938,
         0.938,
         0.938,
@@ -4237,6 +4563,8 @@
         1.0,
         1.0,
         0.938,
+        1.0,
+        1.0,
         1.0,
         1.0
       ],
@@ -4647,12 +4975,6 @@
       "a8b3fce4-f32c-43f7-927b-ebc7a48c484f": [
         0.933,
         0.933,
-        0.875,
-        0.933,
-        0.933,
-        0.933,
-        0.933,
-        0.933,
         0.933,
         0.875,
         0.875,
@@ -4843,18 +5165,16 @@
         0.875,
         0.875,
         0.875,
+        0.933,
+        0.933,
+        0.933,
+        0.933,
+        0.933,
+        0.933,
         0.933,
         0.933
       ],
       "abbae263-9e59-4a5a-a15c-4ce41d799f0e": [
-        1.0,
-        0.938,
-        0.938,
-        0.938,
-        1.0,
-        1.0,
-        0.938,
-        0.938,
         0.938,
         0.938,
         1.0,
@@ -5041,21 +5361,24 @@
         1.0,
         1.0,
         1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.938,
+        0.938,
+        0.938,
         1.0,
         1.0,
         1.0,
         1.0,
         1.0,
-        0.938
+        1.0
       ],
       "fb788ccc-a7bd-4672-b53d-f9fbdfcf0527": [
         1.067,
         1.0,
-        1.067,
-        1.067,
-        1.067,
-        1.067,
-        1.0,
         1.0,
         1.067,
         1.0,
@@ -5247,8 +5570,13 @@
         1.067,
         1.067,
         1.0,
+        1.067,
+        1.0,
+        1.0,
+        1.0,
+        1.067,
         1.067,
-        1.0
+        1.067
       ]
     },
     "seen_by_dow": {
@@ -6187,6 +6515,144 @@
     ],
     "singles_on_page": 1,
     "tenant_id": "1b0fa0b0-8e4a-42b0-92a0-b6ea026e48ac"
+  },
+  "tennis-england-club": {
+    "all_courts": {
+      "1efe9c24-f01e-4328-8b12-c9a269d0a7aa": "Padel 3",
+      "4bfb215f-6752-4035-8730-075220673162": "Padel 1",
+      "50e0ba13-bbc1-4d8d-90cc-2a103f199b26": "Tennis 1 - Blue Court",
+      "59498bc2-a57c-425d-8bc5-61fe81173e8f": "Tennis 6 - Red Hard Court",
+      "613aae76-f9b1-4179-9775-16e23426b176": "Tennis 3 - Blue Court",
+      "6b16714c-2734-4462-80b3-c56a3c8f2e90": "Pickleball 2",
+      "829f282e-6af4-4596-883b-791f8208567b": "Tennis 8 - Red Hard Court",
+      "9d16aa8f-4da8-4cfd-8273-28145ce67045": "Tennis 7 - Red Hard Court",
+      "9eb8a2bc-49e0-4551-81ed-6795f74d281b": "Pickleball 4",
+      "a91dc81c-99e0-4a89-9273-d84d20ae787e": "Tennis 9 - Red Hard Court",
+      "c8a38aae-30b8-4327-9832-c552a20889ca": "Pickleball 1",
+      "ce8c5358-7fce-4597-b34d-6a988e859112": "Pickleball 3",
+      "eff73d63-bea9-4327-a358-8dae81289809": "Padel 2",
+      "f62e0045-c158-4289-bf24-0d02fada16f5": "Tennis 5 - Red Hard Court",
+      "fa33b46f-6b74-4433-a376-54b2d80844fa": "Tennis 2 - Blue Court",
+      "fd8c5b25-04bf-42ba-b010-a731cbbe8b41": "Padel 4"
+    },
+    "club_kind": "outdoor",
+    "courts": {
+      "1efe9c24-f01e-4328-8b12-c9a269d0a7aa": "Padel 3",
+      "4bfb215f-6752-4035-8730-075220673162": "Padel 1",
+      "50e0ba13-bbc1-4d8d-90cc-2a103f199b26": "Tennis 1 - Blue Court",
+      "59498bc2-a57c-425d-8bc5-61fe81173e8f": "Tennis 6 - Red Hard Court",
+      "613aae76-f9b1-4179-9775-16e23426b176": "Tennis 3 - Blue Court",
+      "6b16714c-2734-4462-80b3-c56a3c8f2e90": "Pickleball 2",
+      "829f282e-6af4-4596-883b-791f8208567b": "Tennis 8 - Red Hard Court",
+      "9d16aa8f-4da8-4cfd-8273-28145ce67045": "Tennis 7 - Red Hard Court",
+      "9eb8a2bc-49e0-4551-81ed-6795f74d281b": "Pickleball 4",
+      "a91dc81c-99e0-4a89-9273-d84d20ae787e": "Tennis 9 - Red Hard Court",
+      "c8a38aae-30b8-4327-9832-c552a20889ca": "Pickleball 1",
+      "ce8c5358-7fce-4597-b34d-6a988e859112": "Pickleball 3",
+      "eff73d63-bea9-4327-a358-8dae81289809": "Padel 2",
+      "f62e0045-c158-4289-bf24-0d02fada16f5": "Tennis 5 - Red Hard Court",
+      "fa33b46f-6b74-4433-a376-54b2d80844fa": "Tennis 2 - Blue Court",
+      "fd8c5b25-04bf-42ba-b010-a731cbbe8b41": "Padel 4"
+    },
+    "hours": {
+      "fri": "07:00-22:00",
+      "mon": "07:00-22:00",
+      "sat": "07:00-22:00",
+      "sun": "07:00-22:00",
+      "thu": "07:00-22:00",
+      "tue": "07:00-22:00",
+      "wed": "07:00-22:00"
+    },
+    "page_courts": [
+      [
+        "Padel 1",
+        "outdoor",
+        "double"
+      ],
+      [
+        "Padel 2",
+        "outdoor",
+        "double"
+      ],
+      [
+        "Padel 3",
+        "outdoor",
+        "double"
+      ],
+      [
+        "Padel 4",
+        "outdoor",
+        "double"
+      ]
+    ],
+    "page_error": null,
+    "page_names": {
+      "1efe9c24-f01e-4328-8b12-c9a269d0a7aa": "Padel 3",
+      "4bfb215f-6752-4035-8730-075220673162": "Padel 1",
+      "50e0ba13-bbc1-4d8d-90cc-2a103f199b26": "Tennis 1 - Blue Court",
+      "59498bc2-a57c-425d-8bc5-61fe81173e8f": "Tennis 6 - Red Hard Court",
+      "613aae76-f9b1-4179-9775-16e23426b176": "Tennis 3 - Blue Court",
+      "6b16714c-2734-4462-80b3-c56a3c8f2e90": "Pickleball 2",
+      "829f282e-6af4-4596-883b-791f8208567b": "Tennis 8 - Red Hard Court",
+      "9d16aa8f-4da8-4cfd-8273-28145ce67045": "Tennis 7 - Red Hard Court",
+      "9eb8a2bc-49e0-4551-81ed-6795f74d281b": "Pickleball 4",
+      "a91dc81c-99e0-4a89-9273-d84d20ae787e": "Tennis 9 - Red Hard Court",
+      "c8a38aae-30b8-4327-9832-c552a20889ca": "Pickleball 1",
+      "ce8c5358-7fce-4597-b34d-6a988e859112": "Pickleball 3",
+      "eff73d63-bea9-4327-a358-8dae81289809": "Padel 2",
+      "f62e0045-c158-4289-bf24-0d02fada16f5": "Tennis 5 - Red Hard Court",
+      "fa33b46f-6b74-4433-a376-54b2d80844fa": "Tennis 2 - Blue Court",
+      "fd8c5b25-04bf-42ba-b010-a731cbbe8b41": "Padel 4"
+    },
+    "refreshed": "2026-10-13",
+    "rid_ratio": {
+      "1efe9c24-f01e-4328-8b12-c9a269d0a7aa": [
+        1.0
+      ],
+      "fd8c5b25-04bf-42ba-b010-a731cbbe8b41": [
+        1.0
+      ]
+    },
+    "seen_by_dow": {
+      "2": [
+        840,
+        1080
+      ],
+      "3": [
+        420,
+        540
+      ]
+    },
+    "seen_range": [
+      420,
+      1080
+    ],
+    "singles_on_page": 0,
+    "tenant_id": "2a31c6ce-b212-4448-abd2-b05a6bbde784"
+  },
+  "thorpe-lakes": {
+    "all_courts": {
+      "f199bc6a-0661-4c5a-9893-34942c4bad62": "Padel 1"
+    },
+    "club_kind": "outdoor",
+    "courts": {
+      "f199bc6a-0661-4c5a-9893-34942c4bad62": "Padel 1"
+    },
+    "hours": null,
+    "page_courts": [
+      [
+        "Padel 1",
+        "outdoor",
+        "double"
+      ]
+    ],
+    "page_error": null,
+    "page_names": {
+      "f199bc6a-0661-4c5a-9893-34942c4bad62": "Padel 1"
+    },
+    "refreshed": "2026-10-13",
+    "singles_on_page": 0,
+    "tenant_id": "947b539b-28c4-41a7-b871-ba1905d2c0db"
   },
   "ukpadel-holmer-green": {
     "club_id": "216905",
