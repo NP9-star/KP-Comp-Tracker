@@ -142,6 +142,11 @@ def resolve(club: dict, resolved: dict) -> dict:
 def free_blocks(club, info, d: date, zone, block: int, mode=None):
     out: dict[str, dict[str, float | None]] = {}
     cells = list(parse_cells(schedule_html(club, info["facility_id"], d, info["sport"], None)))
+    if cells:   # the schedule lists every bookable slot (free or booked): remember its time span per weekday
+        lo, hi = min(c[1] for c in cells), min(max(c[2] for c in cells), 24 * 60)
+        span = info.setdefault("cell_hours", {})
+        cur = span.get(str(d.weekday())) or [lo, hi]
+        span[str(d.weekday())] = [min(cur[0], lo), max(cur[1], hi)]
     for court, start, end, is_free, _, price in cells:
         info["courts"].setdefault(court, court)
         if is_free:

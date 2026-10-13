@@ -32,6 +32,13 @@ def club_hours(club, info):
         hours = hours_by_weekday({"all": f"{min_to_hm(seen[0])}-{min_to_hm(seen[1]) if seen[1] < 1440 else '24:00'}"})
     else:
         hours = hours_by_weekday(DEFAULT_HOURS)
+    for dow, (lo, hi) in (info.get("cell_hours") or {}).items():
+        # MATCHi lists every bookable slot, so time outside its schedule is closed (e.g. no floodlights)
+        dow = int(dow)
+        if dow in hours:
+            a, b = max(hours[dow][0], lo), min(hours[dow][1], hi)
+            if b > a:
+                hours[dow] = (a, b)
     for dow, (lo, hi) in (info.get("seen_by_dow") or {}).items():
         dow = int(dow)
         if dow in hours:

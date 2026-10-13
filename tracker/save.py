@@ -21,11 +21,18 @@ def main():
         return
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     git("commit", "-q", "-m", f"Update availability {stamp}")
-    for attempt in range(3):
-        git("pull", "--rebase", "-q", check=False)
-        if git("push", "-q", check=False).returncode == 0:
+    import time
+    for attempt in range(5):
+        r = git("pull", "--rebase", "--autostash", "-q", check=False)
+        if r.returncode != 0:
+            print("pull failed:", r.stdout, r.stderr, file=sys.stderr)
+            git("rebase", "--abort", check=False)
+        p = git("push", "-q", check=False)
+        if p.returncode == 0:
             print("Saved.")
             return
+        print(f"push attempt {attempt + 1} failed:", p.stderr.strip()[:300], file=sys.stderr)
+        time.sleep(10 * (attempt + 1))
     raise SystemExit("Could not push results")
 
 
