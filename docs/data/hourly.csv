@@ -2660,7 +2660,7 @@ CourtFit Cobham,tw17,2026-10-16,Fri,16:00,0,1,4,4,0,1.0,80.0,0.0
 CourtFit Cobham,tw17,2026-10-16,Fri,17:00,1,1,2,1,0,0.5,20.0,0.0
 Tennis England Club Molesey,tw17,2026-10-14,Wed,07:00,0,1,8,8,0,1.0,160.0,0.0
 Tennis England Club Molesey,tw17,2026-10-14,Wed,08:00,0,1,8,8,0,1.0,160.0,0.0
-Tennis England Club Molesey,tw17,2026-10-14,Wed,09:00,0,1,8,8,0,1.0,176.0,0.0
+Tennis England Club Molesey,tw17,2026-10-14,Wed,09:00,0,1,8,8,0,1.0,160.0,0.0
 Tennis England Club Molesey,tw17,2026-10-14,Wed,10:00,0,1,8,8,0,1.0,176.0,0.0
 Tennis England Club Molesey,tw17,2026-10-14,Wed,11:00,0,1,8,8,0,1.0,160.0,0.0
 Tennis England Club Molesey,tw17,2026-10-14,Wed,12:00,0,1,8,8,0,1.0,160.0,0.0
@@ -2675,7 +2675,7 @@ Tennis England Club Molesey,tw17,2026-10-14,Wed,20:00,1,1,8,8,0,1.0,176.0,0.0
 Tennis England Club Molesey,tw17,2026-10-14,Wed,21:00,1,1,8,8,0,1.0,176.0,0.0
 Tennis England Club Molesey,tw17,2026-10-15,Thu,07:00,0,1,8,5,0,0.625,100.0,0.0
 Tennis England Club Molesey,tw17,2026-10-15,Thu,08:00,0,1,8,6,0,0.75,120.0,0.0
-Tennis England Club Molesey,tw17,2026-10-15,Thu,09:00,0,1,8,8,0,1.0,176.0,0.0
+Tennis England Club Molesey,tw17,2026-10-15,Thu,09:00,0,1,8,8,0,1.0,160.0,0.0
 Tennis England Club Molesey,tw17,2026-10-15,Thu,10:00,0,1,8,8,0,1.0,176.0,0.0
 Tennis England Club Molesey,tw17,2026-10-15,Thu,11:00,0,1,8,8,0,1.0,160.0,0.0
 Tennis England Club Molesey,tw17,2026-10-15,Thu,12:00,0,1,8,8,0,1.0,160.0,0.0
@@ -2727,8 +2727,8 @@ Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,14:00,1,1,12,12,0,1.0,44
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,15:00,1,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,16:00,1,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,17:00,1,1,12,12,0,1.0,450.0,0.0
-Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,18:00,1,1,12,12,0,1.0,465.0,0.0
-Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,19:00,1,1,12,12,0,1.0,480.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,18:00,1,1,12,12,0,1.0,450.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,19:00,1,1,12,12,0,1.0,465.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,20:00,0,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,21:00,0,1,12,12,0,1.0,465.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-09-27,Sun,22:00,0,0,12,10,0,0.8333,375.0,0.0
@@ -2823,7 +2823,7 @@ Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,14:00,1,1,12,12,12,1.0,4
 Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,15:00,1,1,12,12,0,1.0,455.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,16:00,1,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,17:00,1,1,6,6,0,1.0,227.5,0.0
-Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,19:00,1,1,6,6,0,1.0,230.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,19:00,1,1,6,6,0,1.0,228.75,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,20:00,0,1,12,12,0,1.0,460.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,21:00,0,1,12,12,0,1.0,460.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-03,Sat,22:00,0,0,6,2,0,0.3333,75.0,0.0
@@ -2902,7 +2902,7 @@ Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,14:00,1,1,12,12,0,1.0,45
 Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,15:00,1,1,12,12,0,1.0,455.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,16:00,1,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,17:00,1,1,12,12,0,1.0,460.0,0.0
-Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,18:00,1,1,12,12,0,1.0,465.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,18:00,1,1,12,12,0,1.0,462.5,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,19:00,1,1,12,12,0,1.0,460.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,20:00,0,1,12,7,0,0.5833,270.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-10,Sat,21:00,0,1,12,9,0,0.75,342.5,0.0
@@ -2918,8 +2918,8 @@ Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,14:00,1,1,12,12,10,1.0,4
 Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,15:00,1,1,12,12,10,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,16:00,1,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,17:00,1,1,12,12,0,1.0,450.0,0.0
-Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,18:00,1,1,12,12,0,1.0,461.25,0.0
-Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,19:00,1,1,12,12,0,1.0,460.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,18:00,1,1,12,12,0,1.0,450.0,0.0
+Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,19:00,1,1,12,12,0,1.0,457.5,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,20:00,0,1,12,12,0,1.0,450.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,21:00,0,1,12,12,0,1.0,470.0,0.0
 Padel Social Club Earl's Court,benchmark,2026-10-11,Sun,22:00,0,0,12,10,0,0.8333,385.0,0.0
